@@ -1,0 +1,20 @@
+<section class="login">
+    <form [formGroup]="form" class="login__form">
+            <div>
+                <input [ngClass]="{invalid: form.controls['email'].touched && form.controls['email'].invalid}" 
+                formControlName="email" type="email" class="login__input" placeholder="Email">
+                <div class="validation" *ngIf="form.controls['email'].touched && form.controls['email'].invalid">
+                    <small *ngIf="form.controls['email']">Email address must be valid</small>
+                </div>
+            </div>
+            <div class="password-wrapper">
+                <input appPasswordToggle [ngClass]="{invalid: form.controls['password'].touched && form.controls['password'].invalid}" 
+                formControlName="password" type="password" class="login__input" placeholder="Password">                
+                <div class="validation" *ngIf="form.controls['password'].touched && form.controls['password'].invalid">
+                    <small *ngIf="form.controls['password']">Password length must be at least 8 letters or numbers</small>
+                </div>
+            </div>
+        <button (click)="register()" [disabled]="!form.valid || submitted" class="register__btn">Register</button>
+        <button (click)="login()" [disabled]="!form.valid || submitted" class="login__btn">Login</button>
+    </form>
+</section>
