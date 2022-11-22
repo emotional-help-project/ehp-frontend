@@ -3,19 +3,21 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { AuthComponent } from './components/auth-form/auth.component';
+import { AuthFormComponent } from './components/auth-form/auth-form.component';
+import { AuthSectionComponent } from './components/auth-section/auth-section.component';
 
 
 const routes: Routes = [
   {
     path: '',
-    component: AuthComponent
+    component: AuthSectionComponent
   },
 ];
 
 @NgModule({
   declarations: [
-    AuthComponent,
+    AuthFormComponent,
+    AuthSectionComponent,
   ],
   imports: [
     CommonModule,
