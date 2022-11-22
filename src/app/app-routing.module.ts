@@ -9,8 +9,12 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
-    path: 'auth',
-    loadChildren: () => import('./features/auth/auth.module').then(_ => _.AuthModule)
+    path: 'login',
+    loadChildren: () => import('./features/login/login.module').then(_ => _.LoginModule)
+  },
+  {
+    path: 'register',
+    loadChildren: () => import('./features/register/register.module').then(_ => _.RegisterModule)
   },
 ];
 
