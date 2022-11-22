@@ -1,0 +1,10 @@
+section {
+    padding: 50px 50px 100px;
+    text-align: center;
+    box-shadow: inset var(--boxShadowMainColor);
+    h2 {
+        color: var(--secondaryColor);
+        margin-bottom: 50px;
+        font-size: 30px;
+    }
+}
