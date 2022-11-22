@@ -1,0 +1,15 @@
+button {
+    background-color: var(--mainColor);
+    padding: 17px 30px;
+    border: 1px solid var(--mainColor);
+    color: #fff;
+    font-size: 18px;
+    line-height: 1;
+    box-shadow: var(--boxShadowMainColor);
+    transition: all .4s linear 0s;
+    &:hover {
+        background-color: var(--secondaryColor);
+        box-shadow: var(--boxShadowSecondaryColor);
+        border: 1px solid var(--secondaryColor);
+    }
+}
