@@ -3,6 +3,10 @@
   <p class="description">
     Select the answers based on how well each statement describes you.
   </p>
+  <div (click)="details=!details" class="details">Details</div>
+   
+  <app-answer-btn *ngIf="details" [readonly]="true"></app-answer-btn>
+
   <div class="progress">
     <mat-progress-bar
       mode="determinate"
@@ -11,17 +15,16 @@
     ></mat-progress-bar>
   </div>
 
-  <app-answer-btn [readonly]="true"></app-answer-btn>
-
   <div class="questions" >
-    <ng-container *ngFor="let question of questions">
-      <p>{{ question }}</p>
+    <ng-container *ngFor="let q of question">
+      <p>{{ q }}</p>
       <div class="question">
         <span>Strongly disagree</span>
         <app-answer-btn></app-answer-btn>
         <span>Strongly agree</span>
       </div>
     </ng-container>
-    <app-button content="Next" (click)="next()"></app-button>
+    <app-button *ngIf="!last" content="Next" (click)="next()"></app-button>
+    <app-button *ngIf="last" content="Result" (click)="result()"></app-button>
   </div>
 </section>

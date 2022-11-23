@@ -22,8 +22,7 @@ export class AuthFormComponent implements OnInit {
       name: [null, [Validators.required]],
       lastname: [null, [Validators.required]],
       age: [null],
-      male: [null],
-      female: [null],
+      gender: [null],
       email: [null, [Validators.required, Validators.email, Validators.minLength(10), createEmailStrengthValidator()]],
       password: [null, [Validators.required, Validators.minLength(8), createPasswordStrengthValidator()]],
     });
