@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './features/home/home.component';
 import { HeaderComponent } from './core/header/header.component';
 import { FooterComponent } from './core/footer/footer.component';
-import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +20,6 @@ import { SharedModule } from './shared/shared.module';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,14 +1,56 @@
 :root {
-    --mainColor: #91d0cc;
-    --secondaryColor: #d9be93;
-    --boxShadowMainColor: 0px 2px 30px rgb(145, 208, 204, 0.5);
-    --boxShadowSecondaryColor: 0px 10px 20px rgba(217, 190, 147, 0.5);
+  --mainColor: #91d0cc;
+  --secondaryColor: #d9be93;
+  --boxShadowMainColor: 0px 2px 30px rgb(145, 208, 204, 0.5);
+  --boxShadowSecondaryColor: 0px 10px 20px rgba(217, 190, 147, 0.5);
+}
+
+body,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+  padding-left: 0;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  border: none;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-    padding: 0;
+  background-color: #fff;
 }
-* {
-    box-sizing: border-box;
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--mainColor);
+  box-shadow: inset 0px 0px 6px rgba(103, 108, 120, 0.5);
+  border-radius: 10px;
 }

@@ -1,0 +1,53 @@
+<div class="login">
+    <h2 *ngIf="!registerForm">Sign in</h2>
+    <h2 *ngIf="registerForm">Sign up</h2>
+    <form [formGroup]="form" class="login__form">
+
+        <div *ngIf="registerForm">
+            <input [ngClass]="{invalid: form.controls['name'].touched && form.controls['name'].invalid}" 
+            formControlName="name" type="text" class="input" placeholder="First name *">
+            <div class="validation">
+                <small *ngIf="form.controls['name'].touched && form.controls['name'].invalid">* Name is requred</small>
+            </div>
+        </div>
+
+        <div *ngIf="registerForm">
+            <input [ngClass]="{invalid: form.controls['lastname'].touched && form.controls['lastname'].invalid}" 
+            formControlName="lastname" type="text" class="input" placeholder="Last name *">
+            <div class="validation">
+                <small *ngIf="form.controls['lastname'].touched && form.controls['lastname'].invalid">* Last name is requred</small>
+            </div>
+        </div>
+        
+        <div>
+            <input [ngClass]="{invalid: form.controls['email'].touched && form.controls['email'].invalid}" 
+            formControlName="email" type="email" class="input" placeholder="Email *">
+            <div class="validation">
+                <small *ngIf="form.controls['email'].touched && form.controls['email'].invalid">* Email address must be valid</small>
+            </div>
+        </div>
+
+        <div class="password-wrapper">
+            <input appPasswordToggle [ngClass]="{invalid: form.controls['password'].touched && form.controls['password'].invalid}" 
+            formControlName="password" type="password" class="input" placeholder="Password *">                
+            <div class="validation">
+                <small *ngIf="form.controls['password'].touched && form.controls['password'].invalid">* Password length must be at least 8 letters or numbers</small>
+            </div>
+        </div>
+
+        <div *ngIf="registerForm">
+            <input name="age" formControlName="age" type="number" class="input" placeholder="Age">
+        </div>
+
+        <div class="radio" *ngIf="registerForm">
+            <p>Gender</p> 
+            <input name="gender" formControlName="male" type="radio" class="radio-input" id="male">
+            <label for="male">Male</label>
+            <input name="gender" formControlName="female" type="radio" class="radio-input" id="female">
+            <label for="female">Female</label>
+        </div>
+
+        <app-button *ngIf="registerForm" [disabled]="!form.valid || submitted" class="btn" content="Sign up"></app-button>
+        <app-button *ngIf="!registerForm" [disabled]="!form.valid || submitted" class="btn" content="Sign in"></app-button>
+    </form>
+</div>
