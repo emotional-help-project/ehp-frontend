@@ -1,0 +1,57 @@
+.contact_info{
+    background-color: rgb(139, 204, 190);
+    padding: 10px 40px;
+    display: flex;
+    justify-content: space-between;
+    
+}
+.auth{
+    display: flex;
+    color: white;
+}
+.login {
+    display: flex;
+    margin-left: 20px;
+}
+.registr {
+    display: flex;
+}
+.item {
+    display: flex;
+    margin-left: 20px;
+}
+.contact{
+    display: flex;
+    color: white;
+}
+.icon {
+    font-size: 18px;
+    color: white;
+}
+.btn {
+    background-color: rgb(2, 134, 134);
+    padding: 8px;
+    border-radius: 4px;
+    
+}
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    padding: 20px 20px;
+    
+}
+.logo {
+    color: rgb(184, 136, 74);
+    margin-left: 20px;
+}
+.navigation{
+    display: flex;
+    list-style: none;
+    
+}
+.nav_item{
+    margin-left: 10px;
+    color: rgb(184, 136, 74);
+}

@@ -1,0 +1,30 @@
+.promo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 600px;
+    margin: 0;
+    background-image: url('../../../assets/images/background.jpg') /* center center / cover no-repeat  */;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.promo_title{
+    color: rgb(184, 136, 74);
+    font-size: 60px;
+    margin-bottom: 10px;
+}
+.promo_subtitle{
+    color: rgb(184, 136, 74);
+}
+.courses{
+    height: 600px;
+    text-align: center;
+    padding: 40px;
+}
+.courses_list{
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
