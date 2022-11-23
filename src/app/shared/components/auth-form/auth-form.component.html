@@ -5,7 +5,7 @@
 
         <div *ngIf="registerForm">
             <input [ngClass]="{invalid: form.controls['name'].touched && form.controls['name'].invalid}" 
-            formControlName="name" type="text" class="input" placeholder="Name *">
+            formControlName="name" type="text" class="input" placeholder="First name *">
             <div class="validation">
                 <small *ngIf="form.controls['name'].touched && form.controls['name'].invalid">* Name is requred</small>
             </div>
