@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-answer-btn',
@@ -7,6 +7,8 @@ import { Component, Input } from '@angular/core';
 })
 export class AnswerBtnComponent {
   @Input() readonly: boolean;
+  @Output() isChecked = new EventEmitter<boolean>();
+
   checked = [false, false, false, false, false]
   answers: any[] = [
     {
@@ -38,5 +40,8 @@ export class AnswerBtnComponent {
     }
     this.checked = [false, false, false, false, false];
     this.checked[id-1] = true;
+    this.isChecked.emit(true);
   }
 }
+
+

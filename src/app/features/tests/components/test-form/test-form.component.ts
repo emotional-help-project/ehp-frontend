@@ -20,6 +20,7 @@ export class TestFormComponent {
   last: boolean;
   progress: number = 0;
   details = false;
+  checked = false;
 
   next() {
     if (this.page === this.questions.length) {
@@ -32,6 +33,7 @@ export class TestFormComponent {
     this.last = false;
     this.page += 1;
     this.question = [this.questions[this.page-1]];
+    this.checked = false;
   }
 
   result() {

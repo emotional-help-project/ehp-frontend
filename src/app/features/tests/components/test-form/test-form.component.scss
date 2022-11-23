@@ -47,7 +47,16 @@ section {
 .details {
     color: var(--mainColor);
     cursor: pointer;
+    margin-bottom: 10px;
     &:hover {
         color: var(--secondaryColor);
     }
+}
+
+app-button[disabled], app-button:disabled:hover {
+    background-color: dimgrey;
+    color: linen;
+    opacity: 0.4;
+    box-shadow: 0px 10px 20px rgba(103, 108, 120, 0.4);
+    cursor: auto;
 }

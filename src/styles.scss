@@ -88,3 +88,11 @@ body {
 
 html, body { height: 100%; }
 // body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+*:disabled, *:disabled:hover {
+  background-color: dimgrey;
+  color: linen;
+  opacity: 0.4;
+  box-shadow: 0px 10px 20px rgba(103, 108, 120, 0.4);
+  cursor: auto;
+}
