@@ -1,0 +1,27 @@
+<section>
+  <h2>Get to know yourself</h2>
+  <p class="description">
+    Select the answers based on how well each statement describes you.
+  </p>
+  <div class="progress">
+    <mat-progress-bar
+      mode="determinate"
+      color="primary"
+      [value]="progress"
+    ></mat-progress-bar>
+  </div>
+
+  <app-answer-btn [readonly]="true"></app-answer-btn>
+
+  <div class="questions" >
+    <ng-container *ngFor="let question of questions">
+      <p>{{ question }}</p>
+      <div class="question">
+        <span>Strongly disagree</span>
+        <app-answer-btn></app-answer-btn>
+        <span>Strongly agree</span>
+      </div>
+    </ng-container>
+    <app-button content="Next" (click)="next()"></app-button>
+  </div>
+</section>
