@@ -1,11 +1,11 @@
 <div class="login">
-    <h2 *ngIf="!registerForm">Login</h2>
-    <h2 *ngIf="registerForm">Register</h2>
+    <h2 *ngIf="!registerForm">Sign in</h2>
+    <h2 *ngIf="registerForm">Sign up</h2>
     <form [formGroup]="form" class="login__form">
 
         <div *ngIf="registerForm">
             <input [ngClass]="{invalid: form.controls['name'].touched && form.controls['name'].invalid}" 
-            formControlName="name" type="text" class="input" placeholder="Name *">
+            formControlName="name" type="text" class="input" placeholder="First name *">
             <div class="validation">
                 <small *ngIf="form.controls['name'].touched && form.controls['name'].invalid">* Name is requred</small>
             </div>
@@ -40,14 +40,14 @@
         </div>
 
         <div class="radio" *ngIf="registerForm">
-            <p>Sex</p> 
-            <input name="sex" formControlName="male" type="radio" class="radio-input" id="male">
+            <p>Gender</p> 
+            <input name="gender" formControlName="male" type="radio" class="radio-input" id="male">
             <label for="male">Male</label>
-            <input name="sex" formControlName="female" type="radio" class="radio-input" id="female">
+            <input name="gender" formControlName="female" type="radio" class="radio-input" id="female">
             <label for="female">Female</label>
         </div>
 
-        <app-button *ngIf="registerForm" [disabled]="!form.valid || submitted" class="btn" content="Register"></app-button>
-        <app-button *ngIf="!registerForm" [disabled]="!form.valid || submitted" class="btn" content="Login"></app-button>
+        <app-button *ngIf="registerForm" [disabled]="!form.valid || submitted" class="btn" content="Sign up"></app-button>
+        <app-button *ngIf="!registerForm" [disabled]="!form.valid || submitted" class="btn" content="Sign in"></app-button>
     </form>
 </div>
