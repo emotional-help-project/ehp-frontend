@@ -1,0 +1,6 @@
+<div class="answers">
+    <div class="answer__item" *ngFor="let answer of answers">
+        <div class="circle" [id]="answer.id" (click)="onClick(answer.id)" [ngClass]="(checked[answer.id-1] ? 'checked' : '')"></div>
+        <p *ngIf="readonly">{{answer.answer}}</p>
+    </div>
+</div>

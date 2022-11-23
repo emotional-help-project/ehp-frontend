@@ -2,6 +2,6 @@
     <li *ngFor="let test of tests" [ngStyle]="{'background-image': test.imgUrl}">
         <h2>{{test.name}}</h2>
         <p>{{test.description}}</p>
-        <app-button content="Start"></app-button>
+        <app-button [routerLink]="['/tests', '1']">Start</app-button>
     </li>
 </ul>

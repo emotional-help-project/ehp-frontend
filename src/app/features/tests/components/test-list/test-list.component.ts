@@ -24,5 +24,7 @@ export class TestListComponent {
       imgUrl: 'linear-gradient(to right, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url("/assets/images/test-3.jpeg")'
     },
   ];
-
+  onClick() {
+    
+  }
 }

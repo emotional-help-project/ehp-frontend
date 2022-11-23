@@ -41,13 +41,13 @@
 
         <div class="radio" *ngIf="registerForm">
             <p>Gender</p> 
-            <input name="gender" formControlName="male" type="radio" class="radio-input" id="male">
-            <label for="male">Male</label>
-            <input name="gender" formControlName="female" type="radio" class="radio-input" id="female">
+            <input name="gender" value="male" formControlName="gender" type="radio" class="radio-input" id="male">
+            <label for="male" >Male</label>
+            <input name="gender" value="female" formControlName="gender" type="radio" class="radio-input" id="female">
             <label for="female">Female</label>
         </div>
 
-        <app-button *ngIf="registerForm" [disabled]="!form.valid || submitted" class="btn" content="Sign up"></app-button>
-        <app-button *ngIf="!registerForm" [disabled]="!form.valid || submitted" class="btn" content="Sign in"></app-button>
+        <app-button *ngIf="registerForm" [disabled]="!form.valid || submitted" class="btn">Sign up</app-button>
+        <app-button *ngIf="!registerForm" [disabled]="!form.valid || submitted" class="btn">Sign in</app-button>
     </form>
 </div>

@@ -1,3 +1,19 @@
+
+
+@use '@angular/material' as mat;
+@include mat.core();
+$ehp-primary: mat.define-palette(mat.$indigo-palette);
+$ehp-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$ehp-warn: mat.define-palette(mat.$red-palette);
+$ehp-theme: mat.define-light-theme((
+  color: (
+    primary: $ehp-primary,
+    accent: $ehp-accent,
+    warn: $ehp-warn,
+  )
+));
+@include mat.all-component-themes($ehp-theme);
+
 :root {
   --mainColor: #91d0cc;
   --secondaryColor: #d9be93;
@@ -56,4 +72,13 @@ body {
 }
 
 html, body { height: 100%; }
+
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+*:disabled, *:disabled:hover {
+  background-color: dimgrey;
+  color: linen;
+  opacity: 0.4;
+  box-shadow: 0px 10px 20px rgba(103, 108, 120, 0.4);
+  cursor: auto;
+}

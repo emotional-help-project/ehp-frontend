@@ -1,0 +1,35 @@
+<section>
+  <h2>Get to know yourself</h2>
+  <p class="description">
+    Select the answers based on how well each statement describes you.
+  </p>
+  <div (click)="details = !details" class="details">Details</div>
+
+  <app-answer-btn *ngIf="details" [readonly]="true"></app-answer-btn>
+
+  <div class="progress" *ngIf="!last">
+    <mat-progress-bar
+      mode="determinate"
+      color="primary"
+      [value]="progress"
+    ></mat-progress-bar>
+  </div>
+
+  <div class="questions">
+    <ng-container *ngIf="!last">
+      <ng-container *ngFor="let q of question">
+        <p>{{ q }}</p>
+        <div class="question">
+          <span>Strongly disagree</span>
+          <app-answer-btn (isChecked)="checked = $event"></app-answer-btn>
+          <span>Strongly agree</span>
+        </div>
+      </ng-container>
+    </ng-container>
+
+    <app-button *ngIf="!last" [disabled]="!checked" (click)="next()"
+      >Next</app-button
+    >
+    <app-button *ngIf="last" (click)="result()">Result</app-button>
+  </div>
+</section>

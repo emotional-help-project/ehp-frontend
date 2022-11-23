@@ -17,22 +17,34 @@ export class AuthFormComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-  ) {
-    this.form = this.fb.group({
-      name: [null, [Validators.required]],
-      lastname: [null, [Validators.required]],
-      age: [null],
-      male: [null],
-      female: [null],
-      email: [null, [Validators.required, Validators.email, Validators.minLength(10), createEmailStrengthValidator()]],
-      password: [null, [Validators.required, Validators.minLength(8), createPasswordStrengthValidator()]],
-    });
+  ) { }
+
+  ngOnInit() {
+    if (this.registerForm) {
+      this.form = this.fb.group({
+        name: [null, [Validators.required]],
+        lastname: [null, [Validators.required]],
+        age: [null],
+        gender: [null],
+        email: [null, [Validators.required, Validators.email, Validators.minLength(10), createEmailStrengthValidator()]],
+        password: [null, [Validators.required, Validators.minLength(8), createPasswordStrengthValidator()]],
+      });
+    } else {
+        this.form = this.fb.group({
+          email: [null, [Validators.required, Validators.email, Validators.minLength(10), createEmailStrengthValidator()]],
+          password: [null, [Validators.required, Validators.minLength(8), createPasswordStrengthValidator()]],
+      });
+    }  
+   }
+
+  register(): void {
+    const value = this.form.value;
+    this.submitted = true;
   }
 
-  ngOnInit() { }
-
-  register(): void {}
-
-  login() {}
+  login() {
+    const value = this.form.value;
+    this.submitted = true;    
+  }
 
 }

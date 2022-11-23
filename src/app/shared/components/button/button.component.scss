@@ -7,6 +7,7 @@ button {
     line-height: 1;
     box-shadow: var(--boxShadowMainColor);
     transition: all .4s linear 0s;
+    cursor: pointer;
     &:hover {
         background-color: var(--secondaryColor);
         box-shadow: var(--boxShadowSecondaryColor);

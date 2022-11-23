@@ -1,0 +1,44 @@
+.answers {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .answer__item {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        font-size: small;
+        padding: 10px;
+        color: #1a1a1a;
+    }
+}
+
+.circle {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 1px solid gainsboro;
+    box-shadow: var(--boxShadowMainColor);
+    margin-bottom: 10px;
+    &[id='1'] {
+        background-color: #db9525;
+    }
+    &[id='2'] {
+        background-color: var(--secondaryColor);
+    }
+    &[id='3'] {
+        background-color: #fff;
+    }
+    &[id='4'] {
+        background-color: var(--mainColor);
+    }
+    &[id='5'] {
+        background-color: #0b8880;
+    }
+}
+
+.checked {
+    border: 1px solid #1a1a1a;
+    box-shadow: var(--boxShadowSecondaryColor);
+}
