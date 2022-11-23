@@ -1,1 +1,15 @@
-<p>home works!</p>
+<div class="promo">
+    <h1 class="promo_title">Emotional Help</h1>
+    <p class="promo_subtitle">Comsultations with psychologists training and therapy</p>
+</div>
+<div class="courses">
+        <h2 class="courses_title">What We Offer</h2>
+        <p class="courses_sub">Lorem ipsum dolor sit amet consectetur adipisicing elit. Et ullam tenetur recusandae optio consequatur mollitia <br>
+             nihil illum tempore dicta vitae ea voluptas, nesciunt temporibus fuga laboriosam.</p>
+        <ul class="courses_list">
+            <li *ngFor="let course of coursesService.courses">
+                <h2>{{course.title}}</h2>
+                <span>{{course.description}}</span>
+            </li>
+        </ul>
+</div>

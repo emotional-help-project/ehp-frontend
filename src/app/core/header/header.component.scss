@@ -1,0 +1,27 @@
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(184, 136, 74);
+    padding: 0px 20px;
+}
+.logo {
+    color: wheat;
+    margin-left: 20px;
+}
+.navigation{
+    display: flex;
+    list-style: none;
+    
+}
+.nav_item{
+    margin-left: 10px;
+    color: wheat;
+}
+.auth{
+    display: flex;
+    color: wheat;
+}
+.login {
+    margin-left: 20px;
+}
