@@ -1,8 +1,11 @@
 import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+
 import { SharedModule } from 'src/app/shared/shared.module';
 import { RegisterComponent } from './components/register.component';
-import { RouterModule, Routes } from '@angular/router';
+import { RegisterService } from './services/register.service';
 
 const routes: Routes = [
    {
@@ -17,6 +20,8 @@ const routes: Routes = [
     CommonModule,
     SharedModule,
     RouterModule.forChild(routes),
-  ]
+    HttpClientModule
+  ],
+  providers: [RegisterService],
 })
 export class RegisterModule { }

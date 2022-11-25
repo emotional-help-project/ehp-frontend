@@ -47,7 +47,7 @@
             <label for="female">Female</label>
         </div>
 
-        <app-button *ngIf="registerForm" [disabled]="!form.valid || submitted" class="btn">Sign up</app-button>
-        <app-button *ngIf="!registerForm" [disabled]="!form.valid || submitted" class="btn">Sign in</app-button>
+        <app-button *ngIf="registerForm" [disabled]="!form.valid || submitted" class="btn" (click)="register()">Sign up</app-button>
+        <app-button *ngIf="!registerForm" [disabled]="!form.valid || submitted" class="btn" (click)="login()">Sign in</app-button>
     </form>
 </div>
