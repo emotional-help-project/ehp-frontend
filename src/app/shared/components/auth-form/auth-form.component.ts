@@ -1,6 +1,9 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
+import { LoginService } from 'src/app/features/login/services/login.service';
+import { RegisterService } from 'src/app/features/register/services/register.service';
 import { createEmailStrengthValidator } from 'src/app/shared/validators/email-strength.validator';
 import { createPasswordStrengthValidator } from 'src/app/shared/validators/password-strength.validator';
 
@@ -8,7 +11,7 @@ import { createPasswordStrengthValidator } from 'src/app/shared/validators/passw
   selector: 'app-auth-form',
   templateUrl: './auth-form.component.html',
   styleUrls: ['./auth-form.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AuthFormComponent implements OnInit {
   form: FormGroup;
@@ -17,6 +20,9 @@ export class AuthFormComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
+    private registerService: RegisterService,
+    private loginService: LoginService,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -37,14 +43,28 @@ export class AuthFormComponent implements OnInit {
     }  
    }
 
-  register(): void {
+   register(): void {
     const value = this.form.value;
     this.submitted = true;
+    console.log(value);
+    
+    this.registerService.register(value).subscribe({
+      next: () => this.submitted = false,
+      error: () => this.submitted = false
+    });
   }
 
   login() {
     const value = this.form.value;
-    this.submitted = true;    
+    this.submitted = true;
+    console.log(value);
+    this.loginService.login(value).subscribe({
+      next: () => {
+        this.router.navigateByUrl('/');
+        this.submitted = false;
+      },
+      error: () => this.submitted = false
+    });
   }
 
 }
