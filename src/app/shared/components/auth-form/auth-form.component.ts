@@ -28,8 +28,8 @@ export class AuthFormComponent implements OnInit {
   ngOnInit() {
     if (this.registerForm) {
       this.form = this.fb.group({
-        name: [null, [Validators.required]],
-        lastname: [null, [Validators.required]],
+        firstName: [null, [Validators.required]],
+        lastName: [null, [Validators.required]],
         age: [null],
         gender: [null],
         email: [null, [Validators.required, Validators.email, Validators.minLength(10), createEmailStrengthValidator()]],
@@ -43,11 +43,10 @@ export class AuthFormComponent implements OnInit {
     }  
    }
 
-   register(): void {
+   register() {
     const value = this.form.value;
     this.submitted = true;
     console.log(value);
-    
     this.registerService.register(value).subscribe({
       next: () => this.submitted = false,
       error: () => this.submitted = false
