@@ -1,21 +1,21 @@
 <div class="login">
     <h2 *ngIf="!registerForm">Sign in</h2>
     <h2 *ngIf="registerForm">Sign up</h2>
-    <form [formGroup]="form" class="login__form">
+    <form [formGroup]="form" class="form">
 
         <div *ngIf="registerForm">
-            <input [ngClass]="{invalid: form.controls['name'].touched && form.controls['name'].invalid}" 
-            formControlName="name" type="text" class="input" placeholder="First name *">
+            <input [ngClass]="{invalid: form.controls['firstName'].touched && form.controls['firstName'].invalid}" 
+            formControlName="firstName" type="text" class="input" placeholder="First name *">
             <div class="validation">
-                <small *ngIf="form.controls['name'].touched && form.controls['name'].invalid">* Name is requred</small>
+                <small *ngIf="form.controls['firstName'].touched && form.controls['firstName'].invalid">* Name is requred</small>
             </div>
         </div>
 
         <div *ngIf="registerForm">
-            <input [ngClass]="{invalid: form.controls['lastname'].touched && form.controls['lastname'].invalid}" 
-            formControlName="lastname" type="text" class="input" placeholder="Last name *">
+            <input [ngClass]="{invalid: form.controls['lastName'].touched && form.controls['lastName'].invalid}" 
+            formControlName="lastName" type="text" class="input" placeholder="Last name *">
             <div class="validation">
-                <small *ngIf="form.controls['lastname'].touched && form.controls['lastname'].invalid">* Last name is requred</small>
+                <small *ngIf="form.controls['lastName'].touched && form.controls['lastName'].invalid">* Last name is requred</small>
             </div>
         </div>
         
@@ -41,9 +41,9 @@
 
         <div class="radio" *ngIf="registerForm">
             <p>Gender</p> 
-            <input name="gender" value="male" formControlName="gender" type="radio" class="radio-input" id="male">
+            <input name="gender" value="MALE" formControlName="gender" type="radio" class="radio-input" id="male">
             <label for="male" >Male</label>
-            <input name="gender" value="female" formControlName="gender" type="radio" class="radio-input" id="female">
+            <input name="gender" value="FEMALE" formControlName="gender" type="radio" class="radio-input" id="female">
             <label for="female">Female</label>
         </div>
 
