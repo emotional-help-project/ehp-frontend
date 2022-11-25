@@ -9,7 +9,7 @@ import { HeaderComponent } from './core/header/header.component';
 import { FooterComponent } from './core/footer/footer.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptorService } from './shared/services/token-interceptor.service';
 
 @NgModule({
@@ -21,6 +21,7 @@ import { TokenInterceptorService } from './shared/services/token-interceptor.ser
     ReactiveFormsModule,
     NoopAnimationsModule,
     MatIconModule,
+    HttpClientModule
   ],
   providers: [
     {
