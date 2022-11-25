@@ -33,7 +33,7 @@ export class LoginService {
   }
 
   login(data: User) {
-    const url = environment.apiUrl + '/account/signup';
+    const url = environment.apiUrl + '/account/signin';
     return this.http.post<any>(url, data).pipe(
       tap(res => {
         console.log('kkk');
