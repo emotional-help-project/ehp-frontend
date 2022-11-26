@@ -1,9 +1,12 @@
+h2 {
+    font-size: 24px;
+}
 .promo{
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 600px;
+    min-height: 600px;
     margin: 0;
     background-image: url('../../../assets/images/background.jpg') /* center center / cover no-repeat  */;
     background-repeat: no-repeat;
@@ -18,13 +21,50 @@
     color: rgb(184, 136, 74);
 }
 .courses{
-    height: 600px;
+    min-height: 600px;
     text-align: center;
-    padding: 40px;
+    padding: 80px 200px;
 }
 .courses_list{
     list-style: none;
     display: flex;
+    margin-top: 80px;
     flex-direction: row;
     justify-content: space-around;
+}
+.course_item {
+    padding: 20px;
+}
+.about {
+    min-height: 300px;
+    display: flex;
+    background-color: var(--mainColor);;
+}
+.about_img{
+    width: 50%;
+}
+.content {
+    width: 50%;
+    text-align: center;
+    color: white;
+    padding: 20px 80px;
+}
+.content_title {
+    margin-top: 80px;
+}
+.cards {
+    text-align: center;
+    padding: 80px 200px;
+}
+.card {
+    display: flex;
+}
+.card_item {
+    border: 1px solid gainsboro;
+    margin: 20px;
+    box-shadow: 0px 2px 30px rgb(145, 208, 204, 0.5);
+}
+.card_item_content {
+    padding: 20px;
+    text-align: center;
 }
