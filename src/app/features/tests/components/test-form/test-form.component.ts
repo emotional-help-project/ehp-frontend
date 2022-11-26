@@ -37,9 +37,6 @@ export class TestFormComponent {
   }
 
   result() {
-    
+    console.log('');
   }
-  // result() {
-
-  // }
 }

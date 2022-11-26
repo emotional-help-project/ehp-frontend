@@ -12,6 +12,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptorService } from './shared/services/token-interceptor.service';
 import { LoadingComponent } from './shared/components/loading/loading.component';
+import { MessangerComponent } from './core/messanger/messanger.component';
+import { SharedModule } from './shared/shared.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,8 @@ import { LoadingComponent } from './shared/components/loading/loading.component'
     HomeComponent, 
     HeaderComponent, 
     FooterComponent, 
-    LoadingComponent
+    LoadingComponent, 
+    MessangerComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +32,9 @@ import { LoadingComponent } from './shared/components/loading/loading.component'
     ReactiveFormsModule,
     NoopAnimationsModule,
     MatIconModule,
-    HttpClientModule
+    HttpClientModule,
+    SharedModule,
+    RouterModule
   ],
   providers: [
     {
