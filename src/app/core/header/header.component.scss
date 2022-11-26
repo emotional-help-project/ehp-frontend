@@ -1,8 +1,9 @@
 .contact_info{
-    background-color: rgb(139, 204, 190);
+    background-color: var(--mainColor);;
     padding: 10px 40px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     
 }
 .auth{
@@ -27,9 +28,11 @@
 .icon {
     font-size: 18px;
     color: white;
+    opacity: .5;
 }
 .btn {
-    background-color: rgb(2, 134, 134);
+    background-color: white;
+    color: var(--mainColor);
     padding: 8px;
     border-radius: 4px;
     
@@ -44,7 +47,7 @@
 }
 .logo {
     color: rgb(184, 136, 74);
-    margin-left: 20px;
+    margin: 0;
 }
 .navigation{
     display: flex;
