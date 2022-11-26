@@ -25,6 +25,7 @@ export class TestListComponent {
     },
   ];
   onClick() {
+    console.log('');
     
   }
 }
