@@ -18,7 +18,7 @@ export class TestFormComponent {
   question: string[] = [this.questions[0]];
   results = {};
   last: boolean;
-  progress: number = 0;
+  progress = 0;
   details = false;
   checked = false;
 
@@ -37,6 +37,9 @@ export class TestFormComponent {
   }
 
   result() {
-
+    
   }
+  // result() {
+
+  // }
 }
