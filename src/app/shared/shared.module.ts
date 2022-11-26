@@ -7,22 +7,20 @@ import { HttpClientModule } from '@angular/common/http';
 import { RegisterService } from '../features/register/services/register.service';
 import { LoginService } from '../features/login/services/login.service';
 
-
-
 @NgModule({
   declarations: [
     ButtonComponent,
-    AuthFormComponent
+    AuthFormComponent,
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   exports: [
     ButtonComponent,
-    AuthFormComponent
+    AuthFormComponent,
   ],
   providers: [
     RegisterService,

@@ -11,9 +11,16 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptorService } from './shared/services/token-interceptor.service';
+import { LoadingComponent } from './shared/components/loading/loading.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, HeaderComponent, FooterComponent],
+  declarations: [
+    AppComponent, 
+    HomeComponent, 
+    HeaderComponent, 
+    FooterComponent, 
+    LoadingComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
