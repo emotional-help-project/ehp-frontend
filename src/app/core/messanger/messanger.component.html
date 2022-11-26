@@ -1,0 +1,30 @@
+<div class="messanger">
+    <div class="chat" *ngIf="show">
+        <div class="chat__header">
+            <img src="assets/images/psychologist.jfif" alt="psychologist" />
+            <div>
+                <h3>Nataliia</h3>
+                <p>Psychologist</p>
+            </div>
+            <button (click)="show = false">✕</button>
+        </div>
+        <div class="chat__main">
+            <div class="chat__messege">
+                <h4>Nataliia</h4>
+                <p>Welcome! How can I help with your mental health question?</p>
+                <span>{{ time | date : 'h:mm' }}</span>
+            </div>
+        </div>
+        <div class="chat__footer">
+            <a href="https://t.me/NataliiaChapai" target="_blank"
+                ><span class="material-icons">telegram</span>Send message</a
+            >
+        </div>
+    </div>
+    <div class="chat__btn">
+        <button (click)="show = !show">
+            <span class="material-icons">telegram</span>
+            Chat
+        </button>
+    </div>
+</div>
