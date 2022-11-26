@@ -7,9 +7,58 @@
         <p class="courses_sub">Lorem ipsum dolor sit amet consectetur adipisicing elit. Et ullam tenetur recusandae optio consequatur mollitia <br>
              nihil illum tempore dicta vitae ea voluptas, nesciunt temporibus fuga laboriosam.</p>
         <ul class="courses_list">
-            <li *ngFor="let course of coursesService.courses">
-                <h2>{{course.title}}</h2>
-                <span>{{course.description}}</span>
+            <li class="course_item">
+                <img src="../../../assets/images/conflicting.png">
+                <h2>Conflicting</h2>
+                <span>Lorem ipsum dolor sit, amet consectetur adipisicing elit raesentium voluptas deleniti, vel quidem dignissimos.</span>
+            </li>
+            <li class="course_item">
+                <img src="../../../assets/images/feelings.png">
+                <h2>feelings</h2>
+                <span>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facilis consectetur, dignissimos.</span>
+            </li>
+            <li class="course_item"> 
+                <img src="../../../assets/images/mental.png">
+                <h2>Mental</h2>
+                <span>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facilis labore facere fugiat, vel quidem dignissimos.</span>
+            </li>
+            <li class="course_item">
+                <img src="../../../assets/images/relationship.png">
+                <h2>Relationship</h2>
+                <span>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facilis consectetur, magni iste deserunt ut.</span>
+            </li>
+            <li class="course_item">
+                <img src="../../../assets/images/relaxation.png">
+                <h2>Relaxation</h2>
+                <span>Lorem ipsum dolor sit, amet consectetur adipisicing elit ab quae porro debitis labore dolore.</span>
             </li>
         </ul>
+</div>
+<div class="about">
+    <img class="about_img" src="../../../assets/images/background2.jpg" alt="girl">
+    <div class="content">
+        <h2 class="content_title">Welcome to Psychological Assistance Services</h2>
+        <p class="content_text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi, ab quae porro debitis labore dolore, nihil beatae nostrum ipsam totam nam at illum eum explicabo consequuntur quibusdam architecto et sed!</p>
+    </div>
+</div>
+<div class="cards">
+    <h2>It is our trainings</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae similique maiores consectetur cum, explicabo cupiditate vero culpa asperiores corporis voluptatem quo, dignissimos, ab animi adipisci impedit deleniti accusamus. Tempore, consectetur.</p>
+    <ul class="card">
+        <li class="card_item" *ngFor="let course of coursesService.courses">
+            <img src="../../../assets/images/relationship.png">
+            <div class="card_item_content">
+                <div class="date">September, 24, 2023</div>
+                <h2 class="card_title">{{course.title}}</h2>
+                <div class="card_descr">{{course.description}}</div>
+                <div class="btns">
+                    <button>Read more</button>
+                    <div class="admin_btn">
+                        <mat-icon>edit</mat-icon>
+                        <mat-icon>delete</mat-icon>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
 </div>
