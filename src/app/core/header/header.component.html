@@ -36,11 +36,12 @@
     <div class="navbar">
         <h2 class="logo">Psychological Assistance Services</h2>
         <ul class="navigation">
-            <li class="nav_item" [routerLink]="['/']" routerLinkActive="active">Home</li>
+            <li class="nav_item" [routerLink]="['/']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</li>
             <li class="nav_item">Pages</li>
-            <li class="nav_item" *ngIf="isLoggedIn$ | async" [routerLink]="['/profile']" routerLinkActive="active">Profile</li>
             <li class="nav_item">Services</li>
             <li class="nav_item">Contact us</li>
+            <li class="nav_item" *ngIf="isLoggedIn$ | async" [routerLink]="['/tests']" routerLinkActive="active">Tests</li>
+            <li class="nav_item" *ngIf="isLoggedIn$ | async" [routerLink]="['/profile']" routerLinkActive="active">Profile</li>
         </ul>
     </div>
 </nav>
