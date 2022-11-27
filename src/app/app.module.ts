@@ -12,7 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptorService } from './shared/services/token-interceptor.service';
 import { LoadingComponent } from './shared/components/loading/loading.component';
-import { MessangerComponent } from './core/messanger/messanger.component';
+import { MessengerComponent } from './core/messenger/messenger.component';
 import { SharedModule } from './shared/shared.module';
 import { RouterModule } from '@angular/router';
 
@@ -23,7 +23,7 @@ import { RouterModule } from '@angular/router';
     HeaderComponent, 
     FooterComponent, 
     LoadingComponent, 
-    MessangerComponent
+    MessengerComponent
   ],
   imports: [
     BrowserModule,
