@@ -7,6 +7,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { TestFormComponent } from './components/test-form/test-form.component';
 import { AnswerBtnComponent } from './components/answer-btn/answer-btn.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { TestResultComponent } from './components/test-result/test-result.component';
 
 const routes: Routes = [
   {
@@ -25,6 +26,7 @@ const routes: Routes = [
     TestListComponent,
     TestFormComponent,
     AnswerBtnComponent,
+    TestResultComponent,
   ],
   imports: [
     CommonModule,

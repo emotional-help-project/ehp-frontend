@@ -21,6 +21,7 @@ export class TestFormComponent {
   progress = 0;
   details = false;
   checked = false;
+  showResult = false;
 
   next() {
     if (this.page === this.questions.length) {
@@ -37,6 +38,6 @@ export class TestFormComponent {
   }
 
   result() {
-    console.log('');
+    this.showResult = true;
   }
 }
