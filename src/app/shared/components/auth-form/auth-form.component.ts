@@ -48,7 +48,10 @@ export class AuthFormComponent implements OnInit {
     this.submitted = true;
     console.log(value);
     this.registerService.register(value).subscribe({
-      next: () => this.submitted = false,
+      next: () => {
+        this.submitted = false;
+        this.router.navigateByUrl('/login');
+      },
       error: () => this.submitted = false
     });
   }
