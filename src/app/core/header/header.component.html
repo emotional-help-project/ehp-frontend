@@ -1,13 +1,20 @@
 <nav class="nav">
     <div class="contact_info">
         <div class="auth">
-            <div class="registr">
+            <div class="registr" *ngIf="isLoggedOut$ | async" [routerLink]="['/register']" routerLinkActive="active__auth">
                 <mat-icon class="icon">person</mat-icon>
                 <div>Sign Up</div>
             </div>
-            <div class="login">
+            <div class="login" *ngIf="isLoggedOut$ | async" [routerLink]="['/login']" routerLinkActive="active__auth">
                 <mat-icon class="icon">lock</mat-icon>
                 <div>Log In</div>
+            </div>
+            <div class="login" *ngIf="isLoggedIn$ | async" (click)="logout($event)">
+                <mat-icon class="icon" [routerLink]="['/profile']" routerLinkActive="active__auth">exit_to_app</mat-icon>
+                <div>Log Out</div>
+            </div>
+            <div class="login" class="login" *ngIf="isLoggedIn$ | async">
+                <div>Welcome, userName</div>
             </div>
         </div>
         <div class="contact item">
@@ -29,8 +36,9 @@
     <div class="navbar">
         <h2 class="logo">Psychological Assistance Services</h2>
         <ul class="navigation">
-            <li class="nav_item">Home</li>
+            <li class="nav_item" [routerLink]="['/']" routerLinkActive="active">Home</li>
             <li class="nav_item">Pages</li>
+            <li class="nav_item" *ngIf="isLoggedIn$ | async" [routerLink]="['/profile']" routerLinkActive="active">Profile</li>
             <li class="nav_item">Services</li>
             <li class="nav_item">Contact us</li>
         </ul>

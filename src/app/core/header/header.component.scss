@@ -4,7 +4,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    
 }
 .auth{
     display: flex;
@@ -12,10 +11,14 @@
 }
 .login {
     display: flex;
-    margin-left: 20px;
+    cursor: pointer;
+    &:not(:first-child) {
+        margin-left: 20px;
+    }
 }
 .registr {
     display: flex;
+    cursor: pointer;
 }
 .item {
     display: flex;
@@ -56,5 +59,14 @@
 }
 .nav_item{
     margin-left: 10px;
+    color: rgb(184, 136, 74);
+    cursor: pointer;
+}
+
+.active {
+    color: var(--mainColor);
+}
+
+.active__auth {
     color: rgb(184, 136, 74);
 }
