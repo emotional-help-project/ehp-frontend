@@ -8,6 +8,8 @@
     border-radius: 15px;
     width: 400px;
     box-shadow: var(--boxShadowMainColor);
+    border: 1px solid #fff;
+    margin-bottom: 10px;
     & div {
         width: 100%;
         padding: 15px;
@@ -59,7 +61,6 @@
         border-bottom-left-radius: 15px;
         border-bottom-right-radius: 15px;
         background-color: #fff;
-        margin-bottom: 10px;
         a {
             display: flex;
             align-items: center;
