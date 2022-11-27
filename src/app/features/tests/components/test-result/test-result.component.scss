@@ -1,0 +1,24 @@
+.results__header {
+    margin-bottom: 20px;
+    color: var(--secondaryColor);
+    font-size: 24px;
+}
+
+.results__conclusion {
+    color: #1a1a1a;
+    margin-bottom: 20px;
+    font-size: 20px;
+    line-height: 1.5;
+}
+
+.result__description {
+    color: var(--mainColor);
+    margin-bottom: 20px;
+    padding: 0 100px;
+}
+
+app-button {
+    &:not(:last-child) {
+        margin-right: 50px;
+    }
+}

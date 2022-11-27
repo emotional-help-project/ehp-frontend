@@ -1,19 +1,24 @@
 <section>
   <h2>Get to know yourself</h2>
-  <p class="description">
+  <ng-container *ngIf="!last">
+    <p class="description">
     Select the answers based on how well each statement describes you.
   </p>
   <div (click)="details = !details" class="details">Details</div>
 
   <app-answer-btn *ngIf="details" [readonly]="true"></app-answer-btn>
 
-  <div class="progress" *ngIf="!last">
+  <div class="progress">
     <mat-progress-bar
       mode="determinate"
       color="primary"
       [value]="progress"
     ></mat-progress-bar>
   </div>
+  </ng-container>
+  
+
+  
 
   <div class="questions">
     <ng-container *ngIf="!last">
@@ -30,6 +35,7 @@
     <app-button *ngIf="!last" [disabled]="!checked" (click)="next()"
       >Next</app-button
     >
-    <app-button *ngIf="last" (click)="result()">Result</app-button>
+    <app-button *ngIf="last&&!showResult" (click)="result()">Result</app-button>
+    <app-test-result *ngIf="showResult"></app-test-result>
   </div>
 </section>
