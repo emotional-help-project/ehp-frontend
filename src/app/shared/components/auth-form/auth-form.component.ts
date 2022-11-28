@@ -46,7 +46,6 @@ export class AuthFormComponent implements OnInit {
    register() {
     const value = this.form.value;
     this.submitted = true;
-    console.log(value);
     this.registerService.register(value).subscribe({
       next: () => {
         this.submitted = false;
@@ -59,7 +58,6 @@ export class AuthFormComponent implements OnInit {
   login() {
     const value = this.form.value;
     this.submitted = true;
-    console.log(value);
     this.loginService.login(value).subscribe({
       next: () => {
         this.router.navigateByUrl('/');
