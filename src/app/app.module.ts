@@ -15,6 +15,7 @@ import { LoadingComponent } from './shared/components/loading/loading.component'
 import { MessengerComponent } from './core/messenger/messenger.component';
 import { SharedModule } from './shared/shared.module';
 import { RouterModule } from '@angular/router';
+import { LoginService } from './features/login/services/login.service';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { RouterModule } from '@angular/router';
       useClass: TokenInterceptorService,
       multi: true,
     },
+    LoginService
   ],
   bootstrap: [AppComponent],
 })

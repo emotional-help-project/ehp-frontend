@@ -32,10 +32,9 @@ export class LoginService {
   login(data: User) {
     const url = environment.apiUrl + '/account/signin';
     return this.http.post<Partial<User>>(url, data).pipe(
-      tap(res => {
-        const { token } = res;
-        localStorage.setItem('token', JSON.stringify(token));
+      tap(({ token }) => {
         if (token) {
+          localStorage.setItem('token', JSON.stringify(token));
           this.subject.next(token);
         }
       }),
