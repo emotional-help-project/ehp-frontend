@@ -28,12 +28,13 @@ export class AuthFormComponent implements OnInit {
   ngOnInit() {
     if (this.registerForm) {
       this.form = this.fb.group({
-        firstName: [null, [Validators.required]],
-        lastName: [null, [Validators.required]],
-        age: [null],
-        gender: [null],
-        email: [null, [Validators.required, Validators.email, Validators.minLength(10), createEmailStrengthValidator()]],
+        firstName: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
+        lastName: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
+        age: [null, [Validators.required, Validators.minLength(5)]],
+        gender: ['MALE', [Validators.required]],
+        email: [null, [Validators.required, Validators.email, createEmailStrengthValidator()]],
         password: [null, [Validators.required, Validators.minLength(8), createPasswordStrengthValidator()]],
+        confirmPassword: [null, [Validators.required, Validators.minLength(8), createPasswordStrengthValidator()]]
       });
     } else {
         this.form = this.fb.group({
