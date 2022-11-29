@@ -10,7 +10,7 @@ export function createPasswordStrengthValidator(): ValidatorFn {
             return null;
         }
 
-        const passwordValid = /^[a-zA-Z0-9]+$/.test(value);
+        const passwordValid = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])((?=.*\W)|(?=.*_))^[^ ]+$/.test(value);
 
         return !passwordValid ? {passwordStrength:true}: null;
     }
