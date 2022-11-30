@@ -7,12 +7,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { RegisterService } from '../features/register/services/register.service';
 import { LoginService } from '../features/login/services/login.service';
 import { PasswordToggleDirective } from './directives/password-toggle.directive';
+import { MessagesComponent } from './components/messages/messages.component';
 
 @NgModule({
   declarations: [
     ButtonComponent,
     AuthFormComponent,
     PasswordToggleDirective,
+    MessagesComponent,
   ],
   imports: [
     CommonModule,
@@ -23,7 +25,8 @@ import { PasswordToggleDirective } from './directives/password-toggle.directive'
   exports: [
     ButtonComponent,
     AuthFormComponent,
-    PasswordToggleDirective
+    PasswordToggleDirective,
+    MessagesComponent
   ],
   providers: [
     RegisterService,
