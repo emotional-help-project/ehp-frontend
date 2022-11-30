@@ -43,7 +43,7 @@
                 formControlName="confirmPassword" type="password" class="input" placeholder="Confirm password *">
             </div>
             <div class="validation">
-                <small *ngIf="form.controls['confirmPassword'].touched && form.controls['confirmPassword'].invalid">* Password must be equil to the previous field</small>
+                <small *ngIf="form.controls['confirmPassword'].touched && form.hasError('notSame')">* Both passwords must be equil</small>
             </div>
         </div>
 

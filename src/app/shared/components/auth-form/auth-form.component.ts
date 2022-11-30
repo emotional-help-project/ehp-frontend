@@ -6,6 +6,7 @@ import { LoginService } from 'src/app/features/login/services/login.service';
 import { RegisterService } from 'src/app/features/register/services/register.service';
 import { createEmailStrengthValidator } from 'src/app/shared/validators/email-strength.validator';
 import { createPasswordStrengthValidator } from 'src/app/shared/validators/password-strength.validator';
+import { matchPasswordValidator } from '../../validators/match-password.validator';
 
 @Component({
   selector: 'app-auth-form',
@@ -33,8 +34,10 @@ export class AuthFormComponent implements OnInit {
         age: [null, [Validators.required, Validators.minLength(5)]],
         gender: ['MALE', [Validators.required]],
         email: [null, [Validators.required, Validators.email, createEmailStrengthValidator()]],
-        password: [null, [Validators.required, Validators.minLength(8), createPasswordStrengthValidator()]],
-        confirmPassword: [null, [Validators.required, Validators.minLength(8), createPasswordStrengthValidator()]]
+        password: [null, [Validators.required, Validators.minLength(8), createPasswordStrengthValidator(), matchPasswordValidator()]],
+        confirmPassword: [null, [Validators.required]]
+      }, {
+        validators: matchPasswordValidator()
       });
     } else {
         this.form = this.fb.group({
