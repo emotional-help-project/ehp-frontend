@@ -7,7 +7,7 @@
             <input [ngClass]="{invalid: form.controls['firstName'].touched && form.controls['firstName'].invalid}" 
             formControlName="firstName" type="text" class="input" placeholder="First name *">
             <div class="validation">
-                <small *ngIf="form.controls['firstName'].touched && form.controls['firstName'].invalid">* Name is requred</small>
+                <small *ngIf="form.controls['firstName'].touched && form.controls['firstName'].invalid">* First name length must be equil 2-20 characters</small>
             </div>
         </div>
 
@@ -15,7 +15,7 @@
             <input [ngClass]="{invalid: form.controls['lastName'].touched && form.controls['lastName'].invalid}" 
             formControlName="lastName" type="text" class="input" placeholder="Last name *">
             <div class="validation">
-                <small *ngIf="form.controls['lastName'].touched && form.controls['lastName'].invalid">* Last name is requred</small>
+                <small *ngIf="form.controls['lastName'].touched && form.controls['lastName'].invalid">* Last name length must be equil 2-20 characters</small>
             </div>
         </div>
         
@@ -27,24 +27,41 @@
             </div>
         </div>
 
-        <div class="password-wrapper">
+        <div>
+            <div class="password-wrapper">
             <input appPasswordToggle [ngClass]="{invalid: form.controls['password'].touched && form.controls['password'].invalid}" 
-            formControlName="password" type="password" class="input" placeholder="Password *">                
+            formControlName="password" type="password" class="input" placeholder="Password *">
+            </div>               
             <div class="validation">
-                <small *ngIf="form.controls['password'].touched && form.controls['password'].invalid">* Password length must be at least 8 letters or numbers</small>
+                <small *ngIf="form.controls['password'].touched && form.controls['password'].invalid">* Password must contain at least 1 digit, 1 lowercase, 1 uppercase characters, 1 special character (! @ # &), min length - 8</small>
             </div>
         </div>
 
         <div *ngIf="registerForm">
-            <input name="age" formControlName="age" type="number" class="input" placeholder="Age">
+            <div class="password-wrapper">
+                <input appPasswordToggle [ngClass]="{invalid: form.controls['confirmPassword'].touched && form.hasError('notSame')}" 
+                formControlName="confirmPassword" type="password" class="input" placeholder="Confirm password *">
+            </div>
+            <div class="validation">
+                <small *ngIf="form.controls['confirmPassword'].touched && form.hasError('notSame')">* Both passwords must be equil</small>
+            </div>
+        </div>
+
+        <div *ngIf="registerForm">
+            <input name="age" formControlName="age" type="number" class="input" placeholder="Age *" min="5" max="150">
+            <div class="validation">
+                <small *ngIf="form.controls['age'].touched && form.controls['age'].invalid">* Min age is 5 years, max - 150</small>
+            </div>
         </div>
 
         <div class="radio" *ngIf="registerForm">
-            <p>Gender</p> 
+            <p>Gender *</p> 
             <input name="gender" value="MALE" formControlName="gender" type="radio" class="radio-input" id="male">
             <label for="male" >Male</label>
             <input name="gender" value="FEMALE" formControlName="gender" type="radio" class="radio-input" id="female">
             <label for="female">Female</label>
+            <input name="gender" value="OTHER" formControlName="gender" type="radio" class="radio-input" id="other">
+            <label for="other">Other</label>
         </div>
 
         <app-button *ngIf="registerForm" [disabled]="!form.valid || submitted" class="btn" (click)="register()">Sign up</app-button>

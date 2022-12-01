@@ -29,13 +29,17 @@
     }
 }
 
+.password-wrapper {
+    display: flex;
+}
+
 .btn {
     display: block;
     display: inline;
 }
 
 .radio {
-    margin-top: 30px;
+    margin-top: 15px;
     margin-bottom: 20px;
     display: flex;
     align-items: center;
@@ -55,4 +59,8 @@
     color: red;
     text-align: left;
     line-height: 1;
+}
+
+.invalid, .invalid:focus {
+    border-color: red;
 }
