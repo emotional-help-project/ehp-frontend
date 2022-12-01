@@ -15,6 +15,14 @@ import { LoadingComponent } from './shared/components/loading/loading.component'
 import { MessengerComponent } from './core/messenger/messenger.component';
 import { SharedModule } from './shared/shared.module';
 import { RouterModule } from '@angular/router';
+import { LoginService } from './features/login/services/login.service';
+import { DialogComponent } from './features/home/dialog/dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -23,7 +31,7 @@ import { RouterModule } from '@angular/router';
     HeaderComponent, 
     FooterComponent, 
     LoadingComponent, 
-    MessengerComponent
+    MessengerComponent, DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +42,14 @@ import { RouterModule } from '@angular/router';
     MatIconModule,
     HttpClientModule,
     SharedModule,
-    RouterModule
+    RouterModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule, 
+    MatButtonModule,
+    ReactiveFormsModule
   ],
   providers: [
     {
