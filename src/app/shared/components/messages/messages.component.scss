@@ -1,0 +1,27 @@
+.container {
+    box-sizing: border-box;
+    width: 25%;
+    min-height: 70px;
+    position: absolute;
+    color: #fff;
+    font-weight: 700;
+    right: 30px;
+    top: 30px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3000;
+    box-shadow: 0px 10px 20px rgba(103, 108, 120, 0.8);
+    div {
+    text-align: center;
+    }
+}
+
+.success {
+    background-color: rgb(147, 232, 147);
+}
+
+.error {
+    background-color: rgb(245, 146, 146);
+}

@@ -12,15 +12,15 @@ import { environment } from 'src/environment/environment';
 })
 
 export class LoginService {
-  private subject = new BehaviorSubject<string|null>(null);
+  private subject = new BehaviorSubject<User|null>(null);
 
-  token$: Observable<string|null> = this.subject.asObservable();
+  user$: Observable<User|null> = this.subject.asObservable();
   isLoggedIn$: Observable<boolean>;
   isLoggedOut$: Observable<boolean>;
   
   constructor(private messages: MessagesService, private http: HttpClient) {
     
-    this.isLoggedIn$ = this.token$.pipe(map(token => !!token));
+    this.isLoggedIn$ = this.user$.pipe(map(user => !!user?.token));
     this.isLoggedOut$ = this.isLoggedIn$.pipe(map(loggedIn => !loggedIn));
 
     const token = this.getToken();
@@ -32,10 +32,10 @@ export class LoginService {
   login(data: User) {
     const url = environment.apiUrl + '/account/signin';
     return this.http.post<Partial<User>>(url, data).pipe(
-      tap(({ token }) => {
+      tap(({ token, firstName, userId }) => {
         if (token) {
           localStorage.setItem('token', JSON.stringify(token));
-          this.subject.next(token);
+          this.subject.next({ token, firstName, userId });
         }
       }),
       catchError(err => {

@@ -33,7 +33,7 @@
             formControlName="password" type="password" class="input" placeholder="Password *">
             </div>               
             <div class="validation">
-                <small *ngIf="form.controls['password'].touched && form.controls['password'].invalid">* Password length must be at least 1 digit, 1 lowercase, 1 uppercase characters, 1 special character (! @ # &), min length - 8</small>
+                <small *ngIf="form.controls['password'].touched && form.controls['password'].invalid">* Password must contain at least 1 digit, 1 lowercase, 1 uppercase characters, 1 special character (! @ # &), min length - 8</small>
             </div>
         </div>
 
