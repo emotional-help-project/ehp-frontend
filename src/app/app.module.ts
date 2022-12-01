@@ -57,7 +57,6 @@ import {MatButtonModule} from '@angular/material/button';
       useClass: TokenInterceptorService,
       multi: true,
     },
-    LoginService
   ],
   bootstrap: [AppComponent],
 })
