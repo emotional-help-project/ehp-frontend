@@ -1,1 +1,24 @@
-<p>multi-test works!</p>
+<div class="test">
+    <form [formGroup]="form" class="form">
+        <div *ngFor="let question of test; index as i" class="container">
+            <p class="question">{{ i + 1 }}. {{ question.question }}</p>
+            <div class="answers" *ngFor="let answer of question.answers">
+                <ng-container *ngIf="question.type==='radio'">
+                    <label class="answer"><input
+                    [value]="answer.answer"
+                    [formControlName]="question.id"
+                    type="radio"
+                />{{ answer.answer }}</label>
+                </ng-container>
+                <ng-container *ngIf="question.type==='checkbox'">
+                    <label class="answer"><input
+                    [formControlName]="answer.id"
+                    type="checkbox"       
+                    [value]="answer.answer"             
+                />{{ answer.answer }}</label>
+                </ng-container>
+            </div>
+        </div>
+        <app-button (click)="next()">Next</app-button>
+    </form>
+</div>

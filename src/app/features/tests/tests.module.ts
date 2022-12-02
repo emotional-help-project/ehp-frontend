@@ -9,19 +9,25 @@ import { AnswerBtnComponent } from './components/answer-btn/answer-btn.component
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { TestResultComponent } from './components/test-result/test-result.component';
 import { MultiTestComponent } from './components/multi-test/multi-test.component';
-// import { AuthGuard } from '../login/services/auth.guard';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AuthGuard } from '../login/services/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
     component: TestSectionComponent,
-    // canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: '1',
     component: TestFormComponent,
-    // canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
+  {
+    path: '2',
+    component: MultiTestComponent,
+    canActivate: [AuthGuard]
+  }
 ];
 
 @NgModule({
@@ -38,6 +44,8 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     SharedModule,
     MatProgressBarModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
 })
 export class TestsModule {}
