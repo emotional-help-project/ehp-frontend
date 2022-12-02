@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError, map, shareReplay, tap } from 'rxjs/operators';
 
-import { User } from 'src/app/shared/models/user';
+import { User, TokenPayload } from 'src/app/shared/models/user';
 import { MessagesService } from 'src/app/shared/services/messages.service';
 import { environment } from 'src/environment/environment';
 
@@ -32,6 +32,7 @@ export class LoginService {
       }    
       this.subject.next(this.updatedUser);
     }    
+
   }
 
   login(data: User) {
@@ -60,5 +61,16 @@ export class LoginService {
   getToken() {
     const token = localStorage.getItem('token');
     return token;
+  }
+  
+  getParsedToken(){
+    const token = localStorage.getItem('token');
+    if(token != null) {
+      const parsed: TokenPayload = JSON.parse(atob(token.split('.')[1]));
+
+     // return { token, firstName: parsed.username, userId: parsed.id, isAdmin: parsed.role.includes('ADMIN') }
+      return { token, firstName: parsed.username, userId: parsed.id, isAdmin: true }
+    }
+    return null;
   }
 }

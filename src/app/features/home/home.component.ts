@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { CoursesService } from 'src/app/shared/courses/courses.service';
-import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MatDialog} from '@angular/material/dialog';
 import { DialogComponent } from './dialog/dialog.component';
+import { LoginService } from '../login/services/login.service';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +10,8 @@ import { DialogComponent } from './dialog/dialog.component';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
-constructor(public coursesService: CoursesService, private dialog: MatDialog){}
+  isAdmin = this.loginService.getParsedToken()?.isAdmin;
+constructor(public coursesService: CoursesService, private dialog: MatDialog, public loginService: LoginService ){}
 
 openDialog() {
   this.dialog.open(DialogComponent, {
@@ -17,4 +19,8 @@ openDialog() {
   minHeight: '400px'
   });
 }
+onRemove(id: any){
+  this.coursesService.delete(id)
+}
+
 }
