@@ -1,24 +1,33 @@
-<div class="test">
+<section>
+    <h2>Test name</h2>
+    <p class="total">{{tests.totalNumberOfTestQuestions}} questions</p>
+    <div class="test">
     <form [formGroup]="form" class="form">
-        <div *ngFor="let question of test; index as i" class="container">
-            <p class="question">{{ i + 1 }}. {{ question.question }}</p>
+        <div *ngFor="let question of tests.items; index as i" class="container">
+            <p class="question">{{ i + 1 }}. {{ question.questionText }}</p>
             <div class="answers" *ngFor="let answer of question.answers">
-                <ng-container *ngIf="question.type==='radio'">
+
+                <ng-container *ngIf="!question.allowsMultipleAnswers">
                     <label class="answer"><input
-                    [value]="answer.answer"
-                    [formControlName]="question.id"
+                    [value]="answer.answerText"
+                    [formControlName]="question.questionId.toString()"
                     type="radio"
-                />{{ answer.answer }}</label>
+                />{{ answer.answerText }}</label>
                 </ng-container>
-                <ng-container *ngIf="question.type==='checkbox'">
+
+                <ng-container *ngIf="question.allowsMultipleAnswers">
                     <label class="answer"><input
-                    [formControlName]="answer.id"
+                    [formControlName]="answer.answerId"
                     type="checkbox"       
-                    [value]="answer.answer"             
-                />{{ answer.answer }}</label>
+                    [value]="answer.answerText"             
+                />{{ answer.answerText }}</label>
                 </ng-container>
+                
             </div>
         </div>
-        <app-button (click)="next()">Next</app-button>
+        <app-button (click)="finish()">Finish</app-button>
     </form>
 </div>
+</section>
+
+

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Test } from '../../models/test';
+import { TestListItem } from '../../models/test-list-item.interface';
 
 @Component({
   selector: 'app-test-list',
@@ -7,7 +7,7 @@ import { Test } from '../../models/test';
   styleUrls: ['./test-list.component.scss']
 })
 export class TestListComponent {
-  tests: Test[] = [
+  tests: TestListItem[] = [
     {
       name: 'Get to know yourself',
       description: 'With this personality test, you will find out what personality type you are',
