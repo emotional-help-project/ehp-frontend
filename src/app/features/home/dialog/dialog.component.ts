@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {FormGroup, FormControl, FormBuilder, Validator, Validators} from '@angular/forms';
+import {FormGroup, FormBuilder, Validator, Validators} from '@angular/forms';
+import { CoursesService } from 'src/app/shared/courses/courses.service';
 
 
 @Component({
@@ -10,7 +11,7 @@ import {FormGroup, FormControl, FormBuilder, Validator, Validators} from '@angul
 export class DialogComponent implements OnInit {
 courseForm!: FormGroup;
 
-constructor(private formBuilder: FormBuilder){}
+constructor(private formBuilder: FormBuilder, private courses: CoursesService){}
 
 ngOnInit(): void {
   this.courseForm = this.formBuilder.group({ 
@@ -20,6 +21,7 @@ ngOnInit(): void {
   })
 }
 addCourse(){
-  console.log(this.courseForm.value)
+  const course = this.courseForm.value;
+  this.courses.addCourse(course)
 }
 }

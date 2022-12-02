@@ -9,6 +9,12 @@ import { AnswerBtnComponent } from './components/answer-btn/answer-btn.component
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { TestResultComponent } from './components/test-result/test-result.component';
 import { MultiTestComponent } from './components/multi-test/multi-test.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { TestDialogComponent } from './components/test-dialog/test-dialog.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 // import { AuthGuard } from '../login/services/auth.guard';
 
 const routes: Routes = [
@@ -32,12 +38,18 @@ const routes: Routes = [
     AnswerBtnComponent,
     TestResultComponent,
     MultiTestComponent,
+    TestDialogComponent,
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
     SharedModule,
     MatProgressBarModule,
+    MatFormFieldModule,
+    MatDialogModule,
+    MatInputModule,
+    MatButtonModule,
+    MatIconModule
   ],
 })
 export class TestsModule {}

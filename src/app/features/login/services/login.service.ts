@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError, map, shareReplay, tap } from 'rxjs/operators';
 
-import { User } from 'src/app/shared/models/user';
+import { User, TokenPayload } from 'src/app/shared/models/user';
 import { MessagesService } from 'src/app/shared/services/messages.service';
 import { environment } from 'src/environment/environment';
 
@@ -23,19 +23,23 @@ export class LoginService {
     this.isLoggedIn$ = this.user$.pipe(map(user => !!user?.token));
     this.isLoggedOut$ = this.isLoggedIn$.pipe(map(loggedIn => !loggedIn));
 
-    const token = this.getToken();
+    const token = this.getParsedToken();
     if (token) {
-      this.subject.next(JSON.parse(token));
+      this.subject.next(token);
     }    
+
   }
 
   login(data: User) {
     const url = environment.apiUrl + '/account/signin';
     return this.http.post<Partial<User>>(url, data).pipe(
       tap(({ token, firstName, userId }) => {
+
         if (token) {
-          localStorage.setItem('token', JSON.stringify(token));
-          this.subject.next({ token, firstName, userId });
+          const parsed: TokenPayload = JSON.parse(atob(token.split('.')[1]));
+
+          localStorage.setItem('token', token);
+          this.subject.next({ token, firstName, userId, isAdmin: parsed.role.includes('ADMIN') });
         }
       }),
       catchError(err => {
@@ -54,5 +58,16 @@ export class LoginService {
   getToken() {
     const token = localStorage.getItem('token');
     return token;
+  }
+  
+  getParsedToken(){
+    const token = localStorage.getItem('token');
+    if(token != null) {
+      const parsed: TokenPayload = JSON.parse(atob(token.split('.')[1]));
+
+     // return { token, firstName: parsed.username, userId: parsed.id, isAdmin: parsed.role.includes('ADMIN') }
+      return { token, firstName: parsed.username, userId: parsed.id, isAdmin: true }
+    }
+    return null;
   }
 }
