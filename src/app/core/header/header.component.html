@@ -14,7 +14,7 @@
                 <div>Log Out</div>
             </div>
             <div class="login" class="login" *ngIf="isLoggedIn$ | async">
-                <div>Welcome, userName</div>
+                <div>Welcome, {{user$ | async}}</div>
             </div>
         </div>
         <div class="contact item">

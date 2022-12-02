@@ -17,15 +17,20 @@ export class LoginService {
   user$: Observable<User|null> = this.subject.asObservable();
   isLoggedIn$: Observable<boolean>;
   isLoggedOut$: Observable<boolean>;
+  updatedUser = {};
   
   constructor(private messages: MessagesService, private http: HttpClient) {
     
     this.isLoggedIn$ = this.user$.pipe(map(user => !!user?.token));
     this.isLoggedOut$ = this.isLoggedIn$.pipe(map(loggedIn => !loggedIn));
 
-    const token = this.getToken();
-    if (token) {
-      this.subject.next(JSON.parse(token));
+    const user = localStorage.getItem('user')
+
+    if (user) {
+      this.updatedUser = {
+        ...JSON.parse(user)
+      }    
+      this.subject.next(this.updatedUser);
     }    
   }
 
@@ -35,6 +40,7 @@ export class LoginService {
       tap(({ token, firstName, userId }) => {
         if (token) {
           localStorage.setItem('token', JSON.stringify(token));
+          localStorage.setItem('user', JSON.stringify({ token, firstName, userId }));
           this.subject.next({ token, firstName, userId });
         }
       }),

@@ -1,0 +1,30 @@
+.test {
+    display: flex;
+    justify-content: center;
+    padding: 50px 0;
+    font-size: 18px;
+    box-shadow: inset 0px 2px 30px rgb(145, 208, 204, 0.5);
+}
+
+.form {
+    
+    .question {
+        padding: 10px 0;
+        font-weight: 600; 
+        color: var(--mainColor);     
+    }
+    .answers {
+        display: flex;
+        align-items: center;
+        color: var(--secondaryColor);
+    
+    .answer {
+            padding: 5px 10px;    
+        }
+    }
+    
+}
+
+.container {
+    margin-bottom: 10px;
+}
