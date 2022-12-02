@@ -16,18 +16,25 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 // import { AuthGuard } from '../login/services/auth.guard';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AuthGuard } from '../login/services/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
     component: TestSectionComponent,
-    // canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: '1',
     component: TestFormComponent,
-    // canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
+  {
+    path: '2',
+    component: MultiTestComponent,
+    canActivate: [AuthGuard]
+  }
 ];
 
 @NgModule({
@@ -49,7 +56,9 @@ const routes: Routes = [
     MatDialogModule,
     MatInputModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
 })
 export class TestsModule {}

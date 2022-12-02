@@ -4,6 +4,8 @@ import { map, Observable } from 'rxjs';
 
 import { LoginService } from 'src/app/features/login/services/login.service';
 
+
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -14,6 +16,7 @@ export class HeaderComponent {
 
   isLoggedIn$: Observable<boolean>;
   isLoggedOut$: Observable<boolean>;
+  user$: Observable<string | undefined>;
   
   constructor(
     public login: LoginService,
@@ -21,6 +24,7 @@ export class HeaderComponent {
   ) { 
     this.isLoggedIn$ = this.login.isLoggedIn$.pipe(map(res => res));
     this.isLoggedOut$ = this.login.isLoggedOut$.pipe(map(res => res));
+    this.user$ = this.login.user$.pipe(map(res => res?.firstName));
   }
 
   logout(event: Event) {

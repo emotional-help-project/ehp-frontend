@@ -17,15 +17,20 @@ export class LoginService {
   user$: Observable<User|null> = this.subject.asObservable();
   isLoggedIn$: Observable<boolean>;
   isLoggedOut$: Observable<boolean>;
+  updatedUser = {};
   
   constructor(private messages: MessagesService, private http: HttpClient) {
     
     this.isLoggedIn$ = this.user$.pipe(map(user => !!user?.token));
     this.isLoggedOut$ = this.isLoggedIn$.pipe(map(loggedIn => !loggedIn));
 
-    const token = this.getParsedToken();
-    if (token) {
-      this.subject.next(token);
+    const user = localStorage.getItem('user')
+
+    if (user) {
+      this.updatedUser = {
+        ...JSON.parse(user)
+      }    
+      this.subject.next(this.updatedUser);
     }    
 
   }
@@ -36,10 +41,9 @@ export class LoginService {
       tap(({ token, firstName, userId }) => {
 
         if (token) {
-          const parsed: TokenPayload = JSON.parse(atob(token.split('.')[1]));
-
-          localStorage.setItem('token', token);
-          this.subject.next({ token, firstName, userId, isAdmin: parsed.role.includes('ADMIN') });
+          localStorage.setItem('token', JSON.stringify(token));
+          localStorage.setItem('user', JSON.stringify({ token, firstName, userId }));
+          this.subject.next({ token, firstName, userId });
         }
       }),
       catchError(err => {
