@@ -10,6 +10,7 @@ import { LoginService } from '../login/services/login.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
+  isAdmin = this.loginService.getParsedToken()?.isAdmin;
 constructor(public coursesService: CoursesService, private dialog: MatDialog, public loginService: LoginService ){}
 
 openDialog() {

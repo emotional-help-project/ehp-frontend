@@ -44,7 +44,7 @@
 <div class="cards">
     <h2>It is our trainings</h2>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae similique maiores consectetur cum, explicabo cupiditate vero culpa asperiores corporis voluptatem quo, dignissimos, ab animi adipisci impedit deleniti accusamus. Tempore, consectetur.</p>
-    <button class="add_training" (click)="openDialog()" *ngIf="(loginService.user$ |async)?.isAdmin">Add new training</button>
+    <button class="add_training" (click)="openDialog()" *ngIf="isAdmin">Add new training</button>
     <ul class="card" *ngIf="coursesService.courses.length; else noCourses">
         <li class="card_item" *ngFor="let course of coursesService.courses">
             <img src="../../../assets/images/relationship.png">
