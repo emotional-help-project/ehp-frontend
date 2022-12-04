@@ -1,5 +1,10 @@
 export interface TestListItem {
-    name: string;
-    description: string;
-    imgUrl: string;
+  id: number;
+  title: string;
+  description: string;
+  imgUrl: string;
+  testType: {
+    id: number;
+    title: string;
+  };
 }

@@ -1,8 +1,9 @@
 <ul>
-    <li *ngFor="let test of tests" [ngStyle]="{'background-image': test.imgUrl}">
-        <h2>{{test.name}}</h2>
-        <p>{{test.description}}</p>
-        <app-button [routerLink]="['/tests', '1']">Start</app-button>
+    <li *ngFor="let test of tests" [ngStyle]="{'background-image': addBackgraund(test.imgUrl)}">
+        <span class="type">{{test.testType.title}}</span>
+        <h2>{{test.title}}</h2>
+        <p class="description">{{test.description}}</p>
+        <app-button [routerLink]="['/tests', test.id]">Start</app-button>
     </li>
 </ul>
 

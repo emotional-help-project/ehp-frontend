@@ -124,6 +124,39 @@ export class TestsService {
     ],
   };
 
+  public testList: TestListItem[] = [
+    { 
+      id: 125,
+      title: 'Get to know yourself',
+      description: 'With this personality test, you will find out what personality type you are',
+      imgUrl: "/assets/images/test-1.jpeg",
+      testType: {
+        id: 1254,
+        title: 'Health',
+      }
+    },
+    { 
+      id: 128,
+      title: 'Get to know yourself',
+      description: 'With this personality test, you will find out what personality type you are',
+      imgUrl: "/assets/images/test-2.jpeg",
+      testType: {
+        id: 1251,
+        title: 'Health',
+      }
+    },
+    { 
+      id: 129,
+      title: 'Get to know yourself',
+      description: 'With this personality test, you will find out what personality type you are',
+      imgUrl: "/assets/images/test-3.jpeg",
+      testType: {
+        id: 1250,
+        title: 'Health',
+      }
+    },
+  ];
+
   constructor(
     private loader: LoadingService,
     private messages: MessagesService,
