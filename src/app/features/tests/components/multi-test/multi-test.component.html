@@ -9,23 +9,27 @@
 
                 <ng-container *ngIf="!question.allowsMultipleAnswers">
                     <label class="answer"><input
-                    [value]="answer.answerText"
+                    [value]="answer.answerId"
                     [formControlName]="question.questionId.toString()"
                     type="radio"
                 />{{ answer.answerText }}</label>
+                
                 </ng-container>
 
                 <ng-container *ngIf="question.allowsMultipleAnswers">
                     <label class="answer"><input
                     [formControlName]="answer.answerId"
                     type="checkbox"       
-                    [value]="answer.answerText"             
+                    [value]="answer.answerId"             
                 />{{ answer.answerText }}</label>
                 </ng-container>
                 
             </div>
+            <div class="validation" *ngIf="!question.allowsMultipleAnswers">
+                <small *ngIf="form.controls[question.questionId.toString()].invalid&&submitted">* Please, answer the question</small>
+            </div>
         </div>
-        <app-button (click)="finish()">Finish</app-button>
+        <app-button  (click)="finish()">Finish</app-button>
     </form>
 </div>
 </section>

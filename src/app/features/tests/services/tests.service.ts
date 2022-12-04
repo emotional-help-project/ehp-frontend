@@ -36,7 +36,7 @@ export class TestsService {
           'Do you suffer from extreme mood changes (e.g. going from extremely "happy" to extremely "sad")?',
         answers: [
           {
-            answerId: 1,
+            answerId: 17,
             answerText: 'Yes',
             checked: false,
           },
@@ -53,13 +53,13 @@ export class TestsService {
         ],
       },
       {
-        questionId: 2,
+        questionId: 4,
         allowsMultipleAnswers: true,
         questionText:
           'Has anyone in your family ever been diagnosed with Bipolar Disorder?',
         answers: [
           {
-            answerId: 4,
+            answerId: 41,
             answerText: 'Yes',
             checked: false,
           },
@@ -75,6 +75,52 @@ export class TestsService {
           },
         ],
       },
+      {
+        questionId: 7,
+        allowsMultipleAnswers: false,
+        questionText:
+          'Do you suffer from extreme mood changes (e.g. going from extremely "happy" to extremely "sad")?',
+        answers: [
+          {
+            answerId: 8,
+            answerText: 'Yes',
+            checked: false,
+          },
+          {
+            answerId: 9,
+            answerText: 'Sometimes',
+            checked: false,
+          },
+          {
+            answerId: 10,
+            answerText: 'No',
+            checked: false,
+          },
+        ],
+      },
+      {
+        questionId: 11,
+        allowsMultipleAnswers: true,
+        questionText:
+          'Has anyone in your family ever been diagnosed with Bipolar Disorder?',
+        answers: [
+          {
+            answerId: 12,
+            answerText: 'Yes',
+            checked: false,
+          },
+          {
+            answerId: 13,
+            answerText: 'Sometimes',
+            checked: false,
+          },
+          {
+            answerId: 14,
+            answerText: 'No',
+            checked: false,
+          },
+        ],
+      },
     ],
   };
 
@@ -84,7 +130,7 @@ export class TestsService {
     private http: HttpClient,
     private user: LoginService
   ) {
-    this.user.user$.pipe(map(user => (this.userId = user?.userId)));
+    this.userId = this.user.getParsedToken()?.userId;
 
     if (localStorage.getItem('token')) {
       this.loadAllTests();
@@ -107,7 +153,44 @@ export class TestsService {
     this.loader.showLoaderUntilCompleted(loadTests$).subscribe();
   }
 
-  finishTest() {
-    console.log();
+  finishTest(data: any, testId: string) {
+    console.log(data);
+    
+    const questionAnswerUserRequests = []
+    for (const [key, value] of Object.entries(data)) {
+      let answer;
+      if (typeof(value) !== 'boolean') {
+        answer = {questionId: `${key}`, answerIds: [`${value}`]}
+        questionAnswerUserRequests.push(answer);
+      } 
+      if (value === true) {
+        const el = this.test.items.find(item => item.answers.find(ans => ans.answerId.toString() === key))
+        if (el) {
+          const multi = questionAnswerUserRequests.find(q => q.questionId === el.questionId);
+         
+        if (multi) {
+          questionAnswerUserRequests.find(q => q.questionId === el.questionId)?.answerIds?.push(key);  
+        } else {
+          answer = {questionId: el?.questionId, answerIds: [key]}
+          questionAnswerUserRequests.push(answer);
+          }
+        }
+      }  
+    }
+    const answers = {
+      userId: this.userId,
+      testId: testId,
+      questionAnswerUserRequests: questionAnswerUserRequests
+    }
+    console.log(answers);
+    this.passAnswers(answers)
+  }
+
+  passAnswers(data: any) {
+    const url =
+      environment.apiUrl + `/tests/test/session/1/finalize`;
+      return this.http.post(url, data).pipe(
+      map(res => res)
+    );
   }
 }
