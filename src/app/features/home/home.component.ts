@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { CoursesService } from 'src/app/shared/courses/courses.service';
 import {MatDialog} from '@angular/material/dialog';
-import { DialogComponent } from './dialog/dialog.component';
 import { LoginService } from '../login/services/login.service';
 
 @Component({
@@ -13,11 +12,19 @@ export class HomeComponent {
   isAdmin = this.loginService.getParsedToken()?.isAdmin;
 constructor(public coursesService: CoursesService, private dialog: MatDialog, public loginService: LoginService ){}
 
-openDialog() {
-  this.dialog.open(DialogComponent, {
-  minWidth: '400px',
-  minHeight: '400px'
+openAddDialog() {
+  this.coursesService.coursesDialog({
+    title: 'Add new training',
+    btn: 'Save'
   });
+}
+openUpdateDialog(course: any){
+  this.coursesService.coursesDialog({
+    title: 'Update training',
+    btn: 'Update',
+    course
+  });
+
 }
 onRemove(id: any){
   this.coursesService.delete(id)

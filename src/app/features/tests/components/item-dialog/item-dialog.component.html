@@ -1,0 +1,19 @@
+<div class="dialog">
+    <h2 mat-dialog-title>Add questions to the test</h2>
+    <form>
+        <div mat-dialog-content>
+            <mat-form-field appearance="outline">
+                <mat-label>Enter your question...</mat-label>
+                <input matInput placeholder="Start typing...">
+                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                <mat-hint>Hint</mat-hint>
+              </mat-form-field>
+        </div>
+    </form>
+    <div mat-dialog-actions [align]="'end'">
+        <button mat-raised-button color="primary">Next question</button>
+        <button mat-raised-button color="primary" (click)="saveAll()">Save all</button>
+        
+    </div>
+</div>
+
