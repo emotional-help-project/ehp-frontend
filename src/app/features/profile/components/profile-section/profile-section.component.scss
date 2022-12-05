@@ -18,8 +18,22 @@ section {
         border-bottom: 1px solid gainsboro;
         width: 100%;
         padding: 5px;
+        position: relative;
+        color: var(--mainColor);
     }
     span {
         font-weight: 500;
+        color: var(--secondaryColor);
+    }
+}
+
+.mat-icon {
+    display: inline-block;
+    color: var(--mainColor);
+    position: absolute;
+    right: 0;
+    cursor: pointer;
+    &:hover {
+        color: var(--secondaryColor);
     }
 }

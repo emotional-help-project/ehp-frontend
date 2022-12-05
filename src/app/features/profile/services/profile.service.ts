@@ -25,6 +25,10 @@ export class ProfileService {
 
   private subject = new BehaviorSubject<User>(this.defaultUser);
   user$: Observable<User> = this.subject.asObservable();
+  isLoggedIn$: Observable<boolean>;
+  isLoggedOut$: Observable<boolean>;
+  
+
   constructor(
     private login: LoginService, 
     private http: HttpClient,
@@ -35,6 +39,8 @@ export class ProfileService {
     if (this.login.getToken()) {
       this.userId = this.login.getParsedToken()?.userId;
       this.loadCurrentUser(); 
+      this.isLoggedIn$ = this.user$.pipe(map(user => !!user?.email));
+      this.isLoggedOut$ = this.isLoggedIn$.pipe(map(loggedIn => !loggedIn));
     }
    }
 
@@ -51,5 +57,31 @@ export class ProfileService {
       tap(user => this.subject.next(user))
     );
     this.loader.showLoaderUntilCompleted(loadUser$).subscribe();
+   }
+
+   updateProfile(data: any) {
+    console.log(data);
+    const user = this.subject.getValue();
+    let newData;
+    if (data.newPassword) {
+      newData = {}
+    } else {
+      newData = data;
+    }
+    const updatedUser = {
+      ...user,
+      ...newData
+    }
+    const url = environment.apiUrl + '/user/profile/update';
+    return this.http.put(url, data).pipe(
+      map(res => res),
+      catchError(err => {
+        const message = 'Could not update profile';
+        this.messages.showErrors(message);
+        console.log(message, err);
+        return throwError(err);
+      }),
+      tap(() => this.subject.next(updatedUser))
+    );
    }
 }

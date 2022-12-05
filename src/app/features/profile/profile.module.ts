@@ -9,15 +9,14 @@ import { AuthGuard } from '../login/services/auth.guard';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { LoginService } from '../login/services/login.service';
 import { ProfileService } from './services/profile.service';
+import { MatIconModule } from '@angular/material/icon';
+import { EditDataDialogComponent } from './components/edit-data-dialog/edit-data-dialog.component';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
     path: '',
-    component: ProfileSectionComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'password',
     component: ProfileSectionComponent,
     canActivate: [AuthGuard]
   },
@@ -39,11 +38,15 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [ChartComponent, ProfileSectionComponent, NavigationComponent],
+  declarations: [ChartComponent, ProfileSectionComponent, NavigationComponent, EditDataDialogComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    NgChartsModule
+    NgChartsModule,
+    MatIconModule,
+    SharedModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [StatisticsService, LoginService, ProfileService],
 })
