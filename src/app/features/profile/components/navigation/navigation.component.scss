@@ -1,0 +1,28 @@
+section {
+    position: relative;    
+}
+.nav {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 15%;
+    padding-right: 10px;
+    
+    .nav__link {
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid gainsboro;
+        cursor: pointer;
+        background-color: var(--mainColor);
+        color: #fff;
+        &:hover {
+            background-color: var(--secondaryColor);
+        }
+    }
+}
+
+.active__user {
+    color: var(--secondaryColor);
+}

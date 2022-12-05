@@ -4,6 +4,7 @@ import { BehaviorSubject, catchError, map, Observable, tap, throwError } from 'r
 import { LoadingService } from 'src/app/shared/services/loading.service';
 import { MessagesService } from 'src/app/shared/services/messages.service';
 import { environment } from 'src/environment/environment';
+import { LoginService } from '../../login/services/login.service';
 import { Statistics } from '../models/statistics';
 
 @Injectable({
@@ -41,18 +42,22 @@ export class StatisticsService {
     result: 8
 }
   ]
-
+  userId: string | undefined;
 
   constructor(
     private loader: LoadingService,
     private messages: MessagesService,
-    private http: HttpClient
+    private http: HttpClient,
+    private login: LoginService, 
+
   ) { 
-    this.loadStatistics();
+    if (this.login.getToken()) {
+      this.userId = this.login.getParsedToken()?.userId;
+    }
   }
 
   private loadStatistics() {
-    const url = environment.apiUrl + `user/profile/1/map/1`;
+    const url = environment.apiUrl + `/user/profile/${this.userId}/map/1`;
     const loadStatistics$ =  this.http.get<any>(url).pipe(
       map(res => res.testResultStatistics),
       catchError(err => {
