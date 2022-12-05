@@ -20,6 +20,10 @@ const routes: Routes = [
     path: 'tests',
     loadChildren: () => import('./features/tests/tests.module').then(_ => _.TestsModule)
   },
+  {
+    path: 'profile',
+    loadChildren: () => import('./features/profile/profile.module').then(_ => _.ProfileModule)
+  },
   { 
     path: '**', 
     redirectTo: '' 

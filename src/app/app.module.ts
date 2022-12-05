@@ -15,7 +15,6 @@ import { LoadingComponent } from './shared/components/loading/loading.component'
 import { MessengerComponent } from './core/messenger/messenger.component';
 import { SharedModule } from './shared/shared.module';
 import { RouterModule } from '@angular/router';
-import { LoginService } from './features/login/services/login.service';
 import { DialogComponent } from './features/home/dialog/dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -31,7 +30,8 @@ import {MatButtonModule} from '@angular/material/button';
     HeaderComponent, 
     FooterComponent, 
     LoadingComponent, 
-    MessengerComponent, DialogComponent
+    MessengerComponent, 
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +49,7 @@ import {MatButtonModule} from '@angular/material/button';
     MatDatepickerModule,
     MatNativeDateModule, 
     MatButtonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [
     {
