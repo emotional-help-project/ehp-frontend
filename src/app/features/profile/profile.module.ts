@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ChartComponent } from './components/chart/chart.component';
 import { StatisticsService } from './services/statistics.service';
 import { NgChartsModule } from 'ng2-charts';
+import { ProfileSectionComponent } from './components/profile-section/profile-section.component';
 
 const routes: Routes = [
   {
@@ -13,7 +14,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [ChartComponent],
+  declarations: [ChartComponent, ProfileSectionComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
