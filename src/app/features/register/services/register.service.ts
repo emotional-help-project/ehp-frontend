@@ -22,7 +22,7 @@ export class RegisterService {
         return throwError(err);
       }),
       tap(() => {
-        const message = 'You register successfully. Please log in'
+        const message = 'You registered successfully. Please log in'
         this.messages.showSuccess(message);
       }),
       shareReplay()

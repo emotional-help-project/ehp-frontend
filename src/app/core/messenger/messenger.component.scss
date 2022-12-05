@@ -1,119 +1,139 @@
 .messenger {
-    position: fixed;
-    bottom: 40px;
-    right: 20px;
+  position: fixed;
+  bottom: 40px;
+  right: 20px;
 }
 .chat {
-    background-color: transparent;
-    border-radius: 15px;
-    width: 400px;
-    box-shadow: var(--boxShadowMainColor);
-    border: 1px solid #fff;
-    margin-bottom: 10px;
-    & div {
-        width: 100%;
-        padding: 15px;
+  background-color: transparent;
+  border-radius: 15px;
+  width: 400px;
+  box-shadow: var(--boxShadowMainColor);
+  border: 1px solid #fff;
+  margin-bottom: 10px;
+  & div {
+    width: 100%;
+    padding: 15px;
+  }
+  .chat__header {
+    height: 100px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    background-color: #baefeb;
+    display: flex;
+    align-items: center;
+    color: #000;
+    position: relative;
+    button {
+      background-color: transparent;
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      cursor: pointer;
     }
-    .chat__header {
-        height: 100px;
-        border-top-left-radius: 15px;
-        border-top-right-radius: 15px;
-        background-color: #baefeb;
-        display: flex;
-        align-items: center;
-        color: #000;
-        position: relative;
-        button {
-            background-color: transparent;
-            position: absolute;
-            right: 10px;
-            top: 10px;
-            cursor: pointer;
-        }
+  }
+  .chat__main {
+    padding: 20px;
+    width: 100%;
+    background-color: #ecfaf9;
+    .chat__messege {
+      width: 80%;
+      border-radius: 15px;
+      background-color: #fff;
+      box-shadow: var(--boxShadowMainColor);
     }
-    .chat__main {
-        padding: 20px;
-        width: 100%;
-        background-color: #ecfaf9;
-        .chat__messege {
-            width: 80%;
-            border-radius: 15px;
-            background-color: #fff;
-            box-shadow: var(--boxShadowMainColor);
-        }
-        h4 {
-            color: var(--mainColor);
-            margin-bottom: 10px;
-        }
-        p {
-            margin-bottom: 5px;
-            font-size: 18px;
-        }
-        span {
-            display: block;
-            text-align: right;
-            color: var(--secondaryColor);
-            font-size: 14px;
-        }
+    h4 {
+      color: var(--mainColor);
+      margin-bottom: 10px;
     }
-    .chat__footer {
-        padding: 10px;
-        border-bottom-left-radius: 15px;
-        border-bottom-right-radius: 15px;
-        background-color: #fff;
-        a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            border-radius: 10px;
-            padding: 5px;
-            background-color: var(--secondaryColor);
-            color: #fff;
-            font-size: 18px;
-            cursor: pointer;
-            transition: all 0.4s ease-in-out;
-            &:hover {
-                background-color: var(--mainColor);
-            }
-        }
+    p {
+      margin-bottom: 5px;
+      font-size: 18px;
     }
+    span {
+      display: block;
+      text-align: right;
+      color: var(--secondaryColor);
+      font-size: 14px;
+    }
+  }
+  .chat__footer {
+    padding: 10px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    background-color: #fff;
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      border-radius: 10px;
+      padding: 5px;
+      background-color: var(--secondaryColor);
+      color: #fff;
+      font-size: 18px;
+      cursor: pointer;
+      transition: all 0.4s ease-in-out;
+      &:hover {
+        background-color: var(--mainColor);
+      }
+    }
+  }
 }
 
 .chat__btn {
-    background-color: transparent;
+  background-color: transparent;
+  display: flex;
+  justify-content: right;
+
+  button {
     display: flex;
-    justify-content: right;
-    button {
-        display: flex;
-        align-items: center;
-        border-radius: 40px;
-        background-color: var(--mainColor);
-        box-shadow: var(--boxShadowMainColor);
-        color: #fff;
-        font-size: 16px;
-        padding: 10px 20px;
-        border: 1px solid #fff;
-        cursor: pointer;
-        width: auto;
-        transition: all 0.4s ease-in-out;
-        &:hover {
-            background-color: var(--secondaryColor);
-            box-shadow: var(--boxShadowSecondaryColor);
-        }
+    align-items: center;
+    border-radius: 50%;
+    background-color: var(--mainColor);
+    box-shadow: var(--boxShadowMainColor);
+    color: #fff;
+    font-size: 16px;
+    padding: 10px;
+    border: 1px solid #fff;
+    cursor: pointer;
+    width: auto;
+    transition: all 0.4s ease-in-out;
+    animation: wiggle 3s infinite;
+    &:hover {
+      background-color: var(--secondaryColor);
+      box-shadow: var(--boxShadowSecondaryColor);
     }
+  }
+}
+
+@keyframes wiggle {
+  0% {
+    transform: rotate(0deg);
+  }
+  30% {
+    transform: rotate(-15deg);
+    scale: 1.05;
+  }
+  50% {
+    transform: rotate(15deg);
+  }
+  80% {
+    transform: rotate(-15deg);
+    scale: 1.05;
+  }
+  100% {
+    transform: rotate(0deg);
+  }
 }
 
 .material-icons {
-    margin-right: 5px;
-    font-size: 40px;
-    color: #fff;
+  font-size: 40px;
+  color: #fff;
 }
 
 img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    border: 1px solid #fff;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid #fff;
 }
-
