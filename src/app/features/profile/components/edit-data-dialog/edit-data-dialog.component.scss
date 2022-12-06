@@ -1,0 +1,95 @@
+.container {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 200;
+  }
+
+.edit-data {
+    background-color: rgba(255, 255, 255, 0.9);
+    width: 35%;
+    padding: 50px;
+    margin: 0 auto;
+    box-shadow: var(--boxShadowMainColor);
+    text-align: center;
+    position: relative;
+    h2 {
+        color: #1a1a1a;
+        margin: 0;
+    }
+}
+
+.input {
+    height: 42px;
+    width: 100%;
+    background-color: transparent;
+    border-color: rgba(0, 0, 0, 0.1);
+    border-width: 0 0 1px;
+    color: #1a1a1a;
+    padding: 5px 0 0;
+    font-size: 16px;
+    &:focus {
+        border-color: var(--mainColor);
+        outline: none;
+    }
+    &::placeholder {
+        color: rgb(183, 183, 183);
+    }
+}
+
+.password-wrapper {
+    display: flex;
+}
+
+.btn {
+    display: block;
+    display: inline;
+}
+
+.radio {
+    margin-top: 15px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    color: #1a1a1a;
+    p {
+        color: rgb(183, 183, 183);
+        margin-right: 20px;
+    }
+    label {
+        margin-right: 20px;
+    }
+}
+
+.validation {
+    min-height: 25px;
+    color: red;
+    text-align: left;
+    line-height: 1;
+}
+
+.invalid, .invalid:focus {
+    border-color: red;
+}
+
+.btn {
+    margin-right: 20px;
+    margin-top: 20px;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    background-color: transparent;
+    color: var(--mainColor);
+    cursor: pointer;
+}

@@ -1,4 +1,10 @@
-.chart, .second {
-    width: 40%;
+section {
+    width: 85vw;
+}
+
+.chart {
+    width: 70%;
     margin: 0 auto;
+    padding: 50px;
+    box-shadow: var(--boxShadowMainColor);
 }
