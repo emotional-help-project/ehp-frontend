@@ -18,6 +18,7 @@ import { MatIconModule } from '@angular/material/icon';
 // import { AuthGuard } from '../login/services/auth.guard';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthGuard } from '../login/services/auth.guard';
+import { ItemDialogComponent } from './components/item-dialog/item-dialog.component';
 
 const routes: Routes = [
   {
@@ -46,6 +47,7 @@ const routes: Routes = [
     TestResultComponent,
     MultiTestComponent,
     TestDialogComponent,
+    ItemDialogComponent,
   ],
   imports: [
     CommonModule,

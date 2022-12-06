@@ -44,18 +44,18 @@
 <div class="cards">
     <h2>It is our trainings</h2>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae similique maiores consectetur cum, explicabo cupiditate vero culpa asperiores corporis voluptatem quo, dignissimos, ab animi adipisci impedit deleniti accusamus. Tempore, consectetur.</p>
-    <button class="add_training" (click)="openDialog()" *ngIf="isAdmin">Add new training</button>
+    <button class="add_training" (click)="openAddDialog()" *ngIf="isAdmin">Add new training</button>
     <ul class="card" *ngIf="coursesService.courses.length; else noCourses">
         <li class="card_item" *ngFor="let course of coursesService.courses">
-            <img src="../../../assets/images/relationship.png">
+            <img src={{course.url}}>
             <div class="card_item_content">
-                <div class="date">September, 24, 2023</div>
+                <div class="date">{{course.creatingDate | date: 'medium'}}</div>
                 <h2 class="card_title">{{course.title}}</h2>
                 <div class="card_descr">{{course.description}}</div>
                 <div class="btns">
                     <button>Read more</button>
                     <div class="admin_btn">
-                        <mat-icon>edit</mat-icon>
+                        <mat-icon (click)="openUpdateDialog(course)">edit</mat-icon>
                         <mat-icon (click)="onRemove(course.id)">delete</mat-icon>
                     </div>
                 </div>
