@@ -3,11 +3,15 @@
         <button class="close" (click)="closeModal()">x</button>
         <form [formGroup]="form" class="form">
             <h2>Make an appointment<ng-content></ng-content></h2>
+            <p class="description">Choose any specialist, suitable day and leave your phone number. We will contact you later to confirm your appointment</p>
             <div>
-                <select formControlName="psychologistId" class="select">
-                    <option value="">Choose psychologist</option>
+                <select formControlName="psychologistId" class="select" [ngClass]="{invalid: form.controls['psychologistId'].touched && form.controls['psychologistId'].invalid}">
+                    <option value="">Choose psychologist *</option>
                     <option *ngFor="let psychologist of psychologists" class="option" [ngValue]="psychologist.id">{{psychologist.name}}</option>
-                </select>    
+                </select>
+                <div class="validation">
+                    <small *ngIf="form.controls['psychologistId'].touched && form.controls['psychologistId'].invalid">* Psychologist is required</small>
+                </div>    
             </div>
 
             <div>
@@ -30,7 +34,7 @@
 
 
             <app-button class="btn" (click)="closeModal()">Cancel</app-button>
-            <app-button [disabled]="!form.valid || submitted" class="btn" (click)="makeAppointment()">Save</app-button>
+            <app-button [disabled]="!form.valid || submitted" class="btn" (click)="makeAppointment()">Appoint</app-button>
         </form>
     </div>
 </div>

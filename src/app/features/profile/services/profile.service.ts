@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject, catchError, map, Observable, tap, throwError } from 'rxjs';
 import { User } from 'src/app/shared/models/user';
 import { LoadingService } from 'src/app/shared/services/loading.service';
@@ -33,7 +34,8 @@ export class ProfileService {
     private login: LoginService, 
     private http: HttpClient,
     private messages: MessagesService,
-    private loader: LoadingService
+    private loader: LoadingService,
+    private router: Router
     ) {
     
     if (this.login.getToken()) {
@@ -82,6 +84,25 @@ export class ProfileService {
         return throwError(err);
       }),
       tap(() => this.subject.next(updatedUser))
+    );
+   }
+
+   deleteAccount(id: number) {
+    const url = environment.apiUrl + `/users/${id}`;
+    return this.http.delete(url).pipe(
+      map(res => res),
+      catchError(err => {
+        const message = 'Could not delete account';
+        this.messages.showErrors(message);
+        console.log(message, err);
+        return throwError(err);
+      }),
+      tap(() => {
+        this.messages.showSuccess('Your account was deleted successfuly')
+        this.login.logout();
+        this.router.navigate(['/']);
+        this.subject.next(this.defaultUser);
+      })
     );
    }
 }
