@@ -1,6 +1,6 @@
 <div class="container" (click)="closeModal()">
     <div class="dialog" (click)="$event.stopPropagation()">
-        <button class="close" (click)="closeModal()">x</button>
+        <button class="close" (click)="closeModal()">✕</button>
         <form [formGroup]="form" class="form">
             <h2>Make an appointment<ng-content></ng-content></h2>
             <p class="description">Choose any specialist, suitable day and leave your phone number. We will contact you later to confirm your appointment</p>

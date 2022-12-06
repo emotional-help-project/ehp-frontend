@@ -24,11 +24,8 @@ export class ProfileService {
     role: ''
   }
 
-  private subject = new BehaviorSubject<User>(this.defaultUser);
-  user$: Observable<User> = this.subject.asObservable();
-  isLoggedIn$: Observable<boolean>;
-  isLoggedOut$: Observable<boolean>;
-  
+  public subject = new BehaviorSubject<User>(this.defaultUser);
+  user$: Observable<User> = this.subject.asObservable();  
 
   constructor(
     private login: LoginService, 
@@ -41,8 +38,6 @@ export class ProfileService {
     if (this.login.getToken()) {
       this.userId = this.login.getParsedToken()?.userId;
       this.loadCurrentUser(); 
-      this.isLoggedIn$ = this.user$.pipe(map(user => !!user?.email));
-      this.isLoggedOut$ = this.isLoggedIn$.pipe(map(loggedIn => !loggedIn));
     }
    }
 
