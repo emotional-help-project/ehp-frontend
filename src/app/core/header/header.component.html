@@ -31,7 +31,7 @@
                 <span>info@gmail.com</span>
             </div>
         </div>
-        <button class="btn">Make an appointment</button>
+        <button class="btn" (click)="showModal=true">Make an appointment</button>
     </div>
     <div class="navbar">
         <h2 class="logo">Psychological Assistance Services</h2>
@@ -46,3 +46,8 @@
     </div>
 </nav>
 
+<app-appointment-dialog
+    *ngIf="showModal"
+    (data)="makeAppointment($event)"
+    (showModal)="showModal = $event"
+></app-appointment-dialog>
