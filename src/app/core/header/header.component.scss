@@ -4,6 +4,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    min-height: 52px;
 }
 .auth{
     display: flex;
@@ -37,8 +38,10 @@
     background-color: white;
     color: var(--mainColor);
     padding: 8px;
-    border-radius: 4px;
-    
+    cursor: pointer;
+    &:hover {
+        color: var(--secondaryColor);
+    }
 }
 .navbar{
     display: flex;

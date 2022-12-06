@@ -1,17 +1,22 @@
-<canvas baseChart
+<app-navigation></app-navigation>
+<!-- <canvas baseChart
         [data]="barChartData"
         [options]="barChartOptions"
         [plugins]="barChartPlugins"
         [legend]="barChartLegend"
         [type]="'bar'"
         class="chart">
-</canvas>
-
-<div style="display: block;" >
-        <canvas baseChart class="second"
-          [type]="'line'"
-          [data]="lineChartData"
-          [options]="lineChartOptions"
-          [legend]="lineChartLegend">
-        </canvas>
-      </div>
+</canvas> -->
+<section>
+  <div style="display: block">
+    <canvas
+      baseChart
+      class="chart"
+      [type]="'line'"
+      [data]="lineChartData"
+      [options]="lineChartOptions"
+      [legend]="lineChartLegend"
+    >
+    </canvas>
+  </div>
+</section>

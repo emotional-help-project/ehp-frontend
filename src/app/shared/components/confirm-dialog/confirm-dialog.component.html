@@ -1,0 +1,10 @@
+<div class="backdrop" (click)="closeModal()">
+    <div class="modal" (click)="$event.stopPropagation()">
+      <button class="modal__close" (click)="closeModal()">x</button>
+      <h3 class="modal__header">
+        Are you sure you want to delete {{ title }}?
+      </h3>
+      <app-button (click)="toCancel()" class="modal__btn">No</app-button>
+      <app-button (click)="toAgree()" class="modal__btn">Yes</app-button>
+    </div>
+  </div>

@@ -1,0 +1,40 @@
+<div class="container" (click)="closeModal()">
+    <div class="dialog" (click)="$event.stopPropagation()">
+        <button class="close" (click)="closeModal()">✕</button>
+        <form [formGroup]="form" class="form">
+            <h2>Make an appointment<ng-content></ng-content></h2>
+            <p class="description">Choose any specialist, suitable day and leave your phone number. We will contact you later to confirm your appointment</p>
+            <div>
+                <select formControlName="psychologistId" class="select" [ngClass]="{invalid: form.controls['psychologistId'].touched && form.controls['psychologistId'].invalid}">
+                    <option value="">Choose psychologist *</option>
+                    <option *ngFor="let psychologist of psychologists" class="option" [ngValue]="psychologist.id">{{psychologist.name}}</option>
+                </select>
+                <div class="validation">
+                    <small *ngIf="form.controls['psychologistId'].touched && form.controls['psychologistId'].invalid">* Psychologist is required</small>
+                </div>    
+            </div>
+
+            <div>
+                <input [ngClass]="{invalid: form.controls['desiredDate'].touched && form.controls['desiredDate'].invalid}" 
+                formControlName="desiredDate" type="date" class="date">
+                <div class="validation">
+                    <small *ngIf="form.controls['desiredDate'].touched && form.controls['desiredDate'].invalid">* Date is required</small>
+                </div>
+            </div>
+
+           
+            <div class="wrapper">
+                <input [ngClass]="{invalid: form.controls['userPhone'].touched && form.controls['userPhone'].invalid}" 
+                formControlName="userPhone" type="tel" class="input" placeholder="Phone *">
+                <mat-icon class="icon">phone</mat-icon>
+                <div class="validation">
+                    <small *ngIf="form.controls['userPhone'].touched && form.controls['userPhone'].invalid">* Phone number is required, phone format is 0123456789</small>
+                </div>
+            </div>
+
+
+            <app-button class="btn" (click)="closeModal()">Cancel</app-button>
+            <app-button [disabled]="!form.valid || submitted" class="btn" (click)="makeAppointment()">Appoint</app-button>
+        </form>
+    </div>
+</div>

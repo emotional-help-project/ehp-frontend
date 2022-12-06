@@ -1,0 +1,33 @@
+<section>
+  <ul class="nav">
+    <li
+      class="nav__link"
+      [routerLink]="['/profile']"
+      routerLinkActive="active__user"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      Information
+    </li>
+    <li
+      class="nav__link"
+      [routerLink]="['/profile/statistics']"
+      routerLinkActive="active__user"
+    >
+      Statictics
+    </li>
+    <li
+      class="nav__link"
+      [routerLink]="['/profile/advices']"
+      routerLinkActive="active__user"
+    >
+      Advices
+    </li>
+    <li
+      class="nav__link"
+      [routerLink]="['/profile/links']"
+      routerLinkActive="active__user"
+    >
+      Links
+    </li>
+  </ul>
+</section>

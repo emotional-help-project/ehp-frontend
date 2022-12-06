@@ -8,6 +8,7 @@ import { RegisterService } from '../features/register/services/register.service'
 import { LoginService } from '../features/login/services/login.service';
 import { PasswordToggleDirective } from './directives/password-toggle.directive';
 import { MessagesComponent } from './components/messages/messages.component';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { MessagesComponent } from './components/messages/messages.component';
     AuthFormComponent,
     PasswordToggleDirective,
     MessagesComponent,
+    ConfirmDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -26,7 +28,8 @@ import { MessagesComponent } from './components/messages/messages.component';
     ButtonComponent,
     AuthFormComponent,
     PasswordToggleDirective,
-    MessagesComponent
+    MessagesComponent,
+    ConfirmDialogComponent
   ],
   providers: [
     RegisterService,

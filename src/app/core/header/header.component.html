@@ -7,13 +7,13 @@
             </div>
             <div class="login" *ngIf="isLoggedOut$ | async" [routerLink]="['/login']" routerLinkActive="active__auth">
                 <mat-icon class="icon">lock</mat-icon>
-                <div>Log In</div>
+                <div>Sing In</div>
             </div>
             <div class="login" *ngIf="isLoggedIn$ | async" (click)="logout($event)">
-                <mat-icon class="icon" [routerLink]="['/profile']" routerLinkActive="active__auth">exit_to_app</mat-icon>
-                <div>Log Out</div>
+                <mat-icon class="icon">exit_to_app</mat-icon>
+                <div>Sign Out</div>
             </div>
-            <div class="login" class="login" *ngIf="isLoggedIn$ | async">
+            <div [routerLink]="['/profile']" routerLinkActive="active__auth" class="login" class="login" *ngIf="isLoggedIn$ | async">
                 <div>Welcome, {{user$ | async}}</div>
             </div>
         </div>
@@ -31,7 +31,7 @@
                 <span>info@gmail.com</span>
             </div>
         </div>
-        <button class="btn">Make an appointment</button>
+        <button class="btn" *ngIf="isLoggedIn$ | async" (click)="showModal=true">Make an appointment</button>
     </div>
     <div class="navbar">
         <h2 class="logo">Psychological Assistance Services</h2>
@@ -46,3 +46,8 @@
     </div>
 </nav>
 
+<app-appointment-dialog
+    *ngIf="showModal"
+    (data)="makeAppointment($event)"
+    (showModal)="showModal = $event"
+></app-appointment-dialog>

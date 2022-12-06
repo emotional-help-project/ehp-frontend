@@ -27,10 +27,10 @@ export class TestsService {
   userId?: string;
 
   public test: Test = {
-    totalNumberOfTestQuestions: 2,
+    totalNumberOfTestQuestions: 4,
     items: [
       {
-        questionId: 1,
+        questionId: 2,
         allowsMultipleAnswers: false,
         questionText:
           'Do you suffer from extreme mood changes (e.g. going from extremely "happy" to extremely "sad")?',
@@ -53,7 +53,7 @@ export class TestsService {
         ],
       },
       {
-        questionId: 4,
+        questionId: 5,
         allowsMultipleAnswers: true,
         questionText:
           'Has anyone in your family ever been diagnosed with Bipolar Disorder?',
