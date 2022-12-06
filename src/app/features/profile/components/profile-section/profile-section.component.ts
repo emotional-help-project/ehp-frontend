@@ -13,9 +13,11 @@ user$: Observable<User>;
 title: string;
 type: string;
 showModal = false;
+toConfirm = false;
+userId: number | undefined;
 
 constructor(
-  private profile: ProfileService
+  private profile: ProfileService,
 ) {
 }
   ngOnInit(): void {
@@ -37,5 +39,24 @@ constructor(
       newData = data;
     }
     this.profile.updateProfile(newData).subscribe();
+  }
+
+  toDelete(id: number | undefined) {
+    if (!id) {
+      return
+    }
+    this.toConfirm = true;
+    this.userId = id;
+  }
+
+  deleteAccount(confirmation: boolean) {
+    if (!this.userId) {
+      return
+    }
+    if (confirmation) {
+      this.profile.deleteAccount(this.userId).subscribe();  
+    }
+    this.toConfirm = false;    
+    this.userId = 0
   }
 }

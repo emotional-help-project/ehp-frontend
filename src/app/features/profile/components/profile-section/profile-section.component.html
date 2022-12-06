@@ -10,6 +10,7 @@
             <p><span>age: </span>{{user?.age}} years<mat-icon (click)="editData('age', 'age')">edit</mat-icon></p>
             <p><span>password: </span>********<mat-icon (click)="editData('password', 'password')">edit</mat-icon></p>
             <p><span>role: </span>{{user?.role}}</p>
+            <button class="btn" (click)="toDelete(user?.id)">Delete account</button>
         </ng-container>
     </div>
 
@@ -19,5 +20,12 @@
     (showModal)="showModal = $event"
     [type]="type"
     >{{title}}</app-edit-data-dialog>
+
+    <app-confirm-dialog
+        *ngIf="toConfirm"
+        title="account"
+        (confirmation)="deleteAccount($event)"
+        (showModal)="toConfirm = $event"
+    ></app-confirm-dialog>
 
 </section>
