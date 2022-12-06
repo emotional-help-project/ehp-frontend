@@ -27,7 +27,7 @@ export class TestsService {
   userId?: string;
 
   public test: Test = {
-    totalNumberOfTestQuestions: 2,
+    totalNumberOfTestQuestions: 4,
     items: [
       {
         questionId: 2,

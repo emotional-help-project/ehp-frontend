@@ -1,17 +1,15 @@
-import { Component, OnDestroy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { map, Observable } from 'rxjs';
+import { map, Observable, Subscription } from 'rxjs';
+
 import { AppointmentService } from 'src/app/features/appointment/services/appointment.service';
-
 import { LoginService } from 'src/app/features/login/services/login.service';
-
-
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
-  // changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent implements OnDestroy {
 
@@ -19,6 +17,7 @@ export class HeaderComponent implements OnDestroy {
   isLoggedOut$: Observable<boolean>;
   user$: Observable<string | undefined>;
   showModal = false;
+  subscription: Subscription;
   
   constructor(
     public login: LoginService,
@@ -29,17 +28,18 @@ export class HeaderComponent implements OnDestroy {
     this.isLoggedOut$ = this.login.isLoggedOut$.pipe(map(res => res));
     this.user$ = this.login.user$.pipe(map(res => res?.firstName));
   }
-  ngOnDestroy(): void {
-    throw new Error('Method not implemented.');
-  }
 
   makeAppointment(data: any) {
-    this.appointment.makeAppointment(data).subscribe(); 
+    this.subscription = this.appointment.makeAppointment(data).subscribe(); 
   }
 
   logout(event: Event) {
     event.preventDefault();
     this.login.logout();
     this.router.navigate(['/']);
+  }
+  
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }

@@ -23,6 +23,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatButtonModule} from '@angular/material/button';
 import { AppointmentDialogComponent } from './features/appointment/components/appointment-dialog/appointment-dialog.component';
+import { LoginModule } from './features/login/login.module';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { AppointmentDialogComponent } from './features/appointment/components/ap
     MatNativeDateModule, 
     MatButtonModule,
     ReactiveFormsModule,
+    LoginModule
   ],
   providers: [
     {

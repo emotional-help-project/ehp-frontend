@@ -26,11 +26,8 @@ export class LoginService {
 
     const user = localStorage.getItem('user')
 
-    if (user) {
-      this.updatedUser = {
-        ...JSON.parse(user)
-      }    
-      this.subject.next(this.updatedUser);
+    if (user) {  
+      this.subject.next(JSON.parse(user));
     }    
 
   }
@@ -40,9 +37,9 @@ export class LoginService {
     return this.http.post<Partial<User>>(url, data).pipe(
       tap(({ token, firstName, userId }) => {
         if (token) {
+          this.subject.next({ token, firstName, userId });
           localStorage.setItem('token', JSON.stringify(token));
           localStorage.setItem('user', JSON.stringify({ token, firstName, userId }));
-          this.subject.next({ token, firstName, userId });
         }
       }),
       catchError(err => {
@@ -55,6 +52,7 @@ export class LoginService {
 
   logout() {
     this.subject.next(null);
+    localStorage.removeItem('user');
     localStorage.removeItem('token');
   }
 
