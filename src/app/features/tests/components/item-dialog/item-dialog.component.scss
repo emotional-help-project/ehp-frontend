@@ -1,3 +1,14 @@
 mat-form-field {
     width: 100%;
 }
+.answers{
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+}
+.answer{
+    display: block;
+}
+.icon {
+    border: 1px solid blue;
+}
