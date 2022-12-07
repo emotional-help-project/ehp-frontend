@@ -228,10 +228,19 @@ export class TestsService {
         }
       }  
     }
+
+    // this.test.items.forEach(item => {
+    //   const el = questionAnswerUserRequests.find(ans => Number(ans.questionId) === item.questionId)
+    //   if (el) {
+    //     return
+    //   } else {
+    //     questionAnswerUserRequests.push({questionId: item.questionId, answerIds: []})
+    //   }
+    // })
     const answers = {
       userId: this.userId,
       testId: testId,
-      questionAnswerUserRequests: questionAnswerUserRequests
+      questionAnswerUserRequests
     }
     console.log(answers);
     this.passAnswers(answers)

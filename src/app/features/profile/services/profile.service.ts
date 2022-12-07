@@ -60,6 +60,8 @@ export class ProfileService {
 
     const user = this.subject.getValue();
     let newData;
+    let storage: any;
+    let loginData: User | null;
     if (data.newPassword) {
       newData = {}
     } else {
@@ -73,6 +75,13 @@ export class ProfileService {
       ...data,
       id
     }
+    if (data.firstName) {
+      const user = localStorage.getItem('user');
+      if (user) {
+        storage = {...JSON.parse(user), firstName: data.firstName};
+        loginData = this.login.subject.getValue();
+      }  
+    }
   
     const url = environment.apiUrl + '/user/profile/update';
     return this.http.put(url, reqBody).pipe(
@@ -83,7 +92,11 @@ export class ProfileService {
         console.log(message, err);
         return throwError(err);
       }),
-      tap(() => this.subject.next(updatedUser))
+      tap(() => {
+        this.subject.next(updatedUser);
+        localStorage.setItem('user', JSON.stringify(storage));
+        return this.login.subject.next({...loginData, ...storage});
+      })
     );
    }
 
