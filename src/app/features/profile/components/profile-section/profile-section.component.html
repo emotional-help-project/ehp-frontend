@@ -6,7 +6,7 @@
             <p><span>First name: </span>{{user?.firstName?.toUpperCase()}}<mat-icon (click)="editData('first name', 'firstName')">edit</mat-icon></p>
             <p><span>last name: </span>{{user?.lastName?.toUpperCase()}}<mat-icon (click)="editData('last name', 'lastName')">edit</mat-icon></p>
             <p><span>email: </span>{{user?.email}}<mat-icon (click)="editData('email', 'email')">edit</mat-icon></p>
-            <p><span>genger: </span>{{user?.gender?.toLowerCase()}}<mat-icon (click)="editData('gender', 'gender')">edit</mat-icon></p>
+            <p><span>gender: </span>{{user?.gender?.toLowerCase()}}<mat-icon (click)="editData('gender', 'gender')">edit</mat-icon></p>
             <p><span>age: </span>{{user?.age}} years<mat-icon (click)="editData('age', 'age')">edit</mat-icon></p>
             <p><span>password: </span>********<mat-icon (click)="editData('password', 'password')">edit</mat-icon></p>
             <p><span>role: </span>{{user?.role}}</p>
@@ -17,8 +17,8 @@
                 (data)="changeData($event, user?.id)"
                 (showModal)="showModal = $event"
                 [type]="type"
-                >{{title}}</app-edit-data-dialog>
-            </ng-container>
+            >{{title}}</app-edit-data-dialog>
+        </ng-container>
     </div>
 
     

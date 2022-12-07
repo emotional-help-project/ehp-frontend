@@ -16,7 +16,7 @@
 
             <div>
                 <input [ngClass]="{invalid: form.controls['desiredDate'].touched && form.controls['desiredDate'].invalid}" 
-                formControlName="desiredDate" type="date" class="date">
+                formControlName="desiredDate" type="date" class="date" [min]="today">
                 <div class="validation">
                     <small *ngIf="form.controls['desiredDate'].touched && form.controls['desiredDate'].invalid">* Date is required</small>
                 </div>
