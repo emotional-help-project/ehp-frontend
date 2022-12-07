@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ContacstSectionComponent } from './features/contacts/components/contacst-section/contacst-section.component';
 
 import { HomeComponent } from './features/home/home.component';
 import { LoginComponent } from './features/login/components/login.component';
@@ -12,6 +13,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'contacts',
+    component: ContacstSectionComponent
   },
   {
     path: 'register',
