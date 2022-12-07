@@ -56,8 +56,8 @@ export class ProfileService {
     this.loader.showLoaderUntilCompleted(loadUser$).subscribe();
    }
 
-   updateProfile(data: any) {
-    console.log(data);
+   updateProfile(data: any, id: number | undefined) {
+
     const user = this.subject.getValue();
     let newData;
     if (data.newPassword) {
@@ -67,10 +67,15 @@ export class ProfileService {
     }
     const updatedUser = {
       ...user,
-      ...newData
+      ...newData,
     }
+    const reqBody = {
+      ...data,
+      id
+    }
+  
     const url = environment.apiUrl + '/user/profile/update';
-    return this.http.put(url, data).pipe(
+    return this.http.put(url, reqBody).pipe(
       map(res => res),
       catchError(err => {
         const message = 'Could not update profile';
