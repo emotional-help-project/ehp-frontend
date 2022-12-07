@@ -24,6 +24,9 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {MatButtonModule} from '@angular/material/button';
 import { AppointmentDialogComponent } from './features/appointment/components/appointment-dialog/appointment-dialog.component';
 import { LoginModule } from './features/login/login.module';
+import { ContacstSectionComponent } from './features/contacts/components/contacst-section/contacst-section.component';
+import { GoogleMapsModule } from '@angular/google-maps';
+import { GoogleMapComponent } from './features/contacts/components/google-map/google-map.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,10 @@ import { LoginModule } from './features/login/login.module';
     FooterComponent, 
     LoadingComponent, 
     MessengerComponent, 
-    DialogComponent, AppointmentDialogComponent
+    DialogComponent,
+    AppointmentDialogComponent,
+    ContacstSectionComponent,
+    GoogleMapComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,7 +58,8 @@ import { LoginModule } from './features/login/login.module';
     MatNativeDateModule, 
     MatButtonModule,
     ReactiveFormsModule,
-    LoginModule
+    LoginModule,
+    GoogleMapsModule,
   ],
   providers: [
     {
