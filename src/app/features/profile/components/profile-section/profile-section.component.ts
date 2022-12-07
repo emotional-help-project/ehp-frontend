@@ -28,17 +28,16 @@ constructor(
     this.title = title;
     this.type = type;
     this.showModal = true;
-    console.log(title);  
   }
 
-  changeData(data: any) {
+  changeData(data: any, id: number | undefined) {
     let newData = {};
     if (this.type === 'password') {
       newData = {newPassword: data.password}
     } else {
       newData = data;
     }
-    this.profile.updateProfile(newData).subscribe();
+    this.profile.updateProfile(newData, id).subscribe();
   }
 
   toDelete(id: number | undefined) {

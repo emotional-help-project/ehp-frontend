@@ -7,7 +7,7 @@
             </div>
             <div class="login" *ngIf="isLoggedOut$ | async" [routerLink]="['/login']" routerLinkActive="active__auth">
                 <mat-icon class="icon">lock</mat-icon>
-                <div>Sing In</div>
+                <div>Sign In</div>
             </div>
             <div class="login" *ngIf="isLoggedIn$ | async" (click)="logout($event)">
                 <mat-icon class="icon">exit_to_app</mat-icon>

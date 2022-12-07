@@ -14,6 +14,7 @@ export class EditDataDialogComponent implements OnInit {
 
   form: FormGroup;
   @Input() type: string;
+  @Input() oldData: any;
   @Output() showModal = new EventEmitter<boolean>();
   @Output() data = new EventEmitter<boolean>();
   submitted = false;
@@ -25,27 +26,27 @@ export class EditDataDialogComponent implements OnInit {
   ngOnInit() {
     if (this.type === 'firstName') {
       this.form = this.fb.group({
-        firstName: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
+        firstName: [this.oldData.firstName, [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
       });
     }
     if (this.type === 'lastName') {
       this.form = this.fb.group({
-        lastName: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
+        lastName: [this.oldData.lastName, [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
       });
     }
     if (this.type === 'age') {
       this.form = this.fb.group({
-        age: [null, [Validators.required]],
+        age: [this.oldData.age, [Validators.required]],
       });
     }
     if (this.type === 'gender') {
       this.form = this.fb.group({
-        gender: ['OTHER', [Validators.required]],
+        gender: [this.oldData.gender, [Validators.required]],
       });
     }
     if (this.type === 'email') {
       this.form = this.fb.group({
-        email: [null, [Validators.required, Validators.email, createEmailStrengthValidator()]],
+        email: [this.oldData.email, [Validators.required, Validators.email, createEmailStrengthValidator()]],
       });
     }
     if (this.type === 'password') {
