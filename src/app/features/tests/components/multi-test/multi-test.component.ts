@@ -14,6 +14,7 @@ export class MultiTestComponent implements OnInit {
   tests: Test;
   testId: string;
   submitted = false;
+  showResult = false;
 
   constructor(
     private fb: FormBuilder,
@@ -49,6 +50,7 @@ export class MultiTestComponent implements OnInit {
       this.testService.finishTest(this.form.value, this.testId);
       this.submitted = false;
       this.form.reset();
+      this.showResult = true;
     }
   }
 }
