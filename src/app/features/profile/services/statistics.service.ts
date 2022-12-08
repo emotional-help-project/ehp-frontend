@@ -5,6 +5,7 @@ import { LoadingService } from 'src/app/shared/services/loading.service';
 import { MessagesService } from 'src/app/shared/services/messages.service';
 import { environment } from 'src/environment/environment';
 import { LoginService } from '../../login/services/login.service';
+import { PassedTest } from '../models/passedTest.interface';
 import { Statistics } from '../models/statistics.interface';
 
 @Injectable({
@@ -12,9 +13,13 @@ import { Statistics } from '../models/statistics.interface';
 })
 export class StatisticsService {
 
-  private subject = new BehaviorSubject<Statistics[]>([]);
+  private emotionSubject = new BehaviorSubject<Statistics[]>([]);
+  private historySubject = new BehaviorSubject<History[]>([]);
+  private passedTestSubject = new BehaviorSubject<PassedTest[]>([]);
 
-  statistics$: Observable<Statistics[]> = this.subject.asObservable();
+  statistics$: Observable<Statistics[]> = this.emotionSubject.asObservable();
+  history$: Observable<History[]> = this.historySubject.asObservable();
+  passedTestList$$: Observable<PassedTest[]> = this.passedTestSubject.asObservable();
 
   statistics = [
     {
@@ -145,24 +150,54 @@ export class StatisticsService {
         console.log(message, err);
         return throwError(err);
       }),
-      tap(results => this.subject.next(results))
+      tap(results => this.emotionSubject.next(results))
     );
     this.loader.showLoaderUntilCompleted(loadStatistics$).subscribe();
   }
 
-  loadStatisticsOfOneTest() {
-    const url = environment.apiUrl + `/user/profile/${this.userId}/map/1`;
+  loadPassedTestList() {
+    const url = environment.apiUrl + `user/profile/tests?userId=${this.userId}`;
+    const loadTestList$ =  this.http.get<any>(url).pipe(
+      map(res => res.testResultStatistics),
+      catchError(err => {
+        const message = 'Could not load test list';
+        this.messages.showErrors(message);
+        console.log(message, err);
+        return throwError(err);
+      }),
+      tap(results => this.emotionSubject.next(results))
+    );
+    this.loader.showLoaderUntilCompleted(loadTestList$).subscribe();
+  }
+
+  loadOneTestStatistics(id: string) {
+    const url = environment.apiUrl + `/user/profile/${this.userId}/map/${id}`;
     const loadStatistics$ =  this.http.get<any>(url).pipe(
       map(res => res.testResultStatistics),
+      catchError(err => {
+        const message = 'Could not load emotional map';
+        this.messages.showErrors(message);
+        console.log(message, err);
+        return throwError(err);
+      }),
+      tap(results => this.emotionSubject.next(results))
+    );
+    this.loader.showLoaderUntilCompleted(loadStatistics$).subscribe();
+  }
+
+  loadHistory() {
+    const url = environment.apiUrl + `/user/profile/${this.userId}/statistics`;
+    const loadHistory$ =  this.http.get<any>(url).pipe(
+      map(res => res.emotionStatistics),
       catchError(err => {
         const message = 'Could not load statistics';
         this.messages.showErrors(message);
         console.log(message, err);
         return throwError(err);
       }),
-      tap(results => this.subject.next(results))
+      tap(results => this.historySubject.next(results))
     );
-    this.loader.showLoaderUntilCompleted(loadStatistics$).subscribe();
+    this.loader.showLoaderUntilCompleted(loadHistory$).subscribe();
   }
 
 }

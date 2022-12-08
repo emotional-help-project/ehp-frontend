@@ -4,6 +4,7 @@
     <div class="row header">
         <p class="date">Date</p>
         <p class="title">Test</p>
+        <p class="category">Category</p>
         <p class="result">Result</p>
         <p class="more"></p>
     </div>
@@ -11,6 +12,7 @@
         <div class="row" (click)="event.show=!event.show">
             <p class="date">{{event.dateTime | date : 'dd.MM.YYYY'}}</p>
             <p class="title">{{event.testTitle}}</p>
+            <p class="category">{{event.testTypeTitle}}</p>
             <p class="result">{{event.result}}</p>
             <p class="more">...</p>
         </div>
