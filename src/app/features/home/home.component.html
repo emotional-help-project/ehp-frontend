@@ -1,36 +1,35 @@
 <div class="promo">
-    <h1 class="promo_title">Emotional Help</h1>
-    <p class="promo_subtitle">Comsultations with psychologists training and therapy</p>
+    <h1 class="promo_title">UNDERSTAND YOUR EMOTIONS</h1>
+    <p class="promo_subtitle">Consultations with licensed therapists, trainings, and therapy.</p>
 </div>
 <div class="courses">
-        <h2 class="courses_title">What We Offer</h2>
-        <p class="courses_sub">Lorem ipsum dolor sit amet consectetur adipisicing elit. Et ullam tenetur recusandae optio consequatur mollitia <br>
-             nihil illum tempore dicta vitae ea voluptas, nesciunt temporibus fuga laboriosam.</p>
+        <h2 class="courses_title">How We Can Help </h2>
+        <p class="courses_sub">Our mission is providing support to anyone who struggles with life challenges.Understand yourself,what emotions you are experiencing and why.</p>
         <ul class="courses_list">
             <li class="course_item">
                 <img src="../../../assets/images/conflicting.png">
-                <h2>Conflicting</h2>
-                <span>Lorem ipsum dolor sit, amet consectetur adipisicing elit raesentium voluptas deleniti, vel quidem dignissimos.</span>
+                <h2>Identify your emotions</h2>
+                <span>With  the help of simple psychological questionnaires understand your feelings and define an emotional map.</span>
             </li>
             <li class="course_item">
                 <img src="../../../assets/images/feelings.png">
-                <h2>feelings</h2>
-                <span>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facilis consectetur, dignissimos.</span>
+                <h2>Consultations</h2>
+                <span>Talk to a professional therapist to work out yourcurrent state and figure next steps.</span>
             </li>
             <li class="course_item"> 
                 <img src="../../../assets/images/mental.png">
-                <h2>Mental</h2>
-                <span>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facilis labore facere fugiat, vel quidem dignissimos.</span>
+                <h2>Recommendations</h2>
+                <span>Various tips and steps to improve your mental wellbeing.</span>
             </li>
             <li class="course_item">
                 <img src="../../../assets/images/relationship.png">
-                <h2>Relationship</h2>
-                <span>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facilis consectetur, magni iste deserunt ut.</span>
+                <h2>Therapy</h2>
+                <span>Schedule meetings with a licensed therapist who can helpyou with a wide range of issues</span>
             </li>
             <li class="course_item">
                 <img src="../../../assets/images/relaxation.png">
-                <h2>Relaxation</h2>
-                <span>Lorem ipsum dolor sit, amet consectetur adipisicing elit ab quae porro debitis labore dolore.</span>
+                <h2>Trainings</h2>
+                <span>We provide trainings on mental health awareness and emotional, psychological and social wellbeing.</span>
             </li>
         </ul>
 </div>
@@ -42,8 +41,8 @@
     </div>
 </div>
 <div class="cards">
-    <h2>It is our trainings</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae similique maiores consectetur cum, explicabo cupiditate vero culpa asperiores corporis voluptatem quo, dignissimos, ab animi adipisci impedit deleniti accusamus. Tempore, consectetur.</p>
+    <h2>Trainings we provide:</h2>
+    <p>Our courses provide practical applications for Mental Health concepts through videos, lectures, practice exercises, opportunities to explore our own psychological reactions, and interactive discussions.</p>
     <button class="add_training" (click)="openAddDialog()" *ngIf="isAdmin">Add new training</button>
     <ul class="card" *ngIf="coursesService.courses.length; else noCourses">
         <li class="card_item" *ngFor="let course of coursesService.courses">
@@ -53,10 +52,10 @@
                 <h2 class="card_title">{{course.title}}</h2>
                 <div class="card_descr">{{course.description}}</div>
                 <div class="btns">
-                    <button>Read more</button>
+                    <div class="price"><span><b>Price:</b></span>300$</div>
                     <div class="admin_btn">
-                        <mat-icon (click)="openUpdateDialog(course)">edit</mat-icon>
-                        <mat-icon (click)="onRemove(course.id)">delete</mat-icon>
+                        <mat-icon (click)="openUpdateDialog(course)" *ngIf="isAdmin">edit</mat-icon>
+                        <mat-icon (click)="onRemove(course.id)" *ngIf="isAdmin">delete</mat-icon>
                     </div>
                 </div>
             </div>
