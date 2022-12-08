@@ -26,3 +26,10 @@ section {
 .active__user {
     color: var(--secondaryColor);
 }
+
+.history, .map, .info {
+    background-color: var(--secondaryColor);
+    &:hover {
+        background-color: var(--mainColor);
+    }
+}

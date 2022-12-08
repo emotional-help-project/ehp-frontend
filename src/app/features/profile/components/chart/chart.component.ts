@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ChartConfiguration, ChartOptions } from 'chart.js';
-import { Statistics } from '../../models/statistics';
+import { Statistics } from '../../models/statistics.interface';
 import { StatisticsService } from '../../services/statistics.service';
 
 

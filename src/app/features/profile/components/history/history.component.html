@@ -1,0 +1,33 @@
+<app-navigation></app-navigation>
+
+<div class="table">
+    <div class="row header">
+        <p class="date">Date</p>
+        <p class="title">Test</p>
+        <p class="result">Result</p>
+        <p class="more"></p>
+    </div>
+    <ng-container *ngFor="let event of history">
+        <div class="row" (click)="event.show=!event.show">
+            <p class="date">{{event.dateTime | date : 'dd.MM.YYYY'}}</p>
+            <p class="title">{{event.testTitle}}</p>
+            <p class="result">{{event.result}}</p>
+            <p class="more">...</p>
+        </div>
+        <div class="aditional" *ngIf="event.show">
+            <div class="wrapper">
+                <h3 class="results__header">Conclusion:</h3>
+                <p class="conclusion">{{event.adviceDescription}}</p>
+            </div>
+            <div class="wrapper">
+                <h3 class="results__header">Usefull links:</h3>
+                <ul class="result__links" class="links">
+                    <li *ngFor="let link of event.links" class="link">
+                        <a [href]="link.link" target="_blank">{{link.title}}</a>
+                    </li>
+                </ul>
+            </div>        
+        </div>
+    </ng-container>
+    
+</div>  
