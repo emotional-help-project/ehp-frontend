@@ -26,6 +26,8 @@ export class AppointmentDialogComponent {
     },
   ];
 
+  today = new Date().toISOString().split("T")[0];
+
   constructor(public fb: FormBuilder) {
   this.form = this.fb.group({
     psychologistId : ['', [Validators.required]],

@@ -4,6 +4,7 @@ import { ContacstSectionComponent } from './features/contacts/components/contacs
 
 import { HomeComponent } from './features/home/home.component';
 import { LoginComponent } from './features/login/components/login.component';
+import { ProfileSectionComponent } from './features/profile/components/profile-section/profile-section.component';
 
 const routes: Routes = [
   {
@@ -19,16 +20,16 @@ const routes: Routes = [
     component: ContacstSectionComponent
   },
   {
+    path: 'profile',
+    component: ProfileSectionComponent
+  },
+  {
     path: 'register',
     loadChildren: () => import('./features/register/register.module').then(_ => _.RegisterModule)
   },
   {
     path: 'tests',
     loadChildren: () => import('./features/tests/tests.module').then(_ => _.TestsModule)
-  },
-  {
-    path: 'profile',
-    loadChildren: () => import('./features/profile/profile.module').then(_ => _.ProfileModule)
   },
   { 
     path: '**', 

@@ -27,7 +27,12 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: '1',
+    path: ':id',
+    component: MultiTestComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'general',
     component: TestFormComponent,
     canActivate: [AuthGuard]
   },

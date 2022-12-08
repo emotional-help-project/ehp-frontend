@@ -27,6 +27,7 @@ import { LoginModule } from './features/login/login.module';
 import { ContacstSectionComponent } from './features/contacts/components/contacst-section/contacst-section.component';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { GoogleMapComponent } from './features/contacts/components/google-map/google-map.component';
+import { ProfileModule } from './features/profile/profile.module';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { GoogleMapComponent } from './features/contacts/components/google-map/go
     ReactiveFormsModule,
     LoginModule,
     GoogleMapsModule,
+    ProfileModule
   ],
   providers: [
     {
