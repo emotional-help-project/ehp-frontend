@@ -20,6 +20,9 @@ h2 {
 .promo_subtitle{
     color: rgb(184, 136, 74);
 }
+.courses_sub{
+    margin-top: 20px;
+}
 .courses{
     min-height: 600px;
     text-align: center;
@@ -74,4 +77,17 @@ h2 {
 .card_item_content {
     padding: 20px;
     text-align: center;
+}
+.date{
+    color: gainsboro;
+}
+.card_title {
+    color: var(--secondaryColor);
+}
+.card_descr{
+    margin-top: 10px;
+}
+.price{
+    color: var(--secondaryColor);
+    margin-top: 10px;
 }
