@@ -13,7 +13,7 @@ import { MessagesService } from 'src/app/shared/services/messages.service';
 import { environment } from 'src/environment/environment';
 import { LoginService } from '../../login/services/login.service';
 import { TestListItem } from '../models/test-list-item.interface';
-import { testResult } from '../models/test-result.interface';
+import { TestResult } from '../models/test-result.interface';
 import { Test } from '../models/test.interface';
 
 @Injectable({
@@ -25,6 +25,7 @@ export class TestsService {
 
   tests$: Observable<TestListItem[]> = this.testListSubject.asObservable();
   test$: Observable<any> = this.testSubject.asObservable();
+  testResult$: Observable<TestResult>;
   userId?: string;
 
   public test: Test = {
@@ -159,7 +160,7 @@ export class TestsService {
     },
   ];
 
-  public testResult: testResult = {
+  public testResult: TestResult = {
     adviceDescription: "According to your responses, you seem to show some symptoms of Bipolar Depression.",
     scoreFrom: 0,
     scoreTo: 70,
@@ -271,8 +272,16 @@ export class TestsService {
     this.http.post(firstUrl, data);
     const secondUrl =
       environment.apiUrl + `/tests/test/session/1/finalize`;
-      return this.http.post(secondUrl, data).pipe(
-      map(res => res)
+      this.testResult$ = this.http.post<TestResult>(secondUrl, data).pipe(
+      map(res => res),
+      catchError(err => {
+        const message = 'Something went wrong. Try again later';
+        this.messages.showErrors(message);
+        console.log(message, err);
+        return throwError(err);
+      }),
     );
+    return this.testResult;
   }
+
 }

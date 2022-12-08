@@ -1,4 +1,4 @@
-export interface testResult {
+export interface TestResult {
       adviceDescription: string;
       scoreFrom: number;
       scoreTo: number;
