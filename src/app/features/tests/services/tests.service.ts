@@ -13,6 +13,7 @@ import { MessagesService } from 'src/app/shared/services/messages.service';
 import { environment } from 'src/environment/environment';
 import { LoginService } from '../../login/services/login.service';
 import { TestListItem } from '../models/test-list-item.interface';
+import { testResult } from '../models/test-result.interface';
 import { Test } from '../models/test.interface';
 
 @Injectable({
@@ -158,6 +159,25 @@ export class TestsService {
     },
   ];
 
+  public testResult: testResult = {
+    adviceDescription: "According to your responses, you seem to show some symptoms of Bipolar Depression.",
+    scoreFrom: 0,
+    scoreTo: 70,
+    userScore: 5,
+    links: [
+        {
+            id: 1,
+            title: "Depression Program",
+            link: "https://thiswayup.org.au/programs/depression-program/"
+        },
+        {
+            id: 2,
+            title: "Overcoming depression: How psychologists help with depressive disorders",
+            link: "https://www.apa.org/topics/depression/overcoming"
+        }
+    ]
+  }
+
   constructor(
     private loader: LoadingService,
     private messages: MessagesService,
@@ -207,7 +227,7 @@ export class TestsService {
   finishTest(data: any, testId: string) {
     console.log(data);
     
-    const questionAnswerUserRequests = []
+    const questionAnswerUserRequests: any[] = []
     for (const [key, value] of Object.entries(data)) {
       let answer;
       if (typeof(value) !== 'boolean') {
@@ -229,21 +249,21 @@ export class TestsService {
       }  
     }
 
-    // this.test.items.forEach(item => {
-    //   const el = questionAnswerUserRequests.find(ans => Number(ans.questionId) === item.questionId)
-    //   if (el) {
-    //     return
-    //   } else {
-    //     questionAnswerUserRequests.push({questionId: item.questionId, answerIds: []})
-    //   }
-    // })
+    this.test.items.forEach(item => {
+      const notAnswered = questionAnswerUserRequests.find(ans => Number(ans.questionId) === item.questionId)
+      if (notAnswered) {
+        return
+      } else {
+        return questionAnswerUserRequests.push({questionId: item.questionId, answerIds: []})
+      }
+    })
     const answers = {
       userId: this.userId,
       testId: testId,
       questionAnswerUserRequests
     }
     console.log(answers);
-    this.passAnswers(answers)
+    this.passAnswers(answers);
   }
 
   passAnswers(data: any) {

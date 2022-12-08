@@ -4,6 +4,8 @@ import { ContacstSectionComponent } from './features/contacts/components/contacs
 
 import { HomeComponent } from './features/home/home.component';
 import { LoginComponent } from './features/login/components/login.component';
+import { AuthGuard } from './features/login/services/auth.guard';
+import { ChartComponent } from './features/profile/components/chart/chart.component';
 import { ProfileSectionComponent } from './features/profile/components/profile-section/profile-section.component';
 
 const routes: Routes = [
@@ -21,7 +23,23 @@ const routes: Routes = [
   },
   {
     path: 'profile',
-    component: ProfileSectionComponent
+    component: ProfileSectionComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'profile/statistics',
+    component: ChartComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'profile/advices',
+    component: ProfileSectionComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'profile/links',
+    component: ProfileSectionComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'register',
