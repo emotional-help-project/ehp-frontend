@@ -2,3 +2,7 @@ section {
   display: flex;
   justify-content: center;
 }
+
+google-map {
+  box-shadow: var(--boxShadowSecondaryColor);
+}

@@ -27,6 +27,7 @@ export class TestsService {
   userId?: string;
 
   public test: Test = {
+    testTitle: "Depression test",
     totalNumberOfTestQuestions: 4,
     items: [
       {
@@ -172,7 +173,7 @@ export class TestsService {
 
   public loadAllTests() {
     const url =
-      environment.apiUrl + `/tests/user/${this.userId}?skip=0&take=10`;
+      environment.apiUrl + `/tests/user/${this.userId}?skip=0&take=100`;
     const loadTests$ = this.http.get<any>(url).pipe(
       map(res => res.tests.content),
       catchError(err => {
@@ -183,7 +184,24 @@ export class TestsService {
       }),
       tap(tests => this.testListSubject.next(tests))
     );
-    this.loader.showLoaderUntilCompleted(loadTests$).subscribe();
+    return this.loader.showLoaderUntilCompleted(loadTests$).subscribe();
+  }
+
+  loadTestById(id: string) {
+    const firstUrl = environment.apiUrl + `/tests/test/${id}/init?userId=${this.userId}`;
+    this.http.post(firstUrl, {});
+    const secondUrl = environment.apiUrl + `/tests/test/${id}/session/1?skip=0&take=100`;
+    const loadedTest$ = this.http.get(secondUrl).pipe(
+      map(res => res),
+      catchError(err => {
+        const message = 'Could not load test';
+        this.messages.showErrors(message);
+        console.log(message, err);
+        return throwError(err);
+      }),
+      tap(test => this.testSubject.next(test))
+    );
+    this.loader.showLoaderUntilCompleted(loadedTest$).subscribe();
   }
 
   finishTest(data: any, testId: string) {
@@ -210,19 +228,30 @@ export class TestsService {
         }
       }  
     }
+
+    // this.test.items.forEach(item => {
+    //   const el = questionAnswerUserRequests.find(ans => Number(ans.questionId) === item.questionId)
+    //   if (el) {
+    //     return
+    //   } else {
+    //     questionAnswerUserRequests.push({questionId: item.questionId, answerIds: []})
+    //   }
+    // })
     const answers = {
       userId: this.userId,
       testId: testId,
-      questionAnswerUserRequests: questionAnswerUserRequests
+      questionAnswerUserRequests
     }
     console.log(answers);
     this.passAnswers(answers)
   }
 
   passAnswers(data: any) {
-    const url =
+    const firstUrl = environment.apiUrl + `/tests/test/session/1`;
+    this.http.post(firstUrl, data);
+    const secondUrl =
       environment.apiUrl + `/tests/test/session/1/finalize`;
-      return this.http.post(url, data).pipe(
+      return this.http.post(secondUrl, data).pipe(
       map(res => res)
     );
   }

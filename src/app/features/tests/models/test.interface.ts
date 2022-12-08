@@ -1,4 +1,5 @@
 export interface Test {
+  testTitle: string;
   totalNumberOfTestQuestions: number;
   items: {
       questionId: number;

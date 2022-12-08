@@ -12,7 +12,7 @@ import { environment } from 'src/environment/environment';
 })
 
 export class LoginService {
-  private subject = new BehaviorSubject<User|null>(null);
+  public subject = new BehaviorSubject<User|null>(null);
 
   user$: Observable<User|null> = this.subject.asObservable();
   isLoggedIn$: Observable<boolean>;
