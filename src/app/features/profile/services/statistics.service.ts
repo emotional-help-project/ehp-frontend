@@ -21,7 +21,9 @@ export class StatisticsService {
   history$: Observable<History[]> = this.historySubject.asObservable();
   passedTestList$: Observable<PassedTest[]> = this.passedTestSubject.asObservable();
 
-  statistics = [
+  statistics = {
+    testTitle: "Depression test",
+    testResultStatistics: [
     {
         testDateTime: "2022-11-29T17:08:12.510998",
         result: 5
@@ -46,7 +48,7 @@ export class StatisticsService {
       testDateTime: "2022-12-01T21:40:48.64253",
       result: 8
     }
-  ]
+  ]}
 
   hisrory = [
     {

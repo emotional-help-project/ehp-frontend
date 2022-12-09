@@ -13,8 +13,12 @@ ul {
         background-repeat: no-repeat;
         background-size: cover;
         position: relative;
-        &:not(:last-child) {
+        margin-bottom: 30px;
+        &:not(:nth-child(3n)) {
             margin-right: 30px;
+        }
+        &:last-child {
+            margin-right: 0;
         }
         
         h2 {
