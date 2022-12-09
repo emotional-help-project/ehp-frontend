@@ -19,7 +19,7 @@ export class StatisticsService {
 
   statistics$: Observable<Statistics[]> = this.emotionSubject.asObservable();
   history$: Observable<History[]> = this.historySubject.asObservable();
-  passedTestList$$: Observable<PassedTest[]> = this.passedTestSubject.asObservable();
+  passedTestList$: Observable<PassedTest[]> = this.passedTestSubject.asObservable();
 
   statistics = [
     {
@@ -125,7 +125,35 @@ export class StatisticsService {
             }
         ]
     }
-]
+  ]
+
+  passedTestList = [
+      {
+      testId: 3,
+      testTitle: "Test3 for mental",
+      imageUrl: "/assets/images/test-1.jpeg"
+    },
+    {
+      testId: 4,
+      testTitle: "Depression Test",
+      imageUrl: "/assets/images/test-1.jpeg"
+    },
+    {
+      testId: 5,
+      testTitle: "Test7 for mental",
+      imageUrl: "/assets/images/test-1.jpeg"
+  },
+  {
+    testId: 8,
+    testTitle: "Test8 for mental",
+    imageUrl: "/assets/images/test-1.jpeg"
+  },
+  {
+    testId: 9,
+    testTitle: "Test9 for mental",
+    imageUrl: "/assets/images/test-1.jpeg"
+  },
+  ]
   userId: string | undefined;
 
   constructor(
@@ -165,7 +193,7 @@ export class StatisticsService {
         console.log(message, err);
         return throwError(err);
       }),
-      tap(results => this.emotionSubject.next(results))
+      tap(results => this.passedTestSubject.next(results))
     );
     this.loader.showLoaderUntilCompleted(loadTestList$).subscribe();
   }

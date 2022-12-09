@@ -1,0 +1,41 @@
+div {
+    width: 85%;
+}
+
+ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    width: 90%;
+    box-shadow: var(--boxShadowMainColor);
+    padding: 50px 30px 20px;
+    li {
+        width: 30%;
+        min-height: 150px;
+        box-shadow: var(--boxShadowMainColor);
+        padding: 30px;
+        text-align: center;
+        list-style: none;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+        border: 1px solid var(--mainColor);
+        margin-bottom: 30px;
+        transition: all 0.5s ease-in-out;
+        &:not(:nth-child(3n)), &:not(:last-child) {
+            margin-right: 30px;
+        }
+        &:hover {
+            cursor: pointer;
+            scale: 1.05;
+            box-shadow: 0px 2px 30px rgb(145, 208, 204, 1);
+        }
+        h2 {
+            color: #000;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+    }
+}

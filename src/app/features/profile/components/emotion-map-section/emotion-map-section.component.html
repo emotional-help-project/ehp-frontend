@@ -1,2 +1,10 @@
 <app-navigation value="map"></app-navigation>
+<div>
+    <ul>
+        <li *ngFor="let test of tests" [ngStyle]="{'background-image': addBackgraund(test.imageUrl)}" [routerLink]="['/profile', '/emotion-map', test.testId]">
+            <h2>{{test.testTitle}}</h2>
+        </li>
+    </ul>
+</div>
+
 
