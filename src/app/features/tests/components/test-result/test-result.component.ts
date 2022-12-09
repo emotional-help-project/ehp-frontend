@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { testResult } from '../../models/test-result.interface';
+import { TestResult } from '../../models/test-result.interface';
 import { TestsService } from '../../services/tests.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { TestsService } from '../../services/tests.service';
 })
 export class TestResultComponent implements OnInit {
   
-  testResult: testResult;
+  testResult: TestResult;
   constructor(private testService: TestsService) {
 
   }

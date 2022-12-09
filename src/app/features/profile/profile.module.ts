@@ -12,9 +12,16 @@ import { MatIconModule } from '@angular/material/icon';
 import { EditDataDialogComponent } from './components/edit-data-dialog/edit-data-dialog.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HistoryComponent } from './components/history/history.component';
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
-  declarations: [ChartComponent, ProfileSectionComponent, NavigationComponent, EditDataDialogComponent],
+  declarations: [
+    ChartComponent, 
+    ProfileSectionComponent, 
+    NavigationComponent, 
+    EditDataDialogComponent, 
+    HistoryComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -23,7 +30,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatIconModule,
     SharedModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatTableModule
   ],
   providers: [StatisticsService, LoginService, ProfileService],
 })

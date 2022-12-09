@@ -3,31 +3,23 @@
     <li
       class="nav__link"
       [routerLink]="['/profile']"
-      routerLinkActive="active__user"
-      [routerLinkActiveOptions]="{ exact: true }"
+      [ngClass]="(value === 'info') ? 'active' : 'not-active'"
     >
       Information
     </li>
     <li
       class="nav__link"
-      [routerLink]="['/profile/statistics']"
-      routerLinkActive="active__user"
+      [routerLink]="['/profile/emotion-map']"
+      [ngClass]="(value === 'map') ? 'active' : 'not-active'"
     >
-      Statictics
+      Emotion map
     </li>
     <li
       class="nav__link"
-      [routerLink]="['/profile/advices']"
-      routerLinkActive="active__user"
+      [routerLink]="['/profile/history']"
+      [ngClass]="(value === 'history') ? 'active' : 'not-active'"
     >
-      Advices
-    </li>
-    <li
-      class="nav__link"
-      [routerLink]="['/profile/links']"
-      routerLinkActive="active__user"
-    >
-      Links
+      History
     </li>
   </ul>
 </section>
