@@ -15,21 +15,17 @@ section {
         margin-bottom: 10px;
         border: 1px solid gainsboro;
         cursor: pointer;
-        background-color: var(--mainColor);
         color: #fff;
         &:hover {
-            background-color: var(--secondaryColor);
-        }
+        color: #1a1a1a;
+    }
     }
 }
 
-.active__user {
-    color: var(--secondaryColor);
-}
-
-.history, .map, .info {
+.active {
     background-color: var(--secondaryColor);
-    &:hover {
-        background-color: var(--mainColor);
-    }
+}
+
+.not-active {
+    background-color: var(--mainColor);
 }

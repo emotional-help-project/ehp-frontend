@@ -3,22 +3,21 @@
     <li
       class="nav__link"
       [routerLink]="['/profile']"
-      routerLinkActive="active__user"
-      [routerLinkActiveOptions]="{ exact: true }"
+      [ngClass]="(value === 'info') ? 'active' : 'not-active'"
     >
       Information
     </li>
     <li
       class="nav__link"
       [routerLink]="['/profile/emotion-map']"
-      routerLinkActive="active__user"
+      [ngClass]="(value === 'map') ? 'active' : 'not-active'"
     >
       Emotion map
     </li>
     <li
       class="nav__link"
       [routerLink]="['/profile/history']"
-      routerLinkActive="active__user"
+      [ngClass]="(value === 'history') ? 'active' : 'not-active'"
     >
       History
     </li>
