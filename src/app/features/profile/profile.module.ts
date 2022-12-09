@@ -14,6 +14,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HistoryComponent } from './components/history/history.component';
 import {MatTableModule} from '@angular/material/table';
+import { EmotionMapSectionComponent } from './components/emotion-map-section/emotion-map-section.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import {MatTableModule} from '@angular/material/table';
     ProfileSectionComponent, 
     NavigationComponent, 
     EditDataDialogComponent, 
-    HistoryComponent],
+    HistoryComponent, EmotionMapSectionComponent],
   imports: [
     CommonModule,
     RouterModule,

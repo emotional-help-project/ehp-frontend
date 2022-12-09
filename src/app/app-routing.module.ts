@@ -5,7 +5,7 @@ import { ContacstSectionComponent } from './features/contacts/components/contacs
 import { HomeComponent } from './features/home/home.component';
 import { LoginComponent } from './features/login/components/login.component';
 import { AuthGuard } from './features/login/services/auth.guard';
-import { ChartComponent } from './features/profile/components/chart/chart.component';
+import { EmotionMapSectionComponent } from './features/profile/components/emotion-map-section/emotion-map-section.component';
 import { HistoryComponent } from './features/profile/components/history/history.component';
 import { ProfileSectionComponent } from './features/profile/components/profile-section/profile-section.component';
 
@@ -29,7 +29,7 @@ const routes: Routes = [
   },
   {
     path: 'profile/emotion-map',
-    component: ChartComponent,
+    component: EmotionMapSectionComponent,
     canActivate: [AuthGuard]
   },
   {
