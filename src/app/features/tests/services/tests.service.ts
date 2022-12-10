@@ -232,7 +232,7 @@ export class TestsService {
     const firstUrl = environment.apiUrl + `/tests/test/${id}/init?userId=${this.userId}`;
     this.http.post(firstUrl, {});
     const secondUrl = environment.apiUrl + `/tests/test/${id}/session/1?skip=0&take=100`;
-    const loadedTest$ = this.http.get(secondUrl).pipe(
+    return this.http.get(secondUrl).pipe(
       map(res => res),
       catchError(err => {
         const message = 'Could not load test';
@@ -242,7 +242,7 @@ export class TestsService {
       }),
       tap(test => this.testSubject.next(test))
     );
-    this.loader.showLoaderUntilCompleted(loadedTest$).subscribe();
+    // return this.loader.showLoaderUntilCompleted(loadedTest$).subscribe();
   }
 
   finishTest(data: any, testId: string) {

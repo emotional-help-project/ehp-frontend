@@ -20,7 +20,7 @@
     text-align: center;
     position: relative;
     h2 {
-        color: #1a1a1a;
+        color: var(--darkMainColor);
         margin: 0;
     }
 }
@@ -100,6 +100,6 @@
 
 .description {
     padding: 10px 20px;
-    color: var(--secondaryColor);
+    color: var(--darkSecondaryColor);
     line-height: 1.1;
 }

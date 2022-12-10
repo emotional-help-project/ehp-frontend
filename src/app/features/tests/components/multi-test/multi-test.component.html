@@ -1,10 +1,10 @@
-<section>
+<section *ngIf="test">
     <ng-container *ngIf="!showResult">
-        <h2>Test name</h2>
-            <p class="total">{{tests.totalNumberOfTestQuestions}} questions</p>
+        <h2>{{test.testTitle}}</h2>
+            <p class="total">{{test.totalNumberOfTestQuestions}} questions</p>
             <div class="test">
             <form [formGroup]="form" class="form">
-                <div *ngFor="let question of tests.items; index as i" class="container">
+                <div *ngFor="let question of test.items; index as i" class="container">
                     <p class="question">{{ i + 1 }}. {{ question.questionText }}</p>
                     <div class="answers" *ngFor="let answer of question.answers">
 

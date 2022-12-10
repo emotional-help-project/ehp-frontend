@@ -26,7 +26,7 @@ export class ChartComponent {
         label: 'Test result',
         fill: true,
         tension: 0.5,
-        borderColor: '#91d0cc',
+        borderColor: '#4bb0a9',
         backgroundColor: 'rgba(217, 190, 147, 0.5)'
       }
     ]
