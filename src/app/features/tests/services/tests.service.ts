@@ -158,6 +158,26 @@ export class TestsService {
         title: 'Health',
       }
     },
+    { 
+      id: 140,
+      title: 'Get to know yourself',
+      description: 'With this personality test, you will find out what personality type you are',
+      imgUrl: "/assets/images/test-3.jpeg",
+      testType: {
+        id: 1250,
+        title: 'Health',
+      }
+    },
+    { 
+      id: 150,
+      title: 'Get to know yourself',
+      description: 'With this personality test, you will find out what personality type you are',
+      imgUrl: "/assets/images/test-3.jpeg",
+      testType: {
+        id: 1250,
+        title: 'Health',
+      }
+    },
   ];
 
   public testResult: TestResult = {

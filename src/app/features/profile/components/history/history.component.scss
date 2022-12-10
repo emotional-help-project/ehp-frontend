@@ -55,9 +55,9 @@
             border-bottom: 1px solid gainsboro;
         }
         a {
-            color: var(--secondaryColor);
+            color: #1a1a1a;
             &:hover {
-                color: var(--mainColor);
+                color: var(--secondaryColor);
             }
         }
     }
@@ -74,7 +74,7 @@
 .conclusion {
     padding: 10px;
     font-size: 18px;
-    color: var(--mainColor);
+    color: #1a1a1a;
 }
 
 .wrapper {
@@ -83,4 +83,8 @@
     margin-bottom: 10px;
     border: 1px solid gainsboro;
     padding-top: 10px;
+}
+
+.results__header {
+    color: var(--mainColor);
 }

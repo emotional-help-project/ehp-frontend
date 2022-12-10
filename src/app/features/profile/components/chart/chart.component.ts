@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Location } from '@angular/common';
 import { ChartConfiguration, ChartOptions } from 'chart.js';
 import { Statistics } from '../../models/statistics.interface';
 import { StatisticsService } from '../../services/statistics.service';
@@ -16,16 +17,6 @@ export class ChartComponent {
   public barChartPlugins = [];
   statistics: Statistics[];
 
-  public barChartData: ChartConfiguration<'bar'>['data'] = {
-    labels: [],
-    datasets: [
-      { data: [], label: 'Test result' },
-    ]
-  };
-
-  public barChartOptions: ChartConfiguration<'bar'>['options'] = {
-    responsive: false,
-  };
 
   public lineChartData: ChartConfiguration<'line'>['data'] = {
     labels: [],
@@ -46,16 +37,20 @@ export class ChartComponent {
   public lineChartLegend = true;
 
 
-  constructor(private statisticsService: StatisticsService) {
-    this.statistics = this.statisticsService.statistics
-    this.statistics.forEach(res => {
-      this.barChartData.labels?.push(res.testDateTime.slice(0, 10).split('-').reverse().join('.'));
-      this.barChartData.datasets.forEach(el => el.data.push(res.result))
-    })
+  constructor(
+    private statisticsService: StatisticsService,
+    private location: Location
+    ) {
+    this.statistics = this.statisticsService.statistics.testResultStatistics
+
     this.statistics.forEach(res => {
       this.lineChartData.labels?.push(res.testDateTime.slice(0, 10).split('-').reverse().join('.'));
       this.lineChartData.datasets.forEach(el => el.data.push(res.result))
     })
 
+  }
+
+  goBack() {
+    this.location.back();
   }
 }

@@ -39,16 +39,20 @@
         outline: none;
     }
     &::placeholder {
-        color: rgb(183, 183, 183);
+        color: #1a1a1a
     }
 }
 
 .select {
-    color: rgb(183, 183, 183);
+    color: #1a1a1a;
+}
+
+.option {
+    color: rgb(183, 183, 183);;
 }
 
 .date {
-    color: rgb(183, 183, 183);
+    color: #1a1a1a;
     font-family:Arial, Helvetica, sans-serif;
 }
 

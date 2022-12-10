@@ -19,9 +19,11 @@ export class StatisticsService {
 
   statistics$: Observable<Statistics[]> = this.emotionSubject.asObservable();
   history$: Observable<History[]> = this.historySubject.asObservable();
-  passedTestList$$: Observable<PassedTest[]> = this.passedTestSubject.asObservable();
+  passedTestList$: Observable<PassedTest[]> = this.passedTestSubject.asObservable();
 
-  statistics = [
+  statistics = {
+    testTitle: "Depression test",
+    testResultStatistics: [
     {
         testDateTime: "2022-11-29T17:08:12.510998",
         result: 5
@@ -46,7 +48,7 @@ export class StatisticsService {
       testDateTime: "2022-12-01T21:40:48.64253",
       result: 8
     }
-  ]
+  ]}
 
   hisrory = [
     {
@@ -125,7 +127,35 @@ export class StatisticsService {
             }
         ]
     }
-]
+  ]
+
+  passedTestList = [
+      {
+      testId: 3,
+      testTitle: "Test3 for mental",
+      imageUrl: "/assets/images/test-1.jpeg"
+    },
+    {
+      testId: 4,
+      testTitle: "Depression Test",
+      imageUrl: "/assets/images/test-1.jpeg"
+    },
+    {
+      testId: 5,
+      testTitle: "Test7 for mental",
+      imageUrl: "/assets/images/test-1.jpeg"
+  },
+  {
+    testId: 8,
+    testTitle: "Test8 for mental",
+    imageUrl: "/assets/images/test-1.jpeg"
+  },
+  {
+    testId: 9,
+    testTitle: "Test9 for mental",
+    imageUrl: "/assets/images/test-1.jpeg"
+  },
+  ]
   userId: string | undefined;
 
   constructor(
@@ -165,7 +195,7 @@ export class StatisticsService {
         console.log(message, err);
         return throwError(err);
       }),
-      tap(results => this.emotionSubject.next(results))
+      tap(results => this.passedTestSubject.next(results))
     );
     this.loader.showLoaderUntilCompleted(loadTestList$).subscribe();
   }
