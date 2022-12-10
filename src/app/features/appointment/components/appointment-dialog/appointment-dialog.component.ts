@@ -1,16 +1,21 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { Specialist } from 'src/app/features/specialists/models/specialist';
+import { SpecialistsService } from 'src/app/features/specialists/services/specialists.service';
 
 @Component({
   selector: 'app-appointment-dialog',
   templateUrl: './appointment-dialog.component.html',
   styleUrls: ['./appointment-dialog.component.scss'],
 })
-export class AppointmentDialogComponent {
+export class AppointmentDialogComponent implements OnInit {
   form: FormGroup;
   @Output() showModal = new EventEmitter<boolean>();
   @Output() data = new EventEmitter<boolean>();
   submitted = false;
+  psychologists$: Observable<Specialist[] | null>;
+  
   psychologists = [
     {
       id: 1,
@@ -28,12 +33,18 @@ export class AppointmentDialogComponent {
 
   today = new Date().toISOString().split("T")[0];
 
-  constructor(public fb: FormBuilder) {
+  constructor(
+    public fb: FormBuilder,
+    private psychologistsService: SpecialistsService
+    ) {
   this.form = this.fb.group({
     psychologistId : ['', [Validators.required]],
     desiredDate: ['', [Validators.required]],
     userPhone: ['', [Validators.required, Validators.pattern("^[0-9]*$"), Validators.minLength(10), Validators.maxLength(10)]]
-  });
+    });
+  }
+  ngOnInit(): void {
+    this.psychologists$ = this.psychologistsService.specialists$.pipe(res => res);
   }
 
   makeAppointment() {

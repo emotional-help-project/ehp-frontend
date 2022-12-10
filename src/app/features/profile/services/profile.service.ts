@@ -25,7 +25,7 @@ export class ProfileService {
   }
 
   public subject = new BehaviorSubject<User>(this.defaultUser);
-  user$: Observable<User> = this.subject.asObservable();  
+  user$: Observable<User> = this.subject.asObservable();
 
   constructor(
     private login: LoginService, 
