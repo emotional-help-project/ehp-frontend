@@ -1,1 +1,9 @@
-
+<ul class="list">
+    <li *ngFor="let psychologist of psychologists$ | async" class="item">
+        <img class="img" [src]="psychologist.avatar">
+        <p class="name">{{psychologist.firstName}} {{psychologist.lastName}}</p>
+        <p class="description">Age: {{psychologist.age}} years</p>
+        <p class="description">Education: {{psychologist.education}}</p>
+        <p class="description">Qualification: {{psychologist.qualification}}</p>
+    </li>
+</ul>

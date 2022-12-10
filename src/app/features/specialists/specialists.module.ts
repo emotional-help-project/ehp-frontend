@@ -9,7 +9,10 @@ import { PsychologistsComponent } from './components/psychologists/psychologists
     PsychologistsComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+  ], 
+  exports: [
+    PsychologistsComponent
   ]
 })
 export class SpecialistsModule { }
