@@ -1,5 +1,5 @@
 <ul>
-    <li *ngFor="let test of tests" [ngStyle]="{'background-image': addBackgraund(test.imgUrl)}">
+    <li *ngFor="let test of tests$ | async" [ngStyle]="{'background-image': addBackgraund(test.imageUrl)}">
         <span class="type">{{test.testType.title}}</span>
         <h2>{{test.title}}</h2>
         <p class="description">{{test.description}}</p>

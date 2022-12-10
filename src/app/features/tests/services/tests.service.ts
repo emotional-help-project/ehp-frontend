@@ -132,7 +132,7 @@ export class TestsService {
       id: 125,
       title: 'Get to know yourself',
       description: 'With this personality test, you will find out what personality type you are',
-      imgUrl: "/assets/images/test-1.jpeg",
+      imageUrl: "/assets/images/test-1.jpeg",
       testType: {
         id: 1254,
         title: 'Health',
@@ -142,7 +142,7 @@ export class TestsService {
       id: 128,
       title: 'Get to know yourself',
       description: 'With this personality test, you will find out what personality type you are',
-      imgUrl: "/assets/images/test-2.jpeg",
+      imageUrl: "/assets/images/test-2.jpeg",
       testType: {
         id: 1251,
         title: 'Health',
@@ -152,7 +152,7 @@ export class TestsService {
       id: 129,
       title: 'Get to know yourself',
       description: 'With this personality test, you will find out what personality type you are',
-      imgUrl: "/assets/images/test-3.jpeg",
+      imageUrl: "/assets/images/test-3.jpeg",
       testType: {
         id: 1250,
         title: 'Health',
@@ -162,7 +162,7 @@ export class TestsService {
       id: 140,
       title: 'Get to know yourself',
       description: 'With this personality test, you will find out what personality type you are',
-      imgUrl: "/assets/images/test-3.jpeg",
+      imageUrl: "/assets/images/test-3.jpeg",
       testType: {
         id: 1250,
         title: 'Health',
@@ -172,7 +172,7 @@ export class TestsService {
       id: 150,
       title: 'Get to know yourself',
       description: 'With this personality test, you will find out what personality type you are',
-      imgUrl: "/assets/images/test-3.jpeg",
+      imageUrl: "/assets/images/test-3.jpeg",
       testType: {
         id: 1250,
         title: 'Health',
