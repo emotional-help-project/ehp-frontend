@@ -9,6 +9,7 @@ import { ChartComponent } from './features/profile/components/chart/chart.compon
 import { EmotionMapSectionComponent } from './features/profile/components/emotion-map-section/emotion-map-section.component';
 import { HistoryComponent } from './features/profile/components/history/history.component';
 import { ProfileSectionComponent } from './features/profile/components/profile-section/profile-section.component';
+import { PsychologistsComponent } from './features/specialists/components/psychologists/psychologists.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'psychologists',
+    component: PsychologistsComponent
   },
   {
     path: 'contacts',
