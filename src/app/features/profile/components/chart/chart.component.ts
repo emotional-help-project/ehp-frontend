@@ -4,7 +4,7 @@ import { ChartConfiguration, ChartOptions, ScatterDataPoint } from 'chart.js';
 import { Statistics } from '../../models/statistics.interface';
 import { StatisticsService } from '../../services/statistics.service';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 
 @Component({
@@ -14,8 +14,9 @@ import { Subscription } from 'rxjs';
 })
 export class ChartComponent implements OnInit, OnDestroy {
   
-  title = 'Statistics';
+  title = 'Emotion map';
   statistics: Statistics[];
+  statistics$: Observable<Statistics[]>;
   testId: string;
   subscription: Subscription;
   public barChartLegend = true;
@@ -44,7 +45,10 @@ export class ChartComponent implements OnInit, OnDestroy {
     private location: Location,
     private route: ActivatedRoute
     ) {
-    this.statistics = this.statisticsService.statistics.testResultStatistics
+      this.testId = this.route.snapshot.paramMap.get('id') ?? '';
+    // this.statistics = this.statisticsService.statistics.testResultStatistics
+    this.statisticsService.loadOneTestStatistics(this.testId).subscribe(stat => this.statistics = stat)
+
 
     this.statistics.forEach(res => {
       this.lineChartData.labels?.push(res.testDateTime.slice(0, 10).split('-').reverse().join('.'));
@@ -57,8 +61,7 @@ export class ChartComponent implements OnInit, OnDestroy {
     this.subscription = this.statisticsService.loadOneTestStatistics(this.testId).subscribe(map => {
       this.lineChartData.datasets[0].label = map.testTitle;
 
-      map.testResultStatistics.forEach((el: any) => this.lineChartData.datasets[0].data.push(el.result))
-      ;
+      map.testResultStatistics.forEach((el: any) => this.lineChartData.datasets[0].data.push(el.result));
       this.lineChartData.labels?.push(map.testDateTime.slice(0, 10).split('-').reverse().join('.'));
     })
   }

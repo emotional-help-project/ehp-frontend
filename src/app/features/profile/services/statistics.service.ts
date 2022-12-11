@@ -186,9 +186,9 @@ export class StatisticsService {
   }
 
   loadPassedTestList() {
-    const url = environment.apiUrl + `user/profile/tests?userId=${this.userId}`;
-    const loadTestList$ =  this.http.get<any>(url).pipe(
-      map(res => res.testResultStatistics),
+    const url = environment.apiUrl + `/user/profile/tests?userId=${this.userId}`;
+    return this.http.get<any>(url).pipe(
+      map(res => res),
       catchError(err => {
         const message = 'Could not load test list';
         this.messages.showErrors(message);
@@ -197,7 +197,6 @@ export class StatisticsService {
       }),
       tap(results => this.passedTestSubject.next(results))
     );
-    this.loader.showLoaderUntilCompleted(loadTestList$).subscribe();
   }
 
   loadOneTestStatistics(id: string) {

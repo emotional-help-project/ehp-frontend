@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, map } from 'rxjs';
+import { LoadingService } from 'src/app/shared/services/loading.service';
 import { PassedTest } from '../../models/passedTest.interface';
 import { StatisticsService } from '../../services/statistics.service';
 
@@ -13,15 +14,27 @@ export class EmotionMapSectionComponent implements OnInit {
   tests$: Observable<PassedTest[]>;
 
   constructor(
-    private statisticsService: StatisticsService) {}
+    private statisticsService: StatisticsService,
+    private loader: LoadingService
+    ) {}
 
   ngOnInit(): void {
     this.tests = this.statisticsService.passedTestList;
-    this.tests$ = this.statisticsService.passedTestList$.pipe(map(res => res));
+    this.tests$ = this.statisticsService.loadPassedTestList().pipe(map(res => {
+      console.log(res);
+      return res
+    }));
+    this.loader.showLoaderUntilCompleted(this.tests$).subscribe()
   }
 
   addBackgraund(url: string) {
-    return `linear-gradient(to right, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url(${url})`;
+    let imgUrl;
+    if (url) {
+      imgUrl = url
+    } else {
+      imgUrl = '/assets/images/test-1.jpeg';
+    }
+    return `linear-gradient(to right, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url(${imgUrl})`;
   }
 
 }

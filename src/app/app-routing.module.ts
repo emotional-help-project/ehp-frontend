@@ -36,12 +36,12 @@ const routes: Routes = [
   {
     path: 'profile/emotion-map',
     component: EmotionMapSectionComponent,
-    // canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'profile/emotion-map/:id',
     component: ChartComponent,
-    // canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'profile/history',
@@ -51,6 +51,10 @@ const routes: Routes = [
   {
     path: 'register',
     loadChildren: () => import('./features/register/register.module').then(_ => _.RegisterModule)
+  },
+  {
+    path: 'reset-password',
+    loadChildren: () => import('./features/reset-password/reset-password.module').then(_ => _.ResetPasswordModule)
   },
   {
     path: 'tests',
