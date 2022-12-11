@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { TestResult } from '../../models/test-result.interface';
 import { TestsService } from '../../services/tests.service';
 
@@ -9,7 +9,7 @@ import { TestsService } from '../../services/tests.service';
 })
 export class TestResultComponent implements OnInit {
   
-  testResult: TestResult;
+  @Input() testResult: TestResult;
   constructor(private testService: TestsService) {
 
   }

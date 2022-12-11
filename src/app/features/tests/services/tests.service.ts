@@ -21,11 +21,15 @@ import { Test } from '../models/test.interface';
 })
 export class TestsService {
   private testListSubject = new BehaviorSubject<TestListItem[]>([]);
-  private testSubject = new BehaviorSubject({});
+  private testSubject = new BehaviorSubject<Test>({ 
+    testTitle: '',
+    totalNumberOfTestQuestions: 0,
+    items: []
+  });
 
   tests$: Observable<TestListItem[]> = this.testListSubject.asObservable();
-  test$: Observable<any> = this.testSubject.asObservable();
-  testResult$: Observable<TestResult>;
+  test$: Observable<Test> = this.testSubject.asObservable();
+  // testResult$: Observable<TestResult>;
   userId?: string;
 
   public test: Test = {
@@ -232,7 +236,7 @@ export class TestsService {
     const firstUrl = environment.apiUrl + `/tests/test/${id}/init?userId=${this.userId}`;
     this.http.post(firstUrl, {});
     const secondUrl = environment.apiUrl + `/tests/test/${id}/session/1?skip=0&take=100`;
-    return this.http.get(secondUrl).pipe(
+    return this.http.get<Test>(secondUrl).pipe(
       map(res => res),
       catchError(err => {
         const message = 'Could not load test';
@@ -242,36 +246,33 @@ export class TestsService {
       }),
       tap(test => this.testSubject.next(test))
     );
-    // return this.loader.showLoaderUntilCompleted(loadedTest$).subscribe();
   }
 
   finishTest(data: any, testId: string) {
-    console.log(data);
-    
+    const test = this.testSubject.getValue();
     const questionAnswerUserRequests: any[] = []
     for (const [key, value] of Object.entries(data)) {
       let answer;
       if (typeof(value) !== 'boolean') {
-        answer = {questionId: `${key}`, answerIds: [`${value}`]}
+        answer = {questionId: Number(`${key}`), answerIds: [Number(`${value}`)]}
         questionAnswerUserRequests.push(answer);
       } 
       if (value === true) {
-        const el = this.test.items.find(item => item.answers.find(ans => ans.answerId.toString() === key))
+        const el = test.items.find(item => item.answers.find(ans => ans.answerId.toString() === key))
         if (el) {
           const multi = questionAnswerUserRequests.find(q => q.questionId === el.questionId);
          
         if (multi) {
-          questionAnswerUserRequests.find(q => q.questionId === el.questionId)?.answerIds?.push(key);  
+          questionAnswerUserRequests.find(q => q.questionId === el.questionId)?.answerIds?.push(Number(key));  
         } else {
-          answer = {questionId: el?.questionId, answerIds: [key]}
+          answer = {questionId: el?.questionId, answerIds: [Number(key)]}
           questionAnswerUserRequests.push(answer);
           }
         }
       }  
     }
-
-    this.test.items.forEach(item => {
-      const notAnswered = questionAnswerUserRequests.find(ans => Number(ans.questionId) === item.questionId)
+    test.items.forEach(item => {
+      const notAnswered = questionAnswerUserRequests.find(ans => ans.questionId === item.questionId)
       if (notAnswered) {
         return
       } else {
@@ -284,15 +285,15 @@ export class TestsService {
       questionAnswerUserRequests
     }
     console.log(answers);
-    this.passAnswers(answers);
+    return this.passAnswers(answers);
   }
 
   passAnswers(data: any) {
-    const firstUrl = environment.apiUrl + `/tests/test/session/1`;
-    this.http.post(firstUrl, data);
+    // const firstUrl = environment.apiUrl + `/tests/test/session/1`;
+    // this.http.post(firstUrl, data);
     const secondUrl =
       environment.apiUrl + `/tests/test/session/1/finalize`;
-      this.testResult$ = this.http.post<TestResult>(secondUrl, data).pipe(
+      return this.http.post<TestResult>(secondUrl, data).pipe(
       map(res => res),
       catchError(err => {
         const message = 'Something went wrong. Try again later';
@@ -301,7 +302,6 @@ export class TestsService {
         return throwError(err);
       }),
     );
-    return this.testResult;
   }
 
 }
