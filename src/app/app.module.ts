@@ -28,6 +28,8 @@ import { ContacstSectionComponent } from './features/contacts/components/contacs
 import { GoogleMapsModule } from '@angular/google-maps';
 import { GoogleMapComponent } from './features/contacts/components/google-map/google-map.component';
 import { ProfileModule } from './features/profile/profile.module';
+import { ForgotComponent } from './features/forgot/component/forgot.component';
+import { ResetFormComponent } from './features/reset-form/reset-form.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,8 @@ import { ProfileModule } from './features/profile/profile.module';
     AppointmentDialogComponent,
     ContacstSectionComponent,
     GoogleMapComponent,
+    ForgotComponent,
+    ResetFormComponent,
   ],
   imports: [
     BrowserModule,

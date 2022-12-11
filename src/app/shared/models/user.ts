@@ -10,6 +10,8 @@ export interface User {
   isAdmin?: boolean;
   role?: string;
   id?: number;
+  resetPasswordToken?:string;
+
 }
 
 export interface TokenPayload {

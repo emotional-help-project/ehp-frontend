@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ContacstSectionComponent } from './features/contacts/components/contacst-section/contacst-section.component';
+import { ForgotComponent } from './features/forgot/component/forgot.component';
 
 import { HomeComponent } from './features/home/home.component';
 import { LoginComponent } from './features/login/components/login.component';
@@ -8,6 +9,7 @@ import { AuthGuard } from './features/login/services/auth.guard';
 import { ChartComponent } from './features/profile/components/chart/chart.component';
 import { HistoryComponent } from './features/profile/components/history/history.component';
 import { ProfileSectionComponent } from './features/profile/components/profile-section/profile-section.component';
+import { ResetFormComponent } from './features/reset-form/reset-form.component';
 
 const routes: Routes = [
   {
@@ -17,6 +19,14 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'forgot',
+    component: ForgotComponent
+  },
+  {
+    path: 'reset',
+    component: ResetFormComponent
   },
   {
     path: 'contacts',
@@ -45,9 +55,9 @@ const routes: Routes = [
     path: 'tests',
     loadChildren: () => import('./features/tests/tests.module').then(_ => _.TestsModule)
   },
-  { 
-    path: '**', 
-    redirectTo: '' 
+  {
+    path: '**',
+    redirectTo: ''
   }
 ];
 

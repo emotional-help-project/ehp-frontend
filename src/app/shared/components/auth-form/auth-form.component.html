@@ -1,70 +1,97 @@
 <div class="login">
-    <h2 *ngIf="!registerForm">Sign in</h2>
+    <h2 *ngIf="!registerForm && !forgotForm && !resetForm">Sign in</h2>
     <h2 *ngIf="registerForm">Sign up</h2>
+    <h2 *ngIf="forgotForm">Forgot password</h2>
+    <h2 *ngIf="resetForm">Reset password</h2>
     <form [formGroup]="form" class="form">
 
         <div *ngIf="registerForm">
-            <input [ngClass]="{invalid: form.controls['firstName'].touched && form.controls['firstName'].invalid}" 
-            formControlName="firstName" type="text" class="input" placeholder="First name *">
+            <input [ngClass]="{invalid: form.controls['firstName'].touched && form.controls['firstName'].invalid}"
+                formControlName="firstName" type="text" class="input" placeholder="First name *">
             <div class="validation">
-                <small *ngIf="form.controls['firstName'].touched && form.controls['firstName'].invalid">* First name length must be equal to 2-20 characters</small>
+                <small *ngIf="form.controls['firstName'].touched && form.controls['firstName'].invalid">* First name
+                    length must be equal to 2-20 characters</small>
             </div>
         </div>
 
         <div *ngIf="registerForm">
-            <input [ngClass]="{invalid: form.controls['lastName'].touched && form.controls['lastName'].invalid}" 
-            formControlName="lastName" type="text" class="input" placeholder="Last name *">
+            <input [ngClass]="{invalid: form.controls['lastName'].touched && form.controls['lastName'].invalid}"
+                formControlName="lastName" type="text" class="input" placeholder="Last name *">
             <div class="validation">
-                <small *ngIf="form.controls['lastName'].touched && form.controls['lastName'].invalid">* Last name length must be equal to 2-20 characters</small>
-            </div>
-        </div>
-        
-        <div>
-            <input [ngClass]="{invalid: form.controls['email'].touched && form.controls['email'].invalid}" 
-            formControlName="email" type="email" class="input" placeholder="Email *">
-            <div class="validation">
-                <small *ngIf="form.controls['email'].touched && form.controls['email'].invalid">* Email address must be valid</small>
+                <small *ngIf="form.controls['lastName'].touched && form.controls['lastName'].invalid">* Last name length
+                    must be equal to 2-20 characters</small>
             </div>
         </div>
 
-        <div>
-            <div class="password-wrapper">
-            <input appPasswordToggle [ngClass]="{invalid: form.controls['password'].touched && form.controls['password'].invalid}" 
-            formControlName="password" type="password" class="input" placeholder="Password *">
-            </div>               
+        <div *ngIf="!forgotForm && !resetForm">
+            <input [ngClass]="{invalid: form.controls['email'].touched && form.controls['email'].invalid}"
+                formControlName="email" type="email" class="input" placeholder="Email *">
             <div class="validation">
-                <small *ngIf="form.controls['password'].touched && form.controls['password'].invalid">* Password must contain at least 1 digit, 1 lowercase, 1 uppercase, 1 special character (! @ # &), minimum length is 8 characters</small>
+                <small *ngIf="form.controls['email'].touched && form.controls['email'].invalid">* Email address must be
+                    valid</small>
+            </div>
+        </div>
+        <!-- Email input for sending reset link -->
+        <div *ngIf="forgotForm">
+            <input [ngClass]="{invalid: form.controls['email'].touched && form.controls['email'].invalid}"
+                formControlName="email" type="email" class="input" placeholder=" Email *">
+            <div class="validation">
+                <small *ngIf="form.controls['email'].touched && form.controls['email'].invalid">* Email address must be
+                    valid</small>
             </div>
         </div>
 
-        <div *ngIf="registerForm">
+        <div *ngIf="!forgotForm || resetForm">
             <div class="password-wrapper">
-                <input appPasswordToggle [ngClass]="{invalid: form.controls['confirmPassword'].touched && form.hasError('notSame')}" 
-                formControlName="confirmPassword" type="password" class="input" placeholder="Confirm password *">
+                <input appPasswordToggle
+                    [ngClass]="{invalid: form.controls['password'].touched && form.controls['password'].invalid}"
+                    formControlName="password" type="password" class="input" placeholder="Password *">
             </div>
             <div class="validation">
-                <small *ngIf="form.controls['confirmPassword'].touched && form.hasError('notSame')">* Both passwords must be equal</small>
+                <small *ngIf="form.controls['password'].touched && form.controls['password'].invalid">* Password must
+                    contain at least 1 digit, 1 lowercase, 1 uppercase, 1 special character (! @ # &), minimum length is
+                    8 characters</small>
             </div>
         </div>
+
+        <div *ngIf="registerForm || resetForm">
+            <div class="password-wrapper">
+                <input appPasswordToggle
+                    [ngClass]="{invalid: form.controls['confirmPassword'].touched && form.hasError('notSame')}"
+                    formControlName="confirmPassword" type="password" class="input" placeholder="Confirm password *">
+            </div>
+            <div class="validation">
+                <small *ngIf="form.controls['confirmPassword'].touched && form.hasError('notSame')">* Both passwords
+                    must be equal</small>
+            </div>
+        </div>
+       
+       
 
         <div *ngIf="registerForm">
             <input name="age" formControlName="age" type="number" class="input" placeholder="Age *" min="5" max="150">
             <div class="validation">
-                <small *ngIf="form.controls['age'].touched && form.controls['age'].invalid">* Minimum accepted age is 5 years, maximum accepted age is 150</small>
+                <small *ngIf="form.controls['age'].touched && form.controls['age'].invalid">* Minimum accepted age is 5
+                    years, maximum accepted age is 150</small>
             </div>
         </div>
 
         <div class="radio" *ngIf="registerForm">
-            <p>Gender *</p> 
+            <p>Gender *</p>
             <input name="gender" value="MALE" formControlName="gender" type="radio" class="radio-input" id="male">
-            <label for="male" >Male</label>
+            <label for="male">Male</label>
             <input name="gender" value="FEMALE" formControlName="gender" type="radio" class="radio-input" id="female">
             <label for="female">Female</label>
             <input name="gender" value="OTHER" formControlName="gender" type="radio" class="radio-input" id="other">
             <label for="other">Other</label>
         </div>
 
-        <app-button *ngIf="registerForm" [disabled]="!form.valid || submitted" class="btn" (click)="register()">Sign up</app-button>
-        <app-button *ngIf="!registerForm" [disabled]="!form.valid || submitted" class="btn" (click)="login()">Sign in</app-button>
+        <app-button *ngIf="registerForm" [disabled]="!form.valid || submitted" class="btn" (click)="register()">Sign up
+        </app-button>
+        <app-button *ngIf="!registerForm && !forgotForm && !resetForm" [disabled]="!form.valid || submitted" class="btn" (click)="login()">Sign in
+        </app-button>
+        <app-button *ngIf="forgotForm" [disabled]="!form.valid || submitted" class="btn" (click)="forgot()">Send       </app-button>
+        <app-button *ngIf="!forgotForm && resetForm" [disabled]="!form.valid || submitted" class="btn" (click)="reset()">Reset
+        </app-button>
     </form>
 </div>
