@@ -10,7 +10,6 @@ import { StatisticsService } from '../../services/statistics.service';
   styleUrls: ['./emotion-map-section.component.scss']
 })
 export class EmotionMapSectionComponent implements OnInit {
-  tests: PassedTest[];
   tests$: Observable<PassedTest[]>;
 
   constructor(
@@ -19,11 +18,7 @@ export class EmotionMapSectionComponent implements OnInit {
     ) {}
 
   ngOnInit(): void {
-    this.tests = this.statisticsService.passedTestList;
-    this.tests$ = this.statisticsService.loadPassedTestList().pipe(map(res => {
-      console.log(res);
-      return res
-    }));
+    this.tests$ = this.statisticsService.loadPassedTestList().pipe(map(res => res));
     this.loader.showLoaderUntilCompleted(this.tests$).subscribe()
   }
 
