@@ -2,7 +2,7 @@ export interface TestListItem {
   id: number;
   title: string;
   description: string;
-  imgUrl: string;
+  imageUrl: string;
   testType: {
     id: number;
     title: string;

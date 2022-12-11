@@ -22,7 +22,7 @@ export class TestDialogComponent implements OnInit {
       id: Date.now(),
       description: test.description,
       title: test.testTitle,
-      imgUrl: test.url,
+      imageUrl: test.url,
       testType: {
         id: Date.now(),
         title: test.testTitle

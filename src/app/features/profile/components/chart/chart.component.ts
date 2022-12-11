@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { ChartConfiguration, ChartOptions } from 'chart.js';
+import { ChartConfiguration, ChartOptions, ScatterDataPoint } from 'chart.js';
 import { Statistics } from '../../models/statistics.interface';
 import { StatisticsService } from '../../services/statistics.service';
+import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -10,14 +12,14 @@ import { StatisticsService } from '../../services/statistics.service';
   templateUrl: './chart.component.html',
   styleUrls: ['./chart.component.scss']
 })
-export class ChartComponent {
+export class ChartComponent implements OnInit, OnDestroy {
+  
   title = 'Statistics';
-
+  statistics: Statistics[];
+  testId: string;
+  subscription: Subscription;
   public barChartLegend = true;
   public barChartPlugins = [];
-  statistics: Statistics[];
-
-
   public lineChartData: ChartConfiguration<'line'>['data'] = {
     labels: [],
     datasets: [
@@ -26,7 +28,7 @@ export class ChartComponent {
         label: 'Test result',
         fill: true,
         tension: 0.5,
-        borderColor: '#91d0cc',
+        borderColor: '#4bb0a9',
         backgroundColor: 'rgba(217, 190, 147, 0.5)'
       }
     ]
@@ -39,7 +41,8 @@ export class ChartComponent {
 
   constructor(
     private statisticsService: StatisticsService,
-    private location: Location
+    private location: Location,
+    private route: ActivatedRoute
     ) {
     this.statistics = this.statisticsService.statistics.testResultStatistics
 
@@ -47,10 +50,24 @@ export class ChartComponent {
       this.lineChartData.labels?.push(res.testDateTime.slice(0, 10).split('-').reverse().join('.'));
       this.lineChartData.datasets.forEach(el => el.data.push(res.result))
     })
+  }
+  
+  ngOnInit(): void {
+    this.testId = this.route.snapshot.paramMap.get('id') ?? '';
+    this.subscription = this.statisticsService.loadOneTestStatistics(this.testId).subscribe(map => {
+      this.lineChartData.datasets[0].label = map.testTitle;
 
+      map.testResultStatistics.forEach((el: any) => this.lineChartData.datasets[0].data.push(el.result))
+      ;
+      this.lineChartData.labels?.push(map.testDateTime.slice(0, 10).split('-').reverse().join('.'));
+    })
   }
 
-  goBack() {
+  goBack(): void {
     this.location.back();
+  }
+  
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

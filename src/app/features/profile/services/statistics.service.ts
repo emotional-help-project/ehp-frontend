@@ -202,7 +202,7 @@ export class StatisticsService {
 
   loadOneTestStatistics(id: string) {
     const url = environment.apiUrl + `/user/profile/${this.userId}/map/${id}`;
-    const loadStatistics$ =  this.http.get<any>(url).pipe(
+    return this.http.get<any>(url).pipe(
       map(res => res.testResultStatistics),
       catchError(err => {
         const message = 'Could not load emotional map';
@@ -212,7 +212,7 @@ export class StatisticsService {
       }),
       tap(results => this.emotionSubject.next(results))
     );
-    this.loader.showLoaderUntilCompleted(loadStatistics$).subscribe();
+    // this.loader.showLoaderUntilCompleted(loadStatistics$).subscribe();
   }
 
   loadHistory() {
