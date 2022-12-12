@@ -1,0 +1,21 @@
+<div class="cards">
+    <h2>Trainings we provide:</h2>
+    <p>Our courses provide practical applications for Mental Health concepts through videos, lectures, practice exercises, opportunities to explore our own psychological reactions, and interactive discussions.</p>
+    <ul class="card" *ngIf="coursesService.courses.length; else noCourses ">
+        <li class="card_item" *ngFor="let course of coursesService.courses">
+            <img src={{course.imageUrl}}>
+            <div class="card_item_content">
+                <div class="date">{{course.creatingDate | date: 'medium'}}</div>
+                <h2 class="card_title">{{course.title}}</h2>
+                <div class="card_descr">{{course.description}}</div>
+                <div class="btns">
+                    <div class="price"><span><b>{{course.price}}$</b></span></div>
+                    <div class="admin_btn">
+<!--                         <mat-icon (click)="openUpdateDialog(course)"  >edit</mat-icon>
+                        <mat-icon (click)="onRemove(course.id)" *ngIf="isAdmin" >delete</mat-icon> -->
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+    <ng-template class="no_courses"  #noCourses><b>No Courses now!</b></ng-template>

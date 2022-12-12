@@ -1,34 +1,31 @@
 <div class="dialog">
     <h2 mat-dialog-title>Add questions to the test</h2>
-    <form>
+    <form [formGroup]="testItemForm">
         <div mat-dialog-content>
             <mat-form-field appearance="outline">
                 <mat-label>Enter your question...</mat-label>
-                <input matInput placeholder="Start typing...">
+                <input formControlName="question" matInput placeholder="Start typing...">
                 <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
                 <mat-hint>Hint</mat-hint>
               </mat-form-field>
-        </div>
-        <div class="answers">
-            <div class="answer_type_1">
-                <mat-icon class="icon">add</mat-icon>
-                <label class="answer"><input
-                    type="radio"
-                />Yes</label>
-                <label class="answer"><input
-                    type="radio"
-                />Sometimes</label>
-                <label class="answer"><input
-                    type="radio"
-                />No</label>
-            </div>
-            <div class="answer_type_2">
-                <mat-icon class="icon">add</mat-icon>
-                <label class="answer"><input
-                    type="checkbox"
-                />Yes</label>
-            </div>
-
+              <mat-form-field appearance="outline">
+                <mat-label>Enter first answer...</mat-label>
+                <input formControlName="firstItem" matInput placeholder="Start typing...">
+                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                <mat-hint>Hint</mat-hint>
+              </mat-form-field>  
+              <mat-form-field appearance="outline">
+                <mat-label>Enter second answer...</mat-label>
+                <input formControlName="secondItem" matInput placeholder="Start typing...">
+                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                <mat-hint>Hint</mat-hint>
+              </mat-form-field>  
+              <mat-form-field appearance="outline">
+                <mat-label>Enter third question...</mat-label>
+                <input formControlName="thirdItem" matInput placeholder="Start typing...">
+                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                <mat-hint>Hint</mat-hint>
+              </mat-form-field>
         </div>
     </form>
     <div mat-dialog-actions [align]="'end'">
