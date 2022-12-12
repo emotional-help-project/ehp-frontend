@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ContacstSectionComponent } from './features/contacts/components/contacst-section/contacst-section.component';
+import { CoursesComponent } from './features/home/courses/courses.component';
 
 import { HomeComponent } from './features/home/home.component';
 import { LoginComponent } from './features/login/components/login.component';
@@ -59,6 +60,10 @@ const routes: Routes = [
   {
     path: 'tests',
     loadChildren: () => import('./features/tests/tests.module').then(_ => _.TestsModule)
+  },
+  {
+    path: 'courses',
+    component: CoursesComponent
   },
   { 
     path: '**', 

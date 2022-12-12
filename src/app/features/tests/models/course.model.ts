@@ -1,7 +1,8 @@
 export interface Course {
     id: number;
-    url?: string;
+    imageUrl?: string;
     title: string;
+    price: string;
     creatingDate: string;
     description: string;
 }
