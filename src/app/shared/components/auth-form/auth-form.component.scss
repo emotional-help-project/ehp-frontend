@@ -64,3 +64,19 @@
 .invalid, .invalid:focus {
     border-color: red;
 }
+
+.forgot-password {
+    text-align: right;
+    min-height: 15px;
+    margin-bottom: 5px;
+    color: red;
+}
+
+.forgot-password p {
+    margin: 0;
+    cursor: pointer;
+}
+
+.forgot-password p:hover {
+    text-decoration: underline;
+}

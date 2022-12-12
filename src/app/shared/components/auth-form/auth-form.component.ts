@@ -6,6 +6,7 @@ import { LoginService } from 'src/app/features/login/services/login.service';
 import { RegisterService } from 'src/app/features/register/services/register.service';
 import { createEmailStrengthValidator } from 'src/app/shared/validators/email-strength.validator';
 import { createPasswordStrengthValidator } from 'src/app/shared/validators/password-strength.validator';
+import { MessagesService } from '../../services/messages.service';
 import { matchPasswordValidator } from '../../validators/match-password.validator';
 
 @Component({
@@ -24,6 +25,7 @@ export class AuthFormComponent implements OnInit {
     private registerService: RegisterService,
     private loginService: LoginService,
     private router: Router,
+    public messages: MessagesService
   ) { }
 
   ngOnInit() {
@@ -71,4 +73,11 @@ export class AuthFormComponent implements OnInit {
     });
   }
 
+
+  forgotPassword() {
+    const email = this.form.value.email;
+    console.log(email);
+    
+    // this.login.sendEmail(email).subscribe();
+  }
 }

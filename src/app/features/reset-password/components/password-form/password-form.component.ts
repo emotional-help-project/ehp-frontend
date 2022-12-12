@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+
 import { matchPasswordValidator } from 'src/app/shared/validators/match-password.validator';
 import { createPasswordStrengthValidator } from 'src/app/shared/validators/password-strength.validator';
+import { ResetPasswordService } from '../../services/reset-password.service';
 
 @Component({
   selector: 'app-password-form',
@@ -15,7 +16,7 @@ export class PasswordFormComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private router: Router,
+    private resetPasswordService: ResetPasswordService,
   ) { }
 
   ngOnInit() {
@@ -28,7 +29,8 @@ export class PasswordFormComponent implements OnInit {
    }
 
    savePassword() {
-    console.log();
-    
-   }
+    const password = this.form.value.password;
+    // this.resetPasswordService.resetPassword(password, '')
+    console.log(password);  
+  }
 }
