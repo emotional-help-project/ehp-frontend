@@ -12,11 +12,29 @@ export class TestListComponent implements OnInit {
   tests: TestListItem[];
   tests$: Observable<TestListItem[]>;
 
-  constructor(private testsService: TestsService) {}
+  constructor(public testsService: TestsService) {}
 
   ngOnInit(): void {
+    this.getTestType()
+    this.getAllTestsCard()
     this.tests = this.testsService.testList;
     this.tests$ = this.testsService.tests$.pipe(map(res => res));
+  }
+  getAllTestsCard(){
+    this.testsService.getTestCard()
+    .subscribe({
+/*       next:(res)=>{
+        console.log(res)
+      } */
+    })
+  }
+  getTestType(){
+    this.testsService.getTestType()
+    .subscribe({
+      next:(res)=>{
+        console.log(res)
+      }
+    })
   }
 
   addBackgraund(url: string) {

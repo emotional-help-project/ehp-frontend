@@ -28,6 +28,7 @@ import { ContacstSectionComponent } from './features/contacts/components/contacs
 import { GoogleMapsModule } from '@angular/google-maps';
 import { GoogleMapComponent } from './features/contacts/components/google-map/google-map.component';
 import { ProfileModule } from './features/profile/profile.module';
+import { CoursesComponent } from './features/home/courses/courses.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { ProfileModule } from './features/profile/profile.module';
     AppointmentDialogComponent,
     ContacstSectionComponent,
     GoogleMapComponent,
+    CoursesComponent,
   ],
   imports: [
     BrowserModule,

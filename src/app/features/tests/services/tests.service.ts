@@ -12,7 +12,8 @@ import { LoadingService } from 'src/app/shared/services/loading.service';
 import { MessagesService } from 'src/app/shared/services/messages.service';
 import { environment } from 'src/environment/environment';
 import { LoginService } from '../../login/services/login.service';
-import { TestListItem } from '../models/test-list-item.interface';
+import { Question } from '../models/question.models';
+import { TestListItem, TestType} from '../models/test-list-item.interface';
 import { Test } from '../models/test.interface';
 
 @Injectable({
@@ -126,7 +127,7 @@ export class TestsService {
   };
 
   public testList: TestListItem[] = [
-    { 
+   /*  { 
       id: 125,
       title: 'Get to know yourself',
       description: 'With this personality test, you will find out what personality type you are',
@@ -155,8 +156,9 @@ export class TestsService {
         id: 1250,
         title: 'Health',
       }
-    },
+    }, */
   ];
+  public testsType: TestType[] =[];
 
   constructor(
     private loader: LoadingService,
@@ -170,6 +172,7 @@ export class TestsService {
       this.loadAllTests();
     }
   }
+
 
   public loadAllTests() {
     const url =
@@ -254,5 +257,28 @@ export class TestsService {
       return this.http.post(secondUrl, data).pipe(
       map(res => res)
     );
+  }
+   addQuestion(question: Question){
+    const addQuestionUrl = environment.apiUrl + `/admin/test`;
+    return this.http.post(addQuestionUrl, question)
+  }
+  addTestCard(card: TestListItem){
+    const addCardUrl = environment.apiUrl + `/tests`;
+    return this.http.post(addCardUrl, card)
+  }
+  getTestCard(){
+    const getCardUrl = environment.apiUrl + `/tests`;
+    return this.http.get<TestListItem[]>(getCardUrl)
+    .pipe( tap(testList => this.testList = testList))
+  }
+  addTestType(testType: TestType){
+    const addTestTypeUrl = environment.apiUrl + `/testTypes`;
+    return this.http.post(addTestTypeUrl, testType)
+  }
+  getTestType(){
+    const testTypeUrl = environment.apiUrl + `/testTypes`;
+    return this.http.get<TestType[]>(testTypeUrl)
+    .pipe( tap(testsType => this.testsType = testsType))
+
   }
 }

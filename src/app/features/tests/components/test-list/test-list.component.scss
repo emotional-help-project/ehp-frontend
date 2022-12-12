@@ -4,10 +4,12 @@ ul {
     align-items: center;
     flex-wrap: wrap;
     width: 100%;
+    gap: 30px;
     li {
         width: 25%;
         box-shadow: var(--boxShadowMainColor);
         padding: 30px;
+        min-height: 200px;
         text-align: center;
         list-style: none;
         background-repeat: no-repeat;
