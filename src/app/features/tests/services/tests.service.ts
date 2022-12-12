@@ -221,9 +221,9 @@ export class TestsService {
 
   public loadAllTests() {
     const url =
-      environment.apiUrl + `/tests/user/${this.userId}?skip=0&take=100`;
+      environment.apiUrl + '/tests';
     const loadTests$ = this.http.get<any>(url).pipe(
-      map(res => res.tests.content),
+      map(res => res),
       catchError(err => {
         const message = 'Could not load tests';
         this.messages.showErrors(message);
