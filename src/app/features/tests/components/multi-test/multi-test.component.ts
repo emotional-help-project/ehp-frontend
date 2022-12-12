@@ -31,6 +31,7 @@ export class MultiTestComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.form = new FormGroup({});
     this.testId = this.route.snapshot.paramMap.get('id') ?? '';
+    this.testService.startTest(this.testId).subscribe();
     this.subscription =  this.loader.showLoaderUntilCompleted(this.testService
       .loadTestById(this.testId))
       .subscribe(test => {
