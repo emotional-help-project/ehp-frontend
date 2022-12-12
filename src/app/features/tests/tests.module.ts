@@ -24,12 +24,12 @@ const routes: Routes = [
   {
     path: '',
     component: TestSectionComponent,
-    canActivate: [AuthGuard]
+ //   canActivate: [AuthGuard]
   },
   {
     path: ':id',
     component: MultiTestComponent,
-    canActivate: [AuthGuard]
+  //  canActivate: [AuthGuard]
   },
   {
     path: 'general',

@@ -15,6 +15,12 @@
                 <mat-hint>Hint</mat-hint>
               </mat-form-field>
               <mat-form-field appearance="fill">
+                <mat-label>Choose an option</mat-label>
+                <select matNativeControl >
+                  <option  formControlName="testType" *ngFor="let test of tests.testsType" value={{test.title}}>{{test.title}}</option>
+                </select>
+              </mat-form-field>
+              <mat-form-field appearance="fill">
                 <mat-label>Enter description...</mat-label>
                 <textarea formControlName="description" formControlName="description" matInput></textarea>
               </mat-form-field>

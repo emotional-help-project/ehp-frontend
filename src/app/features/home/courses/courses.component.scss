@@ -1,28 +1,3 @@
-h2 {
-    font-size: 24px;
-}
-.promo{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    min-height: 600px;
-    margin: 0;
-    background-image: url('../../../assets/images/background.jpg') /* center center / cover no-repeat  */;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-.promo_title{
-    color: rgb(184, 136, 74);
-    font-size: 60px;
-    margin-bottom: 10px;
-}
-.promo_subtitle{
-    color: rgb(184, 136, 74);
-}
-.courses_sub{
-    margin-top: 20px;
-}
 .courses{
     min-height: 600px;
     text-align: center;
@@ -90,10 +65,4 @@ h2 {
 .price{
     color: var(--secondaryColor);
     margin-top: 10px;
-}
-.more {
-    background-color: var(--secondaryColor);
-    margin-top: 50px;
-    color: white;
-    padding: 10px 20px;
 }
