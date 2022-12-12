@@ -1,6 +1,6 @@
 <ul>
-    <li *ngFor="let test of testsService.testList" [ngStyle]="{'background-image': addBackgraund(test.imgUrl)}">
-        <span *ngFor="let type of testsService.testsType" class="type">{{type.title}}</span>
+    <li *ngFor="let test of tests$ | async" [ngStyle]="{'background-image': addBackgraund(test.imageUrl)}">
+        <span class="type">{{test.testType.title}}</span>
         <h2>{{test.title}}</h2>
         <p class="description">{{test.description}}</p>
         <app-button [routerLink]="['/tests', test.id]">Start</app-button>

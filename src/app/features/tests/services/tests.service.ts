@@ -13,7 +13,8 @@ import { MessagesService } from 'src/app/shared/services/messages.service';
 import { environment } from 'src/environment/environment';
 import { LoginService } from '../../login/services/login.service';
 import { Question } from '../models/question.models';
-import { TestListItem, TestType} from '../models/test-list-item.interface';
+import { TestList, TestListItem, TestType} from '../models/test-list-item.interface';
+import { TestResult } from '../models/test-result.interface';
 import { Test } from '../models/test.interface';
 
 @Injectable({
@@ -21,10 +22,15 @@ import { Test } from '../models/test.interface';
 })
 export class TestsService {
   private testListSubject = new BehaviorSubject<TestListItem[]>([]);
-  private testSubject = new BehaviorSubject({});
+  private testSubject = new BehaviorSubject<Test>({ 
+    testTitle: '',
+    totalNumberOfTestQuestions: 0,
+    items: []
+  });
 
   tests$: Observable<TestListItem[]> = this.testListSubject.asObservable();
-  test$: Observable<any> = this.testSubject.asObservable();
+  test$: Observable<Test> = this.testSubject.asObservable();
+  // testResult$: Observable<TestResult>;
   userId?: string;
 
   public test: Test = {
@@ -131,7 +137,7 @@ export class TestsService {
       id: 125,
       title: 'Get to know yourself',
       description: 'With this personality test, you will find out what personality type you are',
-      imgUrl: "/assets/images/test-1.jpeg",
+      imageUrl: "/assets/images/test-1.jpeg",
       testType: {
         id: 1254,
         title: 'Health',
@@ -141,7 +147,7 @@ export class TestsService {
       id: 128,
       title: 'Get to know yourself',
       description: 'With this personality test, you will find out what personality type you are',
-      imgUrl: "/assets/images/test-2.jpeg",
+      imageUrl: "/assets/images/test-2.jpeg",
       testType: {
         id: 1251,
         title: 'Health',
@@ -151,7 +157,27 @@ export class TestsService {
       id: 129,
       title: 'Get to know yourself',
       description: 'With this personality test, you will find out what personality type you are',
-      imgUrl: "/assets/images/test-3.jpeg",
+      imageUrl: "/assets/images/test-3.jpeg",
+      testType: {
+        id: 1250,
+        title: 'Health',
+      }
+    },
+    { 
+      id: 140,
+      title: 'Get to know yourself',
+      description: 'With this personality test, you will find out what personality type you are',
+      imageUrl: "/assets/images/test-3.jpeg",
+      testType: {
+        id: 1250,
+        title: 'Health',
+      }
+    },
+    { 
+      id: 150,
+      title: 'Get to know yourself',
+      description: 'With this personality test, you will find out what personality type you are',
+      imageUrl: "/assets/images/test-3.jpeg",
       testType: {
         id: 1250,
         title: 'Health',
@@ -159,6 +185,25 @@ export class TestsService {
     }, */
   ];
   public testsType: TestType[] =[];
+
+  public testResult: TestResult = {
+    adviceDescription: "According to your responses, you seem to show some symptoms of Bipolar Depression.",
+    scoreFrom: 0,
+    scoreTo: 70,
+    userScore: 5,
+    links: [
+        {
+            id: 1,
+            title: "Depression Program",
+            link: "https://thiswayup.org.au/programs/depression-program/"
+        },
+        {
+            id: 2,
+            title: "Overcoming depression: How psychologists help with depressive disorders",
+            link: "https://www.apa.org/topics/depression/overcoming"
+        }
+    ]
+  }
 
   constructor(
     private loader: LoadingService,
@@ -194,7 +239,7 @@ export class TestsService {
     const firstUrl = environment.apiUrl + `/tests/test/${id}/init?userId=${this.userId}`;
     this.http.post(firstUrl, {});
     const secondUrl = environment.apiUrl + `/tests/test/${id}/session/1?skip=0&take=100`;
-    const loadedTest$ = this.http.get(secondUrl).pipe(
+    return this.http.get<Test>(secondUrl).pipe(
       map(res => res),
       catchError(err => {
         const message = 'Could not load test';
@@ -204,58 +249,63 @@ export class TestsService {
       }),
       tap(test => this.testSubject.next(test))
     );
-    this.loader.showLoaderUntilCompleted(loadedTest$).subscribe();
   }
 
   finishTest(data: any, testId: string) {
-    console.log(data);
-    
-    const questionAnswerUserRequests = []
+    const test = this.testSubject.getValue();
+    const questionAnswerUserRequests: any[] = []
     for (const [key, value] of Object.entries(data)) {
       let answer;
       if (typeof(value) !== 'boolean') {
-        answer = {questionId: `${key}`, answerIds: [`${value}`]}
+        answer = {questionId: Number(`${key}`), answerIds: [Number(`${value}`)]}
         questionAnswerUserRequests.push(answer);
       } 
       if (value === true) {
-        const el = this.test.items.find(item => item.answers.find(ans => ans.answerId.toString() === key))
+        const el = test.items.find(item => item.answers.find(ans => ans.answerId.toString() === key))
         if (el) {
           const multi = questionAnswerUserRequests.find(q => q.questionId === el.questionId);
          
         if (multi) {
-          questionAnswerUserRequests.find(q => q.questionId === el.questionId)?.answerIds?.push(key);  
+          questionAnswerUserRequests.find(q => q.questionId === el.questionId)?.answerIds?.push(Number(key));  
         } else {
-          answer = {questionId: el?.questionId, answerIds: [key]}
+          answer = {questionId: el?.questionId, answerIds: [Number(key)]}
           questionAnswerUserRequests.push(answer);
           }
         }
       }  
     }
-
-    // this.test.items.forEach(item => {
-    //   const el = questionAnswerUserRequests.find(ans => Number(ans.questionId) === item.questionId)
-    //   if (el) {
-    //     return
-    //   } else {
-    //     questionAnswerUserRequests.push({questionId: item.questionId, answerIds: []})
-    //   }
-    // })
+    test.items.forEach(item => {
+      const notAnswered = questionAnswerUserRequests.find(ans => ans.questionId === item.questionId)
+      if (notAnswered) {
+        return
+      } else {
+        return questionAnswerUserRequests.push({questionId: item.questionId, answerIds: []})
+      }
+    })
     const answers = {
-      userId: this.userId,
-      testId: testId,
+      userId: Number(this.userId),
+      testId: Number(testId),
       questionAnswerUserRequests
     }
     console.log(answers);
-    this.passAnswers(answers)
+    return this.passAnswers(answers);
   }
 
   passAnswers(data: any) {
-    const firstUrl = environment.apiUrl + `/tests/test/session/1`;
-    this.http.post(firstUrl, data);
+    // const firstUrl = environment.apiUrl + `/tests/test/session/1`;
+    // this.http.post(firstUrl, data);
+    console.log(data);
+    
     const secondUrl =
       environment.apiUrl + `/tests/test/session/1/finalize`;
-      return this.http.post(secondUrl, data).pipe(
-      map(res => res)
+      return this.http.post<TestResult>(secondUrl, data).pipe(
+      map(res => res),
+      catchError(err => {
+        const message = 'Something went wrong. Try again later';
+        this.messages.showErrors(message);
+        console.log(message, err);
+        return throwError(err);
+      }),
     );
   }
    addQuestion(question: Question){
@@ -264,13 +314,13 @@ export class TestsService {
   }
   addTestCard(card: TestListItem){
     const addCardUrl = environment.apiUrl + `/tests`;
-    return this.http.post(addCardUrl, card)
+    return this.http.post<any>(addCardUrl, card)
   }
-  getTestCard(){
+/*   getTestCard(){
     const getCardUrl = environment.apiUrl + `/tests`;
     return this.http.get<TestListItem[]>(getCardUrl)
     .pipe( tap(testList => this.testList = testList))
-  }
+  } */
   addTestType(testType: TestType){
     const addTestTypeUrl = environment.apiUrl + `/testTypes`;
     return this.http.post(addTestTypeUrl, testType)
@@ -281,4 +331,5 @@ export class TestsService {
     .pipe( tap(testsType => this.testsType = testsType))
 
   }
+
 }

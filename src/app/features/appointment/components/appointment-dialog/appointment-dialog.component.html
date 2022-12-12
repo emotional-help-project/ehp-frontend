@@ -7,7 +7,7 @@
             <div>
                 <select formControlName="psychologistId" class="select" [ngClass]="{invalid: form.controls['psychologistId'].touched && form.controls['psychologistId'].invalid}">
                     <option value="">Choose psychologist *</option>
-                    <option *ngFor="let psychologist of psychologists" class="option" [ngValue]="psychologist.id">{{psychologist.name}}</option>
+                    <option *ngFor="let psychologist of psychologists$ | async" class="option" [ngValue]="psychologist.id">{{psychologist.firstName}} {{psychologist.lastName}}</option>
                 </select>
                 <div class="validation">
                     <small *ngIf="form.controls['psychologistId'].touched && form.controls['psychologistId'].invalid">* Psychologist is required</small>

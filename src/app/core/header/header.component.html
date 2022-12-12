@@ -39,6 +39,8 @@
             <li class="nav_item" [routerLink]="['/']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</li>
             <li class="nav_item">Pages</li>
             <li class="nav_item" [routerLink]="['/courses']" routerLinkActive="active">Courses</li>
+            <li class="nav_item" [routerLink]="['/psychologists']" routerLinkActive="active">Psychologists</li>
+            <li class="nav_item">Services</li>
             <li class="nav_item" [routerLink]="['/contacts']" routerLinkActive="active">Contacts</li>
             <li class="nav_item" *ngIf="isLoggedIn$ | async" [routerLink]="['/tests']" routerLinkActive="active">Tests</li>
             <li class="nav_item" *ngIf="isLoggedIn$ | async" [routerLink]="['/profile']" routerLinkActive="active">Profile</li>

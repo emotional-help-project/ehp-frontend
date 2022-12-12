@@ -9,23 +9,19 @@ import { TestsService } from '../../services/tests.service';
   styleUrls: ['./test-list.component.scss'],
 })
 export class TestListComponent implements OnInit {
-  tests: TestListItem[];
   tests$: Observable<TestListItem[]>;
 
   constructor(public testsService: TestsService) {}
 
   ngOnInit(): void {
-    this.getTestType()
-    this.getAllTestsCard()
-    this.tests = this.testsService.testList;
     this.tests$ = this.testsService.tests$.pipe(map(res => res));
   }
-  getAllTestsCard(){
+/*   getAllTestsCard(){
     this.testsService.getTestCard()
     .subscribe({
-/*       next:(res)=>{
+      next:(res)=>{
         console.log(res)
-      } */
+      }
     })
   }
   getTestType(){
@@ -35,9 +31,15 @@ export class TestListComponent implements OnInit {
         console.log(res)
       }
     })
-  }
+  } */
 
   addBackgraund(url: string) {
-    return `linear-gradient(to right, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url(${url})`;
+    let imgUrl;
+    if (url) {
+      imgUrl = url
+    } else {
+      imgUrl = '/assets/images/test-1.jpeg';
+    }
+    return `linear-gradient(to right, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url(${imgUrl})`;
   }
 }

@@ -16,8 +16,8 @@
               </mat-form-field>
               <mat-form-field appearance="fill">
                 <mat-label>Choose an option</mat-label>
-                <select matNativeControl formControlName="testType">
-                  <option *ngFor="let test of tests.testsType" value={{test.title}}>{{test.title}}</option>
+                <select matNativeControl >
+                  <option  formControlName="testType" *ngFor="let test of tests.testsType" value={{test.title}}>{{test.title}}</option>
                 </select>
               </mat-form-field>
               <mat-form-field appearance="fill">

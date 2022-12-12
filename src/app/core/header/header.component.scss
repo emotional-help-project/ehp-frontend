@@ -67,9 +67,9 @@
 }
 
 .active {
-    color: var(--mainColor);
+    color: var(--darkMainColor);
 }
 
 .active__auth {
-    color: rgb(184, 136, 74);
+    color: var(--darkSecondaryColor);
 }

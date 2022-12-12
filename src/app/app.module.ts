@@ -29,6 +29,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { GoogleMapComponent } from './features/contacts/components/google-map/google-map.component';
 import { ProfileModule } from './features/profile/profile.module';
 import { CoursesComponent } from './features/home/courses/courses.component';
+import { SpecialistsModule } from './features/specialists/specialists.module';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { CoursesComponent } from './features/home/courses/courses.component';
     ReactiveFormsModule,
     LoginModule,
     GoogleMapsModule,
-    ProfileModule
+    ProfileModule,
+    SpecialistsModule
   ],
   providers: [
     {

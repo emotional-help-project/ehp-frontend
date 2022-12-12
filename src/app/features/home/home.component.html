@@ -43,7 +43,7 @@
 <div class="cards">
     <h2>Trainings we provide:</h2>
     <p>Our courses provide practical applications for Mental Health concepts through videos, lectures, practice exercises, opportunities to explore our own psychological reactions, and interactive discussions.</p>
-    <button class="add_training" (click)="openAddDialog()" >Add new training</button><br>
+    <button class="add_training" (click)="openAddDialog()" *ngIf="isAdmin" >Add new training</button><br>
     <ul class="card" *ngIf="coursesService.courses.length; else noCourses ">
         <li class="card_item" *ngFor="let course of coursesService.courses">
             <img src={{course.imageUrl}}>
@@ -54,7 +54,7 @@
                 <div class="btns">
                     <div class="price"><span><b>{{course.price}}$</b></span></div>
                     <div class="admin_btn">
-                        <mat-icon (click)="openUpdateDialog(course)"  >edit</mat-icon>
+                        <mat-icon (click)="openUpdateDialog(course)" *ngIf="isAdmin" >edit</mat-icon>
                         <mat-icon (click)="onRemove(course.id)" *ngIf="isAdmin" >delete</mat-icon>
                     </div>
                 </div>
