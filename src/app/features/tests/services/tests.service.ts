@@ -235,9 +235,20 @@ export class TestsService {
     return this.loader.showLoaderUntilCompleted(loadTests$).subscribe();
   }
 
-  loadTestById(id: string) {
+  startTest(id: string) {
     const firstUrl = environment.apiUrl + `/tests/test/${id}/init?userId=${this.userId}`;
-    this.http.post(firstUrl, {});
+    return this.http.post<any>(firstUrl, {}).pipe(
+      map(res => res),
+      catchError(err => {
+        const message = 'Could not load test';
+        this.messages.showErrors(message);
+        console.log(message, err);
+        return throwError(err);
+      })
+    )
+  }
+
+  loadTestById(id: string) {
     const secondUrl = environment.apiUrl + `/tests/test/${id}/session/1?skip=0&take=100`;
     return this.http.get<Test>(secondUrl).pipe(
       map(res => res),
