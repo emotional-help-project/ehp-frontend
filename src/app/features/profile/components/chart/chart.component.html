@@ -1,13 +1,12 @@
 <section>
   <button class="back" (click)="goBack()">← Go back</button>
-  <h2>Emotion map</h2>
-  <h3>Test</h3>
+  <h2>{{title}}</h2>
   <div style="display: block">
     <canvas
       baseChart
       class="chart"
       [type]="'line'"
-      [data]="lineChartData"
+      [data]="lineChartData | async"
       [options]="lineChartOptions"
       [legend]="lineChartLegend"
     >

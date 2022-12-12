@@ -280,8 +280,8 @@ export class TestsService {
       }
     })
     const answers = {
-      userId: this.userId,
-      testId: testId,
+      userId: Number(this.userId),
+      testId: Number(testId),
       questionAnswerUserRequests
     }
     console.log(answers);
@@ -291,6 +291,8 @@ export class TestsService {
   passAnswers(data: any) {
     // const firstUrl = environment.apiUrl + `/tests/test/session/1`;
     // this.http.post(firstUrl, data);
+    console.log(data);
+    
     const secondUrl =
       environment.apiUrl + `/tests/test/session/1/finalize`;
       return this.http.post<TestResult>(secondUrl, data).pipe(
