@@ -11,6 +11,11 @@ import { StatisticsService } from '../../services/statistics.service';
 })
 export class EmotionMapSectionComponent implements OnInit {
   tests$: Observable<PassedTest[]>;
+  tests: PassedTest[] = [{
+    testId: 2,
+    testTitle: 'Depression Test',
+    imageUrl: 'https://hindi.cdn.zeenews.com/hindi/sites/default/files/2021/12/11/988233-biharsuccess.jpg',
+    }]
 
   constructor(
     private statisticsService: StatisticsService,
