@@ -9,16 +9,17 @@ import { StatisticsService } from '../../services/statistics.service';
   styleUrls: ['./history.component.scss']
 })
 
-export class HistoryComponent implements OnInit {
+export class HistoryComponent  {
   
   history$: Observable<History[]>;
+  history: History[];
 
   constructor(private statisticsService: StatisticsService) {
-
+    this.history = this.statisticsService.hisrory
   }
 
-  ngOnInit(): void {
-    this.history$ = this.statisticsService.loadHistory().pipe(map(res => res));
-  }
+  // ngOnInit(): void {
+  //   this.history$ = this.statisticsService.loadHistory().pipe(map(res => res));
+  // }
 }
 

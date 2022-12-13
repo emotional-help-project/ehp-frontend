@@ -40,7 +40,7 @@ export class TestsService {
     adviceDescription: "According to your responses, you seem to show some symptoms of Bipolar Depression.",
     scoreFrom: 0,
     scoreTo: 70,
-    userScore: 5,
+    userScore: 8,
     links: [
         {
             id: 1,
@@ -100,7 +100,7 @@ export class TestsService {
   }
 
   loadTestById(id: string) {
-    const secondUrl = environment.apiUrl + `/tests/test/${id}/session/${this.sessionNumber}?skip=0&take=100`;
+    const secondUrl = environment.apiUrl + `/tests/test/${id}/session/${1}?skip=0&take=100`;
     return this.http.get<Test>(secondUrl).pipe(
       map(res => res),
       catchError(err => {
@@ -156,15 +156,15 @@ export class TestsService {
   passAnswers(data: any) {
     // const firstUrl = environment.apiUrl + `/tests/test/session/${this.sessionNumber}`;
     // this.http.post(firstUrl, data);
-    console.log(data);
+    // console.log(data);
     
     const secondUrl =
-      environment.apiUrl + `/tests/test/session/${this.sessionNumber}/finalize`;
+      environment.apiUrl + `/tests/test/session/${1}/finalize`;
       return this.http.post<TestResult>(secondUrl, data).pipe(
       map(res => res),
       catchError(err => {
         const message = 'Something went wrong. Try again later';
-        this.messages.showErrors(message);
+        // this.messages.showErrors(message);
         console.log(message, err);
         return throwError(err);
       }),
