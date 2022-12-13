@@ -23,6 +23,7 @@ export class TestDialogComponent implements OnInit {
       private ref: MatDialogRef<ItemDialogComponent>,){}
 
       ngOnInit(): void {
+        //this.getAllTypes()
         this.tests$ = this.tests.tests$.pipe(map(res => res));
         this.testForm = this.formBuilder.group({ 
           url: ['', Validators.required],
@@ -71,11 +72,15 @@ export class TestDialogComponent implements OnInit {
         }
       });
     })
-
-
-
 //    ref.afterClosed().subscribe(data => console.log(data))
   }
 
-
+/*   getAllTypes(){
+    this.tests.getTestType()
+    .subscribe({
+      next:(res)=>{
+        console.log(res)
+      }
+    })
+  } */
 }
