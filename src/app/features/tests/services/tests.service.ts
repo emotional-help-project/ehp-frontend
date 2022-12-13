@@ -13,7 +13,7 @@ import { MessagesService } from 'src/app/shared/services/messages.service';
 import { environment } from 'src/environment/environment';
 import { LoginService } from '../../login/services/login.service';
 import { Question } from '../models/question.models';
-import { TestList, TestListItem, TestType} from '../models/test-list-item.interface';
+import { TestListItem, TestType} from '../models/test-list-item.interface';
 import { TestResult } from '../models/test-result.interface';
 import { Test } from '../models/test.interface';
 
@@ -30,160 +30,10 @@ export class TestsService {
 
   tests$: Observable<TestListItem[]> = this.testListSubject.asObservable();
   test$: Observable<Test> = this.testSubject.asObservable();
-  // testResult$: Observable<TestResult>;
+  testResult$: Observable<TestResult>;
   userId?: string;
-
-  public test: Test = {
-    testTitle: "Depression test",
-    totalNumberOfTestQuestions: 4,
-    items: [
-      {
-        questionId: 2,
-        allowsMultipleAnswers: false,
-        questionText:
-          'Do you suffer from extreme mood changes (e.g. going from extremely "happy" to extremely "sad")?',
-        answers: [
-          {
-            answerId: 17,
-            answerText: 'Yes',
-            checked: false,
-          },
-          {
-            answerId: 2,
-            answerText: 'Sometimes',
-            checked: false,
-          },
-          {
-            answerId: 3,
-            answerText: 'No',
-            checked: false,
-          },
-        ],
-      },
-      {
-        questionId: 5,
-        allowsMultipleAnswers: true,
-        questionText:
-          'Has anyone in your family ever been diagnosed with Bipolar Disorder?',
-        answers: [
-          {
-            answerId: 41,
-            answerText: 'Yes',
-            checked: false,
-          },
-          {
-            answerId: 5,
-            answerText: 'Sometimes',
-            checked: false,
-          },
-          {
-            answerId: 6,
-            answerText: 'No',
-            checked: false,
-          },
-        ],
-      },
-      {
-        questionId: 7,
-        allowsMultipleAnswers: false,
-        questionText:
-          'Do you suffer from extreme mood changes (e.g. going from extremely "happy" to extremely "sad")?',
-        answers: [
-          {
-            answerId: 8,
-            answerText: 'Yes',
-            checked: false,
-          },
-          {
-            answerId: 9,
-            answerText: 'Sometimes',
-            checked: false,
-          },
-          {
-            answerId: 10,
-            answerText: 'No',
-            checked: false,
-          },
-        ],
-      },
-      {
-        questionId: 11,
-        allowsMultipleAnswers: true,
-        questionText:
-          'Has anyone in your family ever been diagnosed with Bipolar Disorder?',
-        answers: [
-          {
-            answerId: 12,
-            answerText: 'Yes',
-            checked: false,
-          },
-          {
-            answerId: 13,
-            answerText: 'Sometimes',
-            checked: false,
-          },
-          {
-            answerId: 14,
-            answerText: 'No',
-            checked: false,
-          },
-        ],
-      },
-    ],
-  };
-
-  public testList: TestListItem[] = [
-   /*  { 
-      id: 125,
-      title: 'Get to know yourself',
-      description: 'With this personality test, you will find out what personality type you are',
-      imageUrl: "/assets/images/test-1.jpeg",
-      testType: {
-        id: 1254,
-        title: 'Health',
-      }
-    },
-    { 
-      id: 128,
-      title: 'Get to know yourself',
-      description: 'With this personality test, you will find out what personality type you are',
-      imageUrl: "/assets/images/test-2.jpeg",
-      testType: {
-        id: 1251,
-        title: 'Health',
-      }
-    },
-    { 
-      id: 129,
-      title: 'Get to know yourself',
-      description: 'With this personality test, you will find out what personality type you are',
-      imageUrl: "/assets/images/test-3.jpeg",
-      testType: {
-        id: 1250,
-        title: 'Health',
-      }
-    },
-    { 
-      id: 140,
-      title: 'Get to know yourself',
-      description: 'With this personality test, you will find out what personality type you are',
-      imageUrl: "/assets/images/test-3.jpeg",
-      testType: {
-        id: 1250,
-        title: 'Health',
-      }
-    },
-    { 
-      id: 150,
-      title: 'Get to know yourself',
-      description: 'With this personality test, you will find out what personality type you are',
-      imageUrl: "/assets/images/test-3.jpeg",
-      testType: {
-        id: 1250,
-        title: 'Health',
-      }
-    }, */
-  ];
+  sessionNumber: number;
+ 
   public testsType: TestType[] =[];
 
   public testResult: TestResult = {
@@ -238,18 +88,19 @@ export class TestsService {
   startTest(id: string) {
     const firstUrl = environment.apiUrl + `/tests/test/${id}/init?userId=${this.userId}`;
     return this.http.post<any>(firstUrl, {}).pipe(
-      map(res => res),
+      map(res => this.sessionNumber = res),
       catchError(err => {
         const message = 'Could not load test';
         this.messages.showErrors(message);
         console.log(message, err);
         return throwError(err);
-      })
+      }),
+      // tap(num => this.sessionNumber = num)
     )
   }
 
   loadTestById(id: string) {
-    const secondUrl = environment.apiUrl + `/tests/test/${id}/session/1?skip=0&take=100`;
+    const secondUrl = environment.apiUrl + `/tests/test/${id}/session/${this.sessionNumber}?skip=0&take=100`;
     return this.http.get<Test>(secondUrl).pipe(
       map(res => res),
       catchError(err => {
@@ -303,12 +154,12 @@ export class TestsService {
   }
 
   passAnswers(data: any) {
-    // const firstUrl = environment.apiUrl + `/tests/test/session/1`;
+    // const firstUrl = environment.apiUrl + `/tests/test/session/${this.sessionNumber}`;
     // this.http.post(firstUrl, data);
     console.log(data);
     
     const secondUrl =
-      environment.apiUrl + `/tests/test/session/1/finalize`;
+      environment.apiUrl + `/tests/test/session/${this.sessionNumber}/finalize`;
       return this.http.post<TestResult>(secondUrl, data).pipe(
       map(res => res),
       catchError(err => {

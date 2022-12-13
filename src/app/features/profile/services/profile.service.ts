@@ -57,24 +57,20 @@ export class ProfileService {
    }
 
    updateProfile(data: any, id: number | undefined) {
-
     const user = this.subject.getValue();
-    let newData;
     let storage: any;
     let loginData: User | null;
-    if (data.newPassword) {
-      newData = {}
-    } else {
-      newData = data;
-    }
     const updatedUser = {
       ...user,
-      ...newData,
-    }
-    const reqBody = {
       ...data,
-      id
     }
+    const {email} = user;
+    const reqBody = {
+      email,
+      id,
+      ...data      
+    }
+   
     if (data.firstName) {
       const user = localStorage.getItem('user');
       if (user) {
@@ -97,6 +93,26 @@ export class ProfileService {
         localStorage.setItem('user', JSON.stringify(storage));
         return this.login.subject.next({...loginData, ...storage});
       })
+    );
+   }
+
+   updatePassword(password: any, id: number | undefined) {
+    const url = environment.apiUrl + `/user/profile/update/password`;
+    const data = {
+      userId: id,
+      ...password
+    }
+    console.log(data);
+    
+    return this.http.put(url, data).pipe(
+      map(res => res),
+      catchError(err => {
+        const message = 'Could not update password';
+        this.messages.showErrors(message);
+        console.log(message, err);
+        return throwError(err);
+      }),
+      tap(() => this.messages.showSuccess('Your password was updated successfuly'))
     );
    }
 

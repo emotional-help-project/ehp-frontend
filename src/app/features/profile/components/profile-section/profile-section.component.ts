@@ -33,11 +33,13 @@ constructor(
   changeData(data: any, id: number | undefined) {
     let newData = {};
     if (this.type === 'password') {
-      newData = {newPassword: data.password}
+      newData = {newPassword: data.password};
+      this.profile.updatePassword(newData, id).subscribe();
     } else {
       newData = data;
+      this.profile.updateProfile(newData, id).subscribe();
     }
-    this.profile.updateProfile(newData, id).subscribe();
+    
   }
 
   toDelete(id: number | undefined) {
