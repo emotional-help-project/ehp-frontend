@@ -182,7 +182,7 @@ export class StatisticsService {
     private login: LoginService
   ) {
     if (this.login.getToken()) {
-      this.userId = this.login.getParsedToken()?.userId;
+      this.userId = this.login.getUserId();
     }
   }
 

@@ -1,3 +1,3 @@
 export const environment = {
-  apiUrl: 'http://5.58.12.93:8095/api'
+  apiUrl: 'http://54.187.13.27:8080/api'
 };

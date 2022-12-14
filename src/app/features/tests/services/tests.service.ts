@@ -61,7 +61,7 @@ export class TestsService {
     private http: HttpClient,
     private user: LoginService
   ) {
-    this.userId = this.user.getParsedToken()?.userId;
+    this.userId = this.user.getUserId();
 
     if (localStorage.getItem('token')) {
       this.loadAllTests();
@@ -100,7 +100,7 @@ export class TestsService {
   }
 
   loadTestById(id: string) {
-    const secondUrl = environment.apiUrl + `/tests/test/${id}/session/${1}?skip=0&take=100`;
+    const secondUrl = environment.apiUrl + `/tests/test/${id}/session/${this.sessionNumber}?skip=0&take=100`;
     return this.http.get<Test>(secondUrl).pipe(
       map(res => res),
       catchError(err => {
@@ -159,17 +159,19 @@ export class TestsService {
     // console.log(data);
     
     const secondUrl =
-      environment.apiUrl + `/tests/test/session/${1}/finalize`;
+      environment.apiUrl + `/tests/test/session/${this.sessionNumber}/finalize`;
       return this.http.post<TestResult>(secondUrl, data).pipe(
       map(res => res),
       catchError(err => {
         const message = 'Something went wrong. Try again later';
-        // this.messages.showErrors(message);
+        this.messages.showErrors(message);
         console.log(message, err);
         return throwError(err);
       }),
     );
   }
+
+  
    addQuestion(question: Question){
     const addQuestionUrl = environment.apiUrl + `/admin/test`;
     return this.http.post(addQuestionUrl, question)
