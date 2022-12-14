@@ -75,8 +75,8 @@ export class LoginService {
     if(token != null) {
       const parsed: TokenPayload = JSON.parse(atob(token.split('.')[1]));
 
-     // return { token, firstName: parsed.username, userId: parsed.id, isAdmin: parsed.role.includes('ADMIN') }
-      return { token, firstName: parsed.username, userId: parsed.id, isAdmin: true }
+     return { token, firstName: parsed.username, userId: parsed.id, isAdmin: parsed.role.includes('ADMIN') }
+     // return { token, firstName: parsed.username, userId: parsed.id, isAdmin: false }
     }
     return null;
   }

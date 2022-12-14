@@ -47,7 +47,7 @@
     <button class="add_training" (click)="openAddDialog()" *ngIf="isAdmin" >Add new training</button><br>
     <ul class="card" *ngIf="coursesService.courses.length; else noCourses ">
         <li class="card_item" *ngFor="let course of coursesService.courses">
-            <img src={{course.imageUrl}}>
+            <img class="card_img" src={{course.imageUrl}}>
             <div class="card_item_content">
                 <div class="date">{{course.creatingDate | date: 'medium'}}</div>
                 <h2 class="card_title">{{course.title}}</h2>
