@@ -37,7 +37,9 @@ export class HeaderComponent implements OnDestroy {
 
   logout(event: Event) {
     event.preventDefault();
+    this.profileService.subject.next(this.profileService.defaultUser);
     this.login.logout();
+    
     this.router.navigate(['/']);
   }
   
