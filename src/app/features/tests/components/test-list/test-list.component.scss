@@ -4,11 +4,13 @@ ul {
     align-items: center;
     flex-wrap: wrap;
     width: 100%;
+    gap: 30px;
     li {
         width: 25%;
         height: 220px;
         box-shadow: var(--boxShadowMainColor);
         padding: 30px;
+        min-height: 200px;
         text-align: center;
         list-style: none;
         background-repeat: no-repeat;
@@ -26,11 +28,12 @@ ul {
             color: #000;
             margin-bottom: 20px;
             font-size: 24px;
+            height: 30%;
         }
         .description {
             margin-bottom: 20px;
             color: #000;
-            min-height: 40px;
+            height: 20%;
         }
         .type {
             text-align: right;

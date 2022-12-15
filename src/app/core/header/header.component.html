@@ -20,7 +20,7 @@
         <div class="contact item">
             <div class="number item">
                 <mat-icon class="icon">call</mat-icon>
-                <span>+38 (096) 487 18 93</span>
+                <a href="tel:+380964871893">+38 (096) 487 18 93</a>
             </div>
             <div class="location item">
                 <mat-icon class="icon">location_on</mat-icon>
@@ -28,7 +28,7 @@
             </div>
             <div class="email item">
                 <mat-icon class="icon">mail</mat-icon>
-                <span>info@gmail.com</span>
+                <a href="mailto:info@gmail.com">info@gmail.com</a>
             </div>
         </div>
         <button class="btn" *ngIf="isLoggedIn$ | async" (click)="showModal=true">Make an appointment</button>
@@ -37,8 +37,8 @@
         <h2 class="logo">Psychological Assistance Services</h2>
         <ul class="navigation">
             <li class="nav_item" [routerLink]="['/']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</li>
+            <li class="nav_item" [routerLink]="['/courses']" routerLinkActive="active">Courses</li>
             <li class="nav_item" [routerLink]="['/psychologists']" routerLinkActive="active">Psychologists</li>
-            <li class="nav_item">Services</li>
             <li class="nav_item" [routerLink]="['/contacts']" routerLinkActive="active">Contacts</li>
             <li class="nav_item" *ngIf="isLoggedIn$ | async" [routerLink]="['/tests']" routerLinkActive="active">Tests</li>
             <li class="nav_item" *ngIf="isLoggedIn$ | async" [routerLink]="['/profile']" routerLinkActive="active">Profile</li>

@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { LoginService } from 'src/app/features/login/services/login.service';
+import { ProfileService } from 'src/app/features/profile/services/profile.service';
 import { RegisterService } from 'src/app/features/register/services/register.service';
 import { createEmailStrengthValidator } from 'src/app/shared/validators/email-strength.validator';
 import { createPasswordStrengthValidator } from 'src/app/shared/validators/password-strength.validator';
@@ -25,7 +26,8 @@ export class AuthFormComponent implements OnInit {
     private registerService: RegisterService,
     private loginService: LoginService,
     private router: Router,
-    public messages: MessagesService
+    public messages: MessagesService,
+    private profileService: ProfileService
   ) { }
 
   ngOnInit() {
@@ -68,6 +70,7 @@ export class AuthFormComponent implements OnInit {
       next: () => {
         this.router.navigateByUrl('/');
         this.submitted = false;
+        this.profileService.loadCurrentUser();
       },
       error: () => this.submitted = false
     });

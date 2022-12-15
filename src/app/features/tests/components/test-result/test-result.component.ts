@@ -7,7 +7,7 @@ import { TestsService } from '../../services/tests.service';
   templateUrl: './test-result.component.html',
   styleUrls: ['./test-result.component.scss']
 })
-export class TestResultComponent implements OnInit {
+export class TestResultComponent implements OnInit{
   
   @Input() testResult: TestResult;
   constructor(private testService: TestsService) {

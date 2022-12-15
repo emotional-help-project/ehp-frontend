@@ -29,6 +29,150 @@ export class StatisticsService {
   passedTestList$: Observable<PassedTest[]> =
     this.passedTestSubject.asObservable();
 
+    statistics = [
+      {
+          testDateTime: "2022-11-29T17:08:12.510998",
+          result: 17
+      },
+      {
+          testDateTime: "2022-11-30T20:52:26.035909",
+          result: 13
+      },
+      {
+          testDateTime: "2022-11-30T21:12:20.382465",
+          result: 12
+      },
+      {
+          testDateTime: "2022-12-01T21:40:48.64253",
+          result: 10
+      },
+      {
+        testDateTime: "2022-12-10T21:40:48.64253",
+        result: 10
+      },
+      {
+        testDateTime: "2022-12-013T21:40:48.64253",
+        result: 8
+      }
+    ]
+  
+    hisrory = [     
+    {
+      testTitle: "Depression test",
+      testTypeTitle: "Health",
+      dateTime: "2022-12-13T21:40:48.64253",
+      result: 8,
+      adviceDescription: "According to your responses, you seem to show some symptoms of Bipolar Depression.",
+      links: [
+          {
+              id: 1,
+              title: "Depression Program",
+              link: "https://thiswayup.org.au/programs/depression-program/"
+          },
+          {
+              id: 2,
+              title: "Overcoming depression: How psychologists help with depressive disorders",
+              link: "https://www.apa.org/topics/depression/overcoming"
+          }
+      ]
+  },
+  {
+    testTitle: "Depression test",
+    testTypeTitle: "Health",
+    dateTime: "2022-12-10T21:40:48.64253",
+    result: 10,
+    adviceDescription: "According to your responses, you seem to show some symptoms of Bipolar Depression.",
+    links: [
+        {
+            id: 1,
+            title: "Depression Program",
+            link: "https://thiswayup.org.au/programs/depression-program/"
+        },
+        {
+            id: 2,
+            title: "Overcoming depression: How psychologists help with depressive disorders",
+            link: "https://www.apa.org/topics/depression/overcoming"
+        }
+    ]
+},
+{
+  testTitle: "Depression test",
+  testTypeTitle: "Health",
+  dateTime: "2022-12-01T21:40:48.64253",
+  result: 10,
+  adviceDescription: "According to your responses, you seem to show some symptoms of Bipolar Depression.",
+  links: [
+      {
+          id: 1,
+          title: "Depression Program",
+          link: "https://thiswayup.org.au/programs/depression-program/"
+      },
+      {
+          id: 2,
+          title: "Overcoming depression: How psychologists help with depressive disorders",
+          link: "https://www.apa.org/topics/depression/overcoming"
+      }
+  ]
+},
+  {
+    testTitle: "Depression test",
+    testTypeTitle: "Health",
+    dateTime: "2022-11-30T21:12:20.382465",
+    result: 12,
+    adviceDescription: "According to your responses, you seem to show some symptoms of Bipolar Depression.",
+    links: [
+        {
+            id: 1,
+            title: "Depression Program",
+            link: "https://thiswayup.org.au/programs/depression-program/"
+        },
+        {
+            id: 2,
+            title: "Overcoming depression: How psychologists help with depressive disorders",
+            link: "https://www.apa.org/topics/depression/overcoming"
+        }
+    ]
+},
+  {
+    testTitle: "Depression test",
+    testTypeTitle: "Health",
+    dateTime: "2022-11-30T20:52:26.035909",
+    result: 13,
+    adviceDescription: "According to your responses, you seem to show some symptoms of Bipolar Depression.",
+    links: [
+        {
+            id: 1,
+            title: "Depression Program",
+            link: "https://thiswayup.org.au/programs/depression-program/"
+        },
+        {
+            id: 2,
+            title: "Overcoming depression: How psychologists help with depressive disorders",
+            link: "https://www.apa.org/topics/depression/overcoming"
+        }
+    ]
+},
+  {
+    testTitle: "Depression test",
+    testTypeTitle: "Health",
+    dateTime: "2022-11-29T17:08:12.510998",
+    result: 17,
+    adviceDescription: "According to your responses, you seem to show some symptoms of Bipolar Depression.",
+    links: [
+        {
+            id: 1,
+            title: "Depression Program",
+            link: "https://thiswayup.org.au/programs/depression-program/"
+        },
+        {
+            id: 2,
+            title: "Overcoming depression: How psychologists help with depressive disorders",
+            link: "https://www.apa.org/topics/depression/overcoming"
+        }
+    ]
+},
+  ]
+
   userId: string | undefined;
 
   constructor(
@@ -38,7 +182,7 @@ export class StatisticsService {
     private login: LoginService
   ) {
     if (this.login.getToken()) {
-      this.userId = this.login.getParsedToken()?.userId;
+      this.userId = this.login.getUserId();
     }
   }
 

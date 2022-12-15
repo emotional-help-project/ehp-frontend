@@ -4,6 +4,7 @@ import { map, Observable, Subscription } from 'rxjs';
 
 import { AppointmentService } from 'src/app/features/appointment/services/appointment.service';
 import { LoginService } from 'src/app/features/login/services/login.service';
+import { ProfileService } from 'src/app/features/profile/services/profile.service';
 
 @Component({
   selector: 'app-header',
@@ -22,7 +23,8 @@ export class HeaderComponent implements OnDestroy {
   constructor(
     public login: LoginService,
     private router: Router,
-    private appointment: AppointmentService
+    private appointment: AppointmentService,
+    private profileService: ProfileService
   ) { 
     this.isLoggedIn$ = this.login.isLoggedIn$.pipe(map(res => res));
     this.isLoggedOut$ = this.login.isLoggedOut$.pipe(map(res => res));
@@ -35,7 +37,9 @@ export class HeaderComponent implements OnDestroy {
 
   logout(event: Event) {
     event.preventDefault();
+    this.profileService.subject.next(this.profileService.defaultUser);
     this.login.logout();
+    
     this.router.navigate(['/']);
   }
   

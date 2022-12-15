@@ -37,29 +37,31 @@
     <img class="about_img" src="../../../assets/images/background2.jpg" alt="girl">
     <div class="content">
         <h2 class="content_title">Welcome to Psychological Assistance Services</h2>
-        <p class="content_text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi, ab quae porro debitis labore dolore, nihil beatae nostrum ipsam totam nam at illum eum explicabo consequuntur quibusdam architecto et sed!</p>
+        <p class="content_text">Through our everyday work, services, and assistance we provide, our main scope is trying to help people find their way to build a better life that includes happiness, a sense of purpose, playfulness, and psychological flexibility, as well as autonomy mastery and belonging.
+        <em>“The ultimate goal of the therapist is not to provide his patients with a series of intellectual insights but to help them change their lives.” — Aaron T. Beck</em></p>
     </div>
 </div>
 <div class="cards">
     <h2>Trainings we provide:</h2>
     <p>Our courses provide practical applications for Mental Health concepts through videos, lectures, practice exercises, opportunities to explore our own psychological reactions, and interactive discussions.</p>
-    <button class="add_training" (click)="openAddDialog()" *ngIf="isAdmin">Add new training</button>
-    <ul class="card" *ngIf="coursesService.courses.length; else noCourses">
+    <button class="add_training" (click)="openAddDialog()" *ngIf="isAdmin" >Add new training</button><br>
+    <ul class="card" *ngIf="coursesService.courses.length; else noCourses ">
         <li class="card_item" *ngFor="let course of coursesService.courses">
-            <img src={{course.url}}>
+            <img class="card_img" src={{course.imageUrl}}>
             <div class="card_item_content">
                 <div class="date">{{course.creatingDate | date: 'medium'}}</div>
                 <h2 class="card_title">{{course.title}}</h2>
                 <div class="card_descr">{{course.description}}</div>
                 <div class="btns">
-                    <div class="price"><span><b>Price:</b></span>300$</div>
+                    <div class="price"><span><b>{{course.price}}$</b></span></div>
                     <div class="admin_btn">
-                        <mat-icon (click)="openUpdateDialog(course)" *ngIf="isAdmin">edit</mat-icon>
-                        <mat-icon (click)="onRemove(course.id)" *ngIf="isAdmin">delete</mat-icon>
+                        <mat-icon (click)="openUpdateDialog(course)" *ngIf="isAdmin" >edit</mat-icon>
+                        <mat-icon (click)="onRemove(course.id)" *ngIf="isAdmin" >delete</mat-icon>
                     </div>
                 </div>
             </div>
         </li>
     </ul>
-    <ng-template  #noCourses><b>No Courses now!</b></ng-template>
+    <button class="more" routerLink="/courses">MORE</button>
+    <ng-template class="no_courses"  #noCourses><b>No Courses now!</b></ng-template>
 </div>

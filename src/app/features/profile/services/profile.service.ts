@@ -36,8 +36,8 @@ export class ProfileService {
     ) {
     
     if (this.login.getToken()) {
-      this.userId = this.login.getParsedToken()?.userId;
-      this.loadCurrentUser(); 
+      this.userId = this.login.getUserId();
+      this.loadCurrentUser();       
     }
    }
 
@@ -53,34 +53,22 @@ export class ProfileService {
       }),
       tap(user => this.subject.next(user))
     );
-    this.loader.showLoaderUntilCompleted(loadUser$).subscribe();
+    return this.loader.showLoaderUntilCompleted(loadUser$).subscribe();
    }
 
    updateProfile(data: any, id: number | undefined) {
-
     const user = this.subject.getValue();
-    let newData;
+    const loginData = this.login.subject.getValue();
     let storage: any;
-    let loginData: User | null;
-    if (data.newPassword) {
-      newData = {}
-    } else {
-      newData = data;
-    }
     const updatedUser = {
       ...user,
-      ...newData,
-    }
-    const reqBody = {
       ...data,
-      id
     }
-    if (data.firstName) {
-      const user = localStorage.getItem('user');
-      if (user) {
-        storage = {...JSON.parse(user), firstName: data.firstName};
-        loginData = this.login.subject.getValue();
-      }  
+    const {email} = user;
+    const reqBody = {
+      email,
+      id,
+      ...data      
     }
   
     const url = environment.apiUrl + '/user/profile/update';
@@ -94,9 +82,35 @@ export class ProfileService {
       }),
       tap(() => {
         this.subject.next(updatedUser);
-        localStorage.setItem('user', JSON.stringify(storage));
+        if (data.firstName) {
+          const user = localStorage.getItem('user');
+          if (user) {
+            storage = {...JSON.parse(user), firstName: data.firstName};
+          }  
+          localStorage.setItem('user', JSON.stringify(storage));
+        }
         return this.login.subject.next({...loginData, ...storage});
       })
+    );
+   }
+
+   updatePassword(password: any, id: number | undefined) {
+    const url = environment.apiUrl + `/user/profile/update/password`;
+    const data = {
+      userId: id,
+      ...password
+    }
+    console.log(data);
+    
+    return this.http.put(url, data).pipe(
+      map(res => res),
+      catchError(err => {
+        const message = 'Could not update password';
+        this.messages.showErrors(message);
+        console.log(message, err);
+        return throwError(err);
+      }),
+      tap(() => this.messages.showSuccess('Your password was updated successfuly'))
     );
    }
 

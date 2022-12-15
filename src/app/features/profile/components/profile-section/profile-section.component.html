@@ -10,7 +10,7 @@
             <p><span>age: </span>{{user?.age}} years<mat-icon (click)="editData('age', 'age')">edit</mat-icon></p>
             <p><span>password: </span>********<mat-icon (click)="editData('password', 'password')">edit</mat-icon></p>
             <p><span>role: </span>{{user?.role}}</p>
-            <button class="btn" (click)="toDelete(user?.id)">Delete account</button>
+            <!-- <button class="btn" (click)="toDelete(user?.id)">Delete account</button> -->
             <app-edit-data-dialog
                 *ngIf="showModal"
                 [oldData]="user"
