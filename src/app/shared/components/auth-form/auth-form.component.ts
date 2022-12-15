@@ -76,8 +76,11 @@ export class AuthFormComponent implements OnInit {
 
   forgotPassword() {
     const email = this.form.value.email;
-    console.log(email);
-    
-    // this.login.sendEmail(email).subscribe();
+    this.loginService.sendEmail(email).subscribe({
+      next: () => {
+        this.submitted = false;
+      },
+      error: () => this.submitted = false
+    });
   }
 }

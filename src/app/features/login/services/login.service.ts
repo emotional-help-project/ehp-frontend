@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, throwError } from 'rxjs';
-import { catchError, map, shareReplay, tap } from 'rxjs/operators';
+import { BehaviorSubject, Observable, throwError, catchError, map, shareReplay, tap} from 'rxjs';
 
 import { User, TokenPayload } from 'src/app/shared/models/user';
 import { MessagesService } from 'src/app/shared/services/messages.service';
@@ -35,6 +34,10 @@ export class LoginService {
   login(data: User) {
     const url = environment.apiUrl + '/account/signin';
     return this.http.post<Partial<User>>(url, data).pipe(
+      catchError(err => {
+        this.messages.showErrors(err);
+        return throwError(err);
+      }),
       tap(({ token, firstName, userId }) => {
         if (token) {
           this.subject.next({ token, firstName, userId });
@@ -42,10 +45,7 @@ export class LoginService {
           localStorage.setItem('user', JSON.stringify({ token, firstName, userId }));
         }
       }),
-      catchError(err => {
-        this.messages.showErrors(err);
-        return throwError(err);
-      }),
+      
       shareReplay()
     );
   }
