@@ -37,8 +37,8 @@ addCourse(){
       creatingDate: course.creatingDate,
       title: course.courseTitle,
     }).subscribe({
-      next:(res)=>{
-        console.log(res)
+      next:()=>{
+        console.log()
         this.ref.close();
       }
     })

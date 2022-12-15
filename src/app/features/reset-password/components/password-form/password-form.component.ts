@@ -24,8 +24,7 @@ export class PasswordFormComponent implements OnInit {
 
   ngOnInit() {
     this.token = this.route.snapshot.queryParamMap.get('token') ?? '';
-    console.log(this.token);
-    
+
       this.form = this.fb.group({
         password: [null, [Validators.required, Validators.minLength(8), createPasswordStrengthValidator(), matchPasswordValidator()]],
         confirmPassword: [null, [Validators.required]]
@@ -36,10 +35,6 @@ export class PasswordFormComponent implements OnInit {
 
    savePassword() {
     const password = this.form.value.password;
-    console.log(this.token);
-    
-    
     this.resetPasswordService.resetPassword(password, this.token).subscribe();
-    console.log(password);  
   }
 }

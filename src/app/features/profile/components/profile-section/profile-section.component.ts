@@ -17,7 +17,7 @@ toConfirm = false;
 userId: number | undefined;
 
 constructor(
-  private profile: ProfileService,
+  public profile: ProfileService,
 ) {
 }
   ngOnInit(): void {
