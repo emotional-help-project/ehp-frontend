@@ -32,27 +32,30 @@ export class MultiTestComponent implements OnInit, OnDestroy {
     this.form = new FormGroup({});
     this.testId = this.route.snapshot.paramMap.get('id') ?? '';
     this.testService.startTest(this.testId);
-    this.subscription =  this.loader.showLoaderUntilCompleted(this.testService
-      .loadTestById(this.testId))
-      .subscribe(test => {
-        this.test = test as Test;
-        this.test.items.forEach(formItem => {
-          if (!formItem.allowsMultipleAnswers) {
-            this.form.addControl(
-              formItem.questionId.toString(),
-              this.fb.control('', Validators.required)
-            );
-          } else {
-            formItem.answers.forEach(item =>
+    setTimeout(() => {
+      this.subscription =  this.loader.showLoaderUntilCompleted(this.testService
+        .loadTestById(this.testId))
+        .subscribe(test => {
+          this.test = test as Test;
+          this.test.items.forEach(formItem => {
+            if (!formItem.allowsMultipleAnswers) {
               this.form.addControl(
-                item.answerId.toString(),
-                this.fb.control(false)
-              )
-            );
-          }
-        });
-      }
-    );
+                formItem.questionId.toString(),
+                this.fb.control('', Validators.required)
+              );
+            } else {
+              formItem.answers.forEach(item =>
+                this.form.addControl(
+                  item.answerId.toString(),
+                  this.fb.control(false)
+                )
+              );
+            }
+          });
+        }
+      );
+    }, 500);
+    
   }
 
   finish() {

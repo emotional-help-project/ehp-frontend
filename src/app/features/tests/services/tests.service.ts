@@ -36,25 +36,6 @@ export class TestsService {
  
   public testsType: TestType[] =[];
 
-  public testResult: TestResult = {
-    adviceDescription: "According to your responses, you seem to show some symptoms of Bipolar Depression.",
-    scoreFrom: 0,
-    scoreTo: 70,
-    userScore: 8,
-    links: [
-        {
-            id: 1,
-            title: "Depression Program",
-            link: "https://thiswayup.org.au/programs/depression-program/"
-        },
-        {
-            id: 2,
-            title: "Overcoming depression: How psychologists help with depressive disorders",
-            link: "https://www.apa.org/topics/depression/overcoming"
-        }
-    ]
-  }
-
   constructor(
     private loader: LoadingService,
     public messages: MessagesService,
@@ -95,7 +76,6 @@ export class TestsService {
         console.log(message, err);
         return throwError(err);
       }),
-      // tap(num => this.sessionNumber = num)
     )
     return this.loader.showLoaderUntilCompleted(test$).subscribe()
   }
@@ -155,10 +135,9 @@ export class TestsService {
   }
 
   passAnswers(data: any) {
-    
-    const secondUrl =
+    const url =
       environment.apiUrl + `/tests/test/session/${this.sessionNumber}/finalize`;
-      return this.http.post<TestResult>(secondUrl, data).pipe(
+      return this.http.post<TestResult>(url, data).pipe(
       map(res => res),
       catchError(err => {
         const message = 'Something went wrong. Try again later';
@@ -167,6 +146,7 @@ export class TestsService {
         return throwError(err);
       }),
     );
+    
   }
 
   
