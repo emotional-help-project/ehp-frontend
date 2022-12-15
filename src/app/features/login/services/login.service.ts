@@ -53,9 +53,8 @@ export class LoginService {
   sendEmail(email: Partial<User>) {
     const url = environment.apiUrl + `/forgot?email=${email}`;
     return this.http.post(url, {}).pipe(
-      map(res => res),
       catchError(err => {
-        this.messages.showErrors('Fill in the email field');
+        this.messages.showErrors('Something went wrong');
         return throwError(err);
       }),
       tap(() => this.messages.showSuccess(`An email with a link to create a new password has been sent to ${email}`)),
@@ -64,9 +63,9 @@ export class LoginService {
   }
 
   logout() {
-    this.subject.next(null);
     localStorage.removeItem('user');
     localStorage.removeItem('token');
+    this.subject.next(null);
   }
 
   getToken() {

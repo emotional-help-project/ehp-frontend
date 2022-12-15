@@ -3,20 +3,19 @@ import { Observable, tap } from 'rxjs';
 import { MessagesService } from '../../services/messages.service';
 
 @Component({
-  selector: 'app-messages',
-  templateUrl: './messages.component.html',
-  styleUrls: ['./messages.component.scss']
+  selector: 'app-error-messages',
+  templateUrl: './error-messages.component.html',
+  styleUrls: ['./error-messages.component.scss']
 })
-export class MessagesComponent implements OnInit {
-
+export class ErrorMessagesComponent implements OnInit {
   showMessages = false;
 
-  success$: Observable<string[]>;
+  errors$: Observable<string[]>;
 
   constructor(public messages: MessagesService) { }
 
   ngOnInit(): void {
-    this.success$ = this.messages.success$
+    this.errors$ = this.messages.errors$
     .pipe(tap(() => {
       this.showMessages = true;
       this.hideMessage();
@@ -31,3 +30,4 @@ export class MessagesComponent implements OnInit {
     }, 5000);
   }
 }
+

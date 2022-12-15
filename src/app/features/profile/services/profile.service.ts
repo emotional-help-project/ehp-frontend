@@ -100,7 +100,6 @@ export class ProfileService {
       userId: id,
       ...password
     }
-    console.log(data);
     
     return this.http.put(url, data).pipe(
       map(res => res),

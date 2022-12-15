@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { User } from 'src/app/shared/models/user';
 import { ProfileService } from '../../services/profile.service';
@@ -8,7 +8,7 @@ import { ProfileService } from '../../services/profile.service';
   templateUrl: './profile-section.component.html',
   styleUrls: ['./profile-section.component.scss']
 })
-export class ProfileSectionComponent implements OnInit {
+export class ProfileSectionComponent implements OnInit, OnDestroy {
 user$: Observable<User>;
 title: string;
 type: string;
@@ -21,6 +21,7 @@ constructor(
 ) {
 }
   ngOnInit(): void {
+    this.profile.loadCurrentUser();
     this.user$ = this.profile.user$.pipe(map(user => user));
   }
 
@@ -59,5 +60,10 @@ constructor(
     }
     this.toConfirm = false;    
     this.userId = 0
+  }
+
+  ngOnDestroy() {
+    console.log();
+    
   }
 }
