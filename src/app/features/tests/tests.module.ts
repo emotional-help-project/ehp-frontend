@@ -15,30 +15,24 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-// import { AuthGuard } from '../login/services/auth.guard';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthGuard } from '../login/services/auth.guard';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ItemDialogComponent } from './components/item-dialog/item-dialog.component';
 
 const routes: Routes = [
   {
     path: '',
     component: TestSectionComponent,
- //   canActivate: [AuthGuard]
+   canActivate: [AuthGuard]
   },
   {
     path: ':id',
     component: MultiTestComponent,
-  //  canActivate: [AuthGuard]
+   canActivate: [AuthGuard]
   },
   {
     path: 'general',
     component: TestFormComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: '2',
-    component: MultiTestComponent,
     canActivate: [AuthGuard]
   }
 ];

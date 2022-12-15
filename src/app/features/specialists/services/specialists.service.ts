@@ -16,7 +16,7 @@ export class SpecialistsService {
 
   constructor(
     private http: HttpClient,
-    private messages: MessagesService,
+    public messages: MessagesService,
     private loader: LoadingService,
     ) {
       this.loader.showLoaderUntilCompleted(this.loadPsychologists()).subscribe();

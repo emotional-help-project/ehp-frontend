@@ -18,7 +18,7 @@ export class LoginService {
   isLoggedOut$: Observable<boolean>;
   updatedUser = {};
   
-  constructor(private messages: MessagesService, private http: HttpClient) {
+  constructor(public messages: MessagesService, private http: HttpClient) {
     
     this.isLoggedIn$ = this.user$.pipe(map(user => !!user?.token));
     this.isLoggedOut$ = this.isLoggedIn$.pipe(map(loggedIn => !loggedIn));
@@ -53,14 +53,12 @@ export class LoginService {
   sendEmail(email: Partial<User>) {
     const url = environment.apiUrl + `/forgot?email=${email}`;
     return this.http.post(url, {}).pipe(
+      map(res => res),
       catchError(err => {
         this.messages.showErrors('Fill in the email field');
         return throwError(err);
       }),
-      tap(() => {
-        const message = `An email with a link to create a new password has been sent to ${email}`;
-        this.messages.showSuccess(message);
-      }),
+      tap(() => this.messages.showSuccess(`An email with a link to create a new password has been sent to ${email}`)),
       shareReplay()
     );
   }

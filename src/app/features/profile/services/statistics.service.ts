@@ -177,7 +177,7 @@ export class StatisticsService {
 
   constructor(
     private loader: LoadingService,
-    private messages: MessagesService,
+    public messages: MessagesService,
     private http: HttpClient,
     private login: LoginService
   ) {

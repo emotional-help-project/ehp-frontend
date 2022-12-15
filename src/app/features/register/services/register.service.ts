@@ -12,7 +12,7 @@ import { environment } from 'src/environment/environment';
 })
 export class RegisterService {
    
-  constructor(private messages: MessagesService, private http: HttpClient) { }
+  constructor(public messages: MessagesService, private http: HttpClient) { }
 
   register(data: User) {
     const url = environment.apiUrl + '/account/signup';

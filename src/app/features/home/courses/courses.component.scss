@@ -55,6 +55,7 @@ p {
 }
 .card {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
 }
 .card_item {

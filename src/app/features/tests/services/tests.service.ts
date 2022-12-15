@@ -57,7 +57,7 @@ export class TestsService {
 
   constructor(
     private loader: LoadingService,
-    private messages: MessagesService,
+    public messages: MessagesService,
     private http: HttpClient,
     private user: LoginService
   ) {

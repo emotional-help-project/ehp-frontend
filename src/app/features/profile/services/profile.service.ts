@@ -30,7 +30,7 @@ export class ProfileService {
   constructor(
     private login: LoginService, 
     private http: HttpClient,
-    private messages: MessagesService,
+    public messages: MessagesService,
     private loader: LoadingService,
     private router: Router
     ) {
