@@ -7,6 +7,7 @@ import { ProfileService } from 'src/app/features/profile/services/profile.servic
 import { RegisterService } from 'src/app/features/register/services/register.service';
 import { createEmailStrengthValidator } from 'src/app/shared/validators/email-strength.validator';
 import { createPasswordStrengthValidator } from 'src/app/shared/validators/password-strength.validator';
+import { MessagesService } from '../../services/messages.service';
 import { matchPasswordValidator } from '../../validators/match-password.validator';
 
 @Component({
@@ -25,6 +26,7 @@ export class AuthFormComponent implements OnInit {
     private registerService: RegisterService,
     private loginService: LoginService,
     private router: Router,
+    public messages: MessagesService,
     private profileService: ProfileService
   ) { }
 
@@ -74,4 +76,14 @@ export class AuthFormComponent implements OnInit {
     });
   }
 
+
+  forgotPassword() {
+    const email = this.form.value.email;
+    this.loginService.sendEmail(email).subscribe({
+      next: () => {
+        this.submitted = false;
+      },
+      error: () => this.submitted = false
+    });
+  }
 }

@@ -64,6 +64,10 @@
             <label for="other">Other</label>
         </div>
 
+        <div class="forgot-password" *ngIf="!registerForm">
+            <p *ngIf="messages.errors$ | async as error" (click)="forgotPassword()">Forgot password</p>
+        </div>
+
         <app-button *ngIf="registerForm" [disabled]="!form.valid || submitted" class="btn" (click)="register()">Sign up</app-button>
         <app-button *ngIf="!registerForm" [disabled]="!form.valid || submitted" class="btn" (click)="login()">Sign in</app-button>
     </form>
