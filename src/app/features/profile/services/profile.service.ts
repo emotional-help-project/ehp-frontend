@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, catchError, map, Observable, tap, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, map, Observable, shareReplay, tap, throwError } from 'rxjs';
 import { User } from 'src/app/shared/models/user';
 import { LoadingService } from 'src/app/shared/services/loading.service';
 import { MessagesService } from 'src/app/shared/services/messages.service';
@@ -36,12 +36,12 @@ export class ProfileService {
     ) {
     
     if (this.login.getToken()) {
-      this.userId = this.login.getUserId();
       this.loadCurrentUser();       
     }
    }
 
    loadCurrentUser() {
+    this.userId = this.login.getParsedToken()?.userId
     const url = environment.apiUrl + `/users/${this.userId}`
     const loadUser$ = this.http.get(url).pipe(
       map(res => res),
@@ -51,7 +51,8 @@ export class ProfileService {
         console.log(message, err);
         return throwError(err);
       }),
-      tap(user => this.subject.next(user))
+      tap(user => this.subject.next(user)),
+      shareReplay()
     );
     return this.loader.showLoaderUntilCompleted(loadUser$).subscribe();
    }
@@ -90,7 +91,8 @@ export class ProfileService {
           localStorage.setItem('user', JSON.stringify(storage));
         }
         return this.login.subject.next({...loginData, ...storage});
-      })
+      }),
+      shareReplay()
     );
    }
 
@@ -100,7 +102,6 @@ export class ProfileService {
       userId: id,
       ...password
     }
-    console.log(data);
     
     return this.http.put(url, data).pipe(
       map(res => res),
@@ -110,7 +111,8 @@ export class ProfileService {
         console.log(message, err);
         return throwError(err);
       }),
-      tap(() => this.messages.showSuccess('Your password was updated successfuly'))
+      tap(() => this.messages.showSuccess('Your password was updated successfuly')),
+      shareReplay()
     );
    }
 
@@ -129,7 +131,8 @@ export class ProfileService {
         this.login.logout();
         this.router.navigate(['/']);
         this.subject.next(this.defaultUser);
-      })
+      }),
+      shareReplay()
     );
    }
 }

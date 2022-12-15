@@ -70,7 +70,6 @@ export class AuthFormComponent implements OnInit {
       next: () => {
         this.router.navigateByUrl('/');
         this.submitted = false;
-        this.profileService.loadCurrentUser();
       },
       error: () => this.submitted = false
     });

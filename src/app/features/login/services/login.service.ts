@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, throwError, catchError, map, shareReplay, tap} from 'rxjs';
+import { BehaviorSubject, Observable, throwError, catchError, map, shareReplay, tap, finalize} from 'rxjs';
 
 import { User, TokenPayload } from 'src/app/shared/models/user';
 import { MessagesService } from 'src/app/shared/services/messages.service';
@@ -53,20 +53,19 @@ export class LoginService {
   sendEmail(email: Partial<User>) {
     const url = environment.apiUrl + `/forgot?email=${email}`;
     return this.http.post(url, {}).pipe(
-      map(res => res),
-      catchError(err => {
-        this.messages.showErrors('Fill in the email field');
-        return throwError(err);
-      }),
-      tap(() => this.messages.showSuccess(`An email with a link to create a new password has been sent to ${email}`)),
+      // catchError(err => {
+      //   this.messages.showErrors('Something went wrong');
+      //   return throwError(err);
+      // }),
+      finalize(() => this.messages.showSuccess(`An email with a link to create a new password has been sent to ${email}`)),
       shareReplay()
     );
   }
 
   logout() {
-    this.subject.next(null);
     localStorage.removeItem('user');
     localStorage.removeItem('token');
+    this.subject.next(null);
   }
 
   getToken() {

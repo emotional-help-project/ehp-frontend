@@ -30,8 +30,8 @@ constructor(public coursesService: CoursesService, private dialog: MatDialog, pu
   getAllCourses(){
     this.coursesService.getCourses()
     .subscribe({
-      next:(res)=>{
-        console.log(res)
+      next:()=>{
+        console.log()
       }
     })
   }

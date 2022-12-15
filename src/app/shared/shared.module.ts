@@ -10,6 +10,7 @@ import { PasswordToggleDirective } from './directives/password-toggle.directive'
 import { MessagesComponent } from './components/messages/messages.component';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { ProfileService } from '../features/profile/services/profile.service';
+import { ErrorMessagesComponent } from './components/error-messages/error-messages.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { ProfileService } from '../features/profile/services/profile.service';
     PasswordToggleDirective,
     MessagesComponent,
     ConfirmDialogComponent,
+    ErrorMessagesComponent,
   ],
   imports: [
     CommonModule,
@@ -30,7 +32,8 @@ import { ProfileService } from '../features/profile/services/profile.service';
     AuthFormComponent,
     PasswordToggleDirective,
     MessagesComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent, 
+    ErrorMessagesComponent
   ],
   providers: [
     RegisterService,
