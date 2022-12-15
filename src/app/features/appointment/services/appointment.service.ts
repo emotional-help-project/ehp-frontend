@@ -17,7 +17,7 @@ export class AppointmentService {
     private user: LoginService,
     private messages: MessagesService,
   ) {
-    this.userId = this.user.getParsedToken()?.userId;
+    this.userId = this.user.getUserId();
   }
 
   makeAppointment(data: any) {

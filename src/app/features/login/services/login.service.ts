@@ -60,6 +60,15 @@ export class LoginService {
     const token = localStorage.getItem('token');
     return token;
   }
+
+  getUserId() {
+    const user = localStorage.getItem('user');
+    if (user) {
+      return JSON.parse(user).userId
+    } else {
+      return null;
+    }
+  }
   
   getParsedToken(){
     const token = localStorage.getItem('token');

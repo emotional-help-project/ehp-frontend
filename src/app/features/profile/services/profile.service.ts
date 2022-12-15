@@ -36,8 +36,8 @@ export class ProfileService {
     ) {
     
     if (this.login.getToken()) {
-      this.userId = this.login.getParsedToken()?.userId;
-      this.loadCurrentUser(); 
+      this.userId = this.login.getUserId();
+      this.loadCurrentUser();       
     }
    }
 
@@ -53,13 +53,13 @@ export class ProfileService {
       }),
       tap(user => this.subject.next(user))
     );
-    this.loader.showLoaderUntilCompleted(loadUser$).subscribe();
+    return this.loader.showLoaderUntilCompleted(loadUser$).subscribe();
    }
 
    updateProfile(data: any, id: number | undefined) {
     const user = this.subject.getValue();
+    const loginData = this.login.subject.getValue();
     let storage: any;
-    let loginData: User | null;
     const updatedUser = {
       ...user,
       ...data,
@@ -69,14 +69,6 @@ export class ProfileService {
       email,
       id,
       ...data      
-    }
-   
-    if (data.firstName) {
-      const user = localStorage.getItem('user');
-      if (user) {
-        storage = {...JSON.parse(user), firstName: data.firstName};
-        loginData = this.login.subject.getValue();
-      }  
     }
   
     const url = environment.apiUrl + '/user/profile/update';
@@ -90,7 +82,13 @@ export class ProfileService {
       }),
       tap(() => {
         this.subject.next(updatedUser);
-        localStorage.setItem('user', JSON.stringify(storage));
+        if (data.firstName) {
+          const user = localStorage.getItem('user');
+          if (user) {
+            storage = {...JSON.parse(user), firstName: data.firstName};
+          }  
+          localStorage.setItem('user', JSON.stringify(storage));
+        }
         return this.login.subject.next({...loginData, ...storage});
       })
     );
