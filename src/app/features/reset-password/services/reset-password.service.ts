@@ -13,12 +13,12 @@ export class ResetPasswordService {
 
   constructor(
     private http: HttpClient,
-    private messages: MessagesService,
+    public messages: MessagesService,
     private router: Router
   ) { }
 
-  resetPassword(password: string, email: string) {
-    const url = environment.apiUrl + `/forgot/reset?email=${email}&password=${password}`;
+  resetPassword(password: string, token: string) {
+    const url = environment.apiUrl + `/forgot/reset-password?token=${token}&password=${password}`;
     return this.http.post(url, {}).pipe(
       catchError(err => {
         this.messages.showErrors('Something went wrong');

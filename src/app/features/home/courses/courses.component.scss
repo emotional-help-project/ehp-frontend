@@ -55,6 +55,7 @@ p {
 }
 .card {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
 }
 .card_item {
@@ -85,4 +86,28 @@ p {
 .price{
     color: var(--secondaryColor);
     margin-top: 10px;
+    font-size: 18px;
 }
+
+.btns {
+    position: relative;
+    .admin_btn {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+}
+
+
+mat-icon {
+    margin-top: 10px;
+    color: var(--darkSecondaryColor);
+    &:hover {
+        color: var(--darkMainColor);
+        cursor: pointer;
+    }
+    &:not(:last-child) {
+    margin-right: 10px;
+    }
+}
+

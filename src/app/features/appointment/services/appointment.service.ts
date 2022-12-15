@@ -15,7 +15,7 @@ export class AppointmentService {
   constructor(
     private http: HttpClient,
     private user: LoginService,
-    private messages: MessagesService,
+    public messages: MessagesService,
   ) {
     this.userId = this.user.getUserId();
   }
