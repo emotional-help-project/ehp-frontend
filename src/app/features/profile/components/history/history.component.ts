@@ -17,7 +17,8 @@ export class HistoryComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.history$ = this.statisticsService.loadHistory().pipe(map(res => res));
+    this.history$ = this.statisticsService.loadHistory().pipe(map(res => res.sort((a: any, b: any) => Number(new Date(b.dateTime)) - Number(new Date(a.dateTime))
+    )));
   }
 }
 
