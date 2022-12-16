@@ -1,5 +1,5 @@
 <div class="cards">
-    <h2>Trainings we provide:</h2>
+    <h2>Trainings we provide</h2>
     <p>Our courses provide practical applications for Mental Health concepts through videos, lectures, practice exercises, opportunities to explore our own psychological reactions, and interactive discussions.</p>
     <ul class="card" *ngIf="(courses$ | async)?.length">
         <li class="card_item" *ngFor="let course of courses$ | async">
