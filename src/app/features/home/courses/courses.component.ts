@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { map, Observable } from 'rxjs';
 import { CoursesService } from 'src/app/shared/courses/courses.service';
+import { LoadingService } from 'src/app/shared/services/loading.service';
 import { LoginService } from '../../login/services/login.service';
 import { Course } from '../../tests/models/course.model';
 
@@ -15,10 +16,20 @@ export class CoursesComponent implements OnInit {
   isAdmin = this.loginService.getParsedToken()?.isAdmin;
   courses$: Observable<Course[]>
 
-constructor(public coursesService: CoursesService, private dialog: MatDialog, public loginService: LoginService){}
+constructor(
+  public coursesService: CoursesService, 
+  private dialog: MatDialog, 
+  public loginService: LoginService,
+  private loader: LoadingService
+  ){}
   ngOnInit(): void {
+    this.loader.showLoaderUntilCompleted(this.getCourses()).subscribe();
+  }
+
+  getCourses() {
     this.getAllCourses()
     this.courses$ = this.coursesService.getCourses().pipe(map(res => res));
+    return this.courses$;
   }
 
   openAddDialog() {

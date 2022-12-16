@@ -13,32 +13,7 @@ import { environment } from 'src/environment/environment';
   providedIn: 'root',
 })
 export class CoursesService {
-  public courses: Course[] = [
-    /* {
-      id: 1,
-      url: '../../../assets/images/feelings.png',
-      creatingDate:'12/11/21',
-      title: 'How to Manage Your Emotions in Times of Stress',
-      description:
-        'Mental health includes our emotional, psychological, and social well-being. It affects how we think, feel, and act. It also helps determine how we handle stress, relate to others, and make choices. ',
-    },
-    {
-      id: 2,
-      url: '../../../assets/images/feelings.png',
-      creatingDate:'12/11/21',
-      title: 'Mental and Physical Self-Care',
-      description:
-        'Mental health includes our emotional, psychological, and social well-being. It affects how we think, feel, and act. It also helps determine how we handle stress, relate to others, and make choices. ',
-    },
-    {
-      id: 3,
-      url: '../../../assets/images/relationship.png',
-      creatingDate:'12/11/21',
-      title: 'The Social Context of Mental Health and Illness',
-      description:
-        'Mental health includes our emotional, psychological, and social well-being. It affects how we think, feel, and act. It also helps determine how we handle stress, relate to others, and make choices. ',
-    }, */
-  ];
+  public courses: Course[] = [];
   constructor(private dialog: MatDialog, private http: HttpClient){}
 
   getCourses(){
