@@ -6,7 +6,7 @@
       baseChart
       class="chart"
       [type]="'line'"
-      [data]="lineChartData"
+      [data]="lineChartData$ | async"
       [options]="lineChartOptions"
       [legend]="lineChartLegend"
     >

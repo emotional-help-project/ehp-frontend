@@ -1,5 +1,5 @@
 <section>
     <h2>Get to know your emotion map</h2>
     <app-test-list></app-test-list>
-    <button (click)="openDialog()">ADD NEW TEST</button>
+    <button *ngIf="isAdmin" (click)="openDialog()">ADD NEW TEST</button>
 </section>

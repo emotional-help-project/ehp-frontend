@@ -9,17 +9,16 @@ import { StatisticsService } from '../../services/statistics.service';
   styleUrls: ['./history.component.scss']
 })
 
-export class HistoryComponent  {
+export class HistoryComponent implements OnInit {
   
   history$: Observable<History[]>;
-  history: History[];
 
   constructor(private statisticsService: StatisticsService) {
-    this.history = this.statisticsService.hisrory
   }
 
-  // ngOnInit(): void {
-  //   this.history$ = this.statisticsService.loadHistory().pipe(map(res => res));
-  // }
+  ngOnInit(): void {
+    this.history$ = this.statisticsService.loadHistory().pipe(map(res => res.sort((a: any, b: any) => Number(new Date(b.dateTime)) - Number(new Date(a.dateTime))
+    )));
+  }
 }
 
